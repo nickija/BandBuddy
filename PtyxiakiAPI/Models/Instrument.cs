@@ -20,14 +20,14 @@ namespace PtyxiakiAPI.Models
         [Column(TypeName = "navchar(100)")]
         public string InstrumentType { get; set; }
 
-        public float YearsExperiecnce{ get; set; }
+        public int? YearsExperiecnce{ get; set; }
 
-        public SkillEnum Skill { get; set; }
+        public SkillEnum? Skill { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

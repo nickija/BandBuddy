@@ -14,7 +14,7 @@ namespace PtyxiakiAPI.Models
 
         public Guid OwnerId { get; set; }
         [ForeignKey("OwnerId")]
-        public User? User { get; set; }
+        public User User { get; set; }
 
         [Column(TypeName = "navchar(100)")]
         public string BandName { get; set; }

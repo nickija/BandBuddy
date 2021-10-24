@@ -24,13 +24,13 @@ namespace PtyxiakiAPI.Models
         [Column(TypeName = "navchar(100)")]
         public string LastName { get; set; }
 
-        public RoleEnum Role { get; set; }
+        public RoleEnum? Role { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
     }
 }

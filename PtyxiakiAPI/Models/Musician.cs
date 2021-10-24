@@ -20,13 +20,13 @@ namespace PtyxiakiAPI.Models
 
         public List<JobPosting> JobPosting { get; set; }
 
-        public AreaEnum Area { get; set; }
+        public AreaEnum? Area { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
     }
 }
