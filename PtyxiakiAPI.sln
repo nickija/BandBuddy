@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PtyxiakiAPI", "PtyxiakiAPI\PtyxiakiAPI.csproj", "{84FB6037-7A07-41FD-9660-D1934C713008}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84FB6037-7A07-41FD-9660-D1934C713008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84FB6037-7A07-41FD-9660-D1934C713008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84FB6037-7A07-41FD-9660-D1934C713008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84FB6037-7A07-41FD-9660-D1934C713008}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6DD46E9E-D5C8-4827-8134-999FABD17775}
+	EndGlobalSection
+EndGlobal
