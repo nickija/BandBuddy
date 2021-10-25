@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PtyxiakiAPI.Models;
+using PtyxiakiAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,11 @@ namespace PtyxiakiAPI.Controllers
     [ApiController]
     public class JobPostingController : ControllerBase
     {
-        private readonly ApplicationContext _context;
+        private IJobPostingService _jobPostingService;
 
-        public JobPostingController(ApplicationContext context)
+        public JobPostingController(IJobPostingService jobPostingService)
         {
-            _context = context;
+            this._jobPostingService = jobPostingService;
         }
 
         //GET: api/JobPosting

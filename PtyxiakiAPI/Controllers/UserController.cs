@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PtyxiakiAPI.Models;
+using PtyxiakiAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,11 @@ namespace PtyxiakiAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly ApplicationContext _context;
+        private IUserService _userService;
 
-        public UserController(ApplicationContext context)
+        public UserController(IUserService userService)
         {
-            _context = context;
+            this._userService = userService;
         }
 
         //GET: api/User

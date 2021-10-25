@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PtyxiakiAPI.Models;
+using PtyxiakiAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,11 @@ namespace PtyxiakiAPI.Controllers
     [ApiController]
     public class BandRequestController : ControllerBase
     {
-        private readonly ApplicationContext _context;
+        private IBandRequestService _bandRequestService;
 
-        public BandRequestController(ApplicationContext context)
+        public BandRequestController(IBandRequestService bandRequestService)
         {
-            _context = context;
+            this._bandRequestService = bandRequestService;
         }
 
         //GET: api/BandRequest

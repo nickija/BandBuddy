@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PtyxiakiAPI.Models;
+using PtyxiakiAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,11 @@ namespace PtyxiakiAPI.Controllers
     [ApiController]
     public class MusicianController : ControllerBase
     {
-        private readonly ApplicationContext _context;
+        private IMusicianService _musicianService;
 
-        public MusicianController(ApplicationContext context)
+        public MusicianController(IMusicianService musicianService)
         {
-            _context = context;
+            this._musicianService = musicianService;
         }
 
         //GET: api/Musician
