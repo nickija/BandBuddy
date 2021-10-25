@@ -12,16 +12,16 @@ namespace PtyxiakiAPI.Models
         [Key]
         public Guid Id { get; set; }
 
-        [Column(TypeName ="navchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string Username { get; set; }
 
-        [Column(TypeName = "navchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string Password { get; set; }
 
-        [Column(TypeName = "navchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string FirstName { get; set; }
 
-        [Column(TypeName = "navchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string LastName { get; set; }
 
         public RoleEnum? Role { get; set; }

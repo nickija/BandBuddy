@@ -17,7 +17,7 @@ namespace PtyxiakiAPI.Models
         [ForeignKey("MusicianId")]
         public Musician Musician { get; set; }
 
-        [Column(TypeName = "navchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string InstrumentType { get; set; }
 
         public int? YearsExperiecnce{ get; set; }

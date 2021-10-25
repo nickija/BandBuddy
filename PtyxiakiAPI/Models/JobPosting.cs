@@ -13,10 +13,10 @@ namespace PtyxiakiAPI.Models
         [Key]
         public Guid Id { get; set; }
 
-        [Column(TypeName = "navchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string GenrePlayed { get; set; }
 
-        [Column(TypeName = "navchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string InstrumentRequired { get; set; }
 
         public List<Musician> Musician { get; set; }

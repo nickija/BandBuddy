@@ -16,7 +16,8 @@ namespace PtyxiakiAPI.Models
         [ForeignKey("UserId")]
         public User User { get; set; }
 
-        public List<string> Education { get; set; }
+        [Column(TypeName = "nvarchar(100)")]
+        public string Education { get; set; }
 
         public List<JobPosting> JobPosting { get; set; }
 

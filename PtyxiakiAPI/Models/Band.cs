@@ -16,10 +16,10 @@ namespace PtyxiakiAPI.Models
         [ForeignKey("OwnerId")]
         public User User { get; set; }
 
-        [Column(TypeName = "navchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string BandName { get; set; }
 
-        [Column(TypeName = "navchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string Genre { get; set; }
 
         public List<Musician> Musician { get; set; }
