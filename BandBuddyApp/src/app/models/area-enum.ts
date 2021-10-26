@@ -1,0 +1,11 @@
+export enum AreaEnum {
+    ATHENS = 'ATHENS',
+    THESSALONIKI = 'THESSALONIKI',
+    LARISSA = 'LARISSA',
+    PATRAS = 'PATRAS',
+    CRETE = 'CRETE',
+    CYCLADES = 'CYCLADES',
+    IOANINNA = 'IOANINNA',
+    KAVALA = 'KAVALA',
+    KALAMATA = 'KALAMATA'
+}
