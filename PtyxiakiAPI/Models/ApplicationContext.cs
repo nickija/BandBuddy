@@ -15,11 +15,11 @@ namespace PtyxiakiAPI.Models
 
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Musician> Musicians { get; set; }
-        public DbSet<Band> Bands { get; set; }
-        public DbSet<Instrument> Instruments { get; set; }
-        public DbSet<JobPosting> JobPostings { get; set; }
-        public DbSet<BandRequest> BandRequests { get; set; }
-        public DbSet<DeleteRequest> DeleteRequests { get; set; }
+        //public DbSet<Musician> Musicians { get; set; }
+        //public DbSet<Band> Bands { get; set; }
+        //public DbSet<Instrument> Instruments { get; set; }
+        //public DbSet<JobPosting> JobPostings { get; set; }
+        //public DbSet<BandRequest> BandRequests { get; set; }
+        //public DbSet<DeleteRequest> DeleteRequests { get; set; }
     }
 }

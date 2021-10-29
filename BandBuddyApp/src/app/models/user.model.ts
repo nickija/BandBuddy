@@ -1,7 +1,8 @@
+import { Guid } from "guid-typescript";
 import { RoleEnum } from "./role-enum";
 
 export class User {
-    id: number = 0;
+    id: string
     username: string = '';
     password: string = '';
     firstName: string = '';

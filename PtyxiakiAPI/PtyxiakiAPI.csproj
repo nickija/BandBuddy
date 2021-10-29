@@ -5,6 +5,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\BandController.cs" />
+    <Compile Remove="Controllers\BandRequestController.cs" />
+    <Compile Remove="Controllers\DeleteRequestController.cs" />
+    <Compile Remove="Controllers\InstrumentController.cs" />
+    <Compile Remove="Controllers\JobPostingController.cs" />
+    <Compile Remove="Controllers\MusicianController.cs" />
+    <Compile Remove="Controllers\WeatherForecastController.cs" />
+    <Compile Remove="Services\BandRequestService.cs" />
+    <Compile Remove="Services\BandService.cs" />
+    <Compile Remove="Services\DeleteRequestService.cs" />
+    <Compile Remove="Services\IBandRequestService.cs" />
+    <Compile Remove="Services\IBandService.cs" />
+    <Compile Remove="Services\IDeleteRequestService.cs" />
+    <Compile Remove="Services\IInstrumentService.cs" />
+    <Compile Remove="Services\IJobPostingService.cs" />
+    <Compile Remove="Services\IMusicianService.cs" />
+    <Compile Remove="Services\InstrumentService.cs" />
+    <Compile Remove="Services\JobPostingService.cs" />
+    <Compile Remove="Services\MusicianService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.11">
