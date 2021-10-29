@@ -1,18 +1,19 @@
-﻿using System;
+﻿using PtyxiakiAPI.Lookups;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace PtyxiakiAPI.Services
 {
-    public interface IBasicService<T>
+    public interface IBasicService<T> 
     {
-        T Persist();
+        Task<T> Persist(T persistModel);
 
-        T GetSingle();
+        Task<T> GetSingle(Guid id);
 
-        IEnumerable<T> Query();
+        Task<IEnumerable<T>> Query(Lookup<T> lookup);
 
-        T Delete();
+        Task<Boolean> Delete(Guid id);
     }
 }

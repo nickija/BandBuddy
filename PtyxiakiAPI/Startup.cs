@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PtyxiakiAPI.Models;
+using PtyxiakiAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace PtyxiakiAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PtyxiakiAPI", Version = "v1" });
             });
-
+            services.AddScoped<IUserService, UserService>();
             services.AddDbContext<ApplicationContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
         }

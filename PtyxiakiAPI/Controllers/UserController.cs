@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PtyxiakiAPI.Lookups;
 using PtyxiakiAPI.Models;
 using PtyxiakiAPI.Services;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PtyxiakiAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -21,87 +22,32 @@ namespace PtyxiakiAPI.Controllers
             this._userService = userService;
         }
 
-        //GET: api/User
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        [HttpPost("query")]
+        public ActionResult<IEnumerable<User>> Query(Lookup<User> lookup)
         {
-            return await _context.Users.ToListAsync();
+            List<User> users = _userService.Query(lookup).Result.ToList();
+            return users;
         }
 
-        //GET: api/User/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(Guid id)
+        [HttpGet("getSingle/{id}")]
+        public ActionResult<User> Get(Guid id)
         {
-            var user = await _context.Users.FindAsync(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
+            User user = _userService.GetSingle(id).Result;
             return user;
         }
 
-        //PUT: api/User/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(Guid id, User user)
+        [HttpPost("persist")]
+        public ActionResult<User> Persist(User persistModel)
         {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            User user = _userService.Persist(persistModel).Result;
+            return user;
         }
 
-        //POST: api/User
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        [HttpDelete("delete/{id}")]
+        public ActionResult<Boolean> Delete(Guid id)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
-        }
-
-        //DELETE: api/User/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(Guid id)
-        {
-            var user = await _context.Users.FindAsync(id);
-            if(user == null)
-            {
-                return NotFound();
-            }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-
-        private bool UserExists(Guid id)
-        {
-            return _context.Users.Any(e => e.Id == id);
+            Boolean result = _userService.Delete(id).Result;
+            return result;
         }
     }
 }

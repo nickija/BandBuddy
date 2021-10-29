@@ -13,12 +13,17 @@ namespace PtyxiakiAPI.Models
         [Key]
         public Guid Id { get; set; }
 
-        [Column(TypeName = "nvarchar(100)")]
-        public string BandName { get; set; }
-    
+        public Guid BandId { get; set; }
+        [ForeignKey("BandId")]
+        public Band Band { get; set; }
+
+        public Guid MusicianId { get; set; }
+        [ForeignKey("MusicianId")]
+        public Musician Musician { get; set; }
+
         public string Summary { get; set; }
 
-        public StatusEnum? Area { get; set; }
+        public StatusEnum? Status { get; set; }
 
         public bool? IsActive { get; set; }
 
