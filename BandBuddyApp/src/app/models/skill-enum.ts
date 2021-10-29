@@ -1,6 +1,6 @@
 export enum SkillEnum {
-    BEGINNER = 'BEGINNER',
-    COMPETENT = 'COMPETENT',
-    PROFICIENT = 'PROFICIENT',
-    EXPERT = 'EXPERT'
+    BEGINNER = 0,
+    COMPETENT = 1,
+    PROFICIENT = 2,
+    EXPERT = 3
 }

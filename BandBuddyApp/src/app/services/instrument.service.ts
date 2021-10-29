@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Instrument } from '../models/instrument.model';
 
 @Injectable({
   providedIn: 'root'
@@ -6,4 +7,5 @@ import { Injectable } from '@angular/core';
 export class InstrumentService {
 
   constructor() { }
+  instrumentData: Instrument = new Instrument();
 }

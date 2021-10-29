@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Musician } from '../models/musician.model';
 
 @Injectable({
   providedIn: 'root'
@@ -6,4 +7,5 @@ import { Injectable } from '@angular/core';
 export class MusicianService {
 
   constructor() { }
+  musicianData: Musician = new Musician();
 }
