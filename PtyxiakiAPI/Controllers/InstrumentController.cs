@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PtyxiakiAPI.Lookups;
 using PtyxiakiAPI.Models;
 using PtyxiakiAPI.Services;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PtyxiakiAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/instrument")]
     [ApiController]
     public class InstrumentController : ControllerBase
     {
@@ -20,87 +21,32 @@ namespace PtyxiakiAPI.Controllers
             this._instrumentService = instrumentService;
         }
 
-        //GET: api/Instrument
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Instrument>>> GetInstruments()
+        [HttpPost("query")]
+        public ActionResult<IEnumerable<Instrument>> Query(Lookup<Instrument> lookup)
         {
-            return await _context.Instruments.ToListAsync();
+            List<Instrument> instruments = _instrumentService.Query(lookup).Result.ToList();
+            return instruments;
         }
 
-        //GET: api/Instrument/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Instrument>> GetInstrument(Guid id)
+        [HttpGet("getSingle/{id}")]
+        public ActionResult<Instrument> Get(Guid id)
         {
-            var instrument = await _context.Instruments.FindAsync(id);
-
-            if (instrument == null)
-            {
-                return NotFound();
-            }
-
+            Instrument instrument = _instrumentService.GetSingle(id).Result;
             return instrument;
         }
 
-        //PUT: api/Instrument/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutInstrument(Guid id, Instrument instrument)
+        [HttpPost("persist")]
+        public ActionResult<Instrument> Persist(Instrument persistModel)
         {
-            if (id != instrument.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(instrument).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch
-            {
-                if (!InstrumentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            Instrument instrument = _instrumentService.Persist(persistModel).Result;
+            return instrument;
         }
 
-        //POST: api/Instrument
-        [HttpPost]
-        public async Task<ActionResult<Instrument>> PostInstrument(Instrument instrument)
+        [HttpDelete("delete/{id}")]
+        public ActionResult<Boolean> Delete(Guid id)
         {
-            _context.Instruments.Add(instrument);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetInstrument", new { id = instrument.Id }, instrument);
-        }
-
-        //DELETE: api/Instrument/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteInstrument(Guid id)
-        {
-            var instrument = await _context.Instruments.FindAsync(id);
-            if (instrument == null)
-            {
-                return NotFound();
-            }
-
-            _context.Instruments.Remove(instrument);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-
-        private bool InstrumentExists(Guid id)
-        {
-            return _context.Instruments.Any(e => e.Id == id);
+            Boolean result = _instrumentService.Delete(id).Result;
+            return result;
         }
     }
 }

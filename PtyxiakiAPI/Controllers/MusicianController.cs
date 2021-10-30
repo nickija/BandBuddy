@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PtyxiakiAPI.Lookups;
 using PtyxiakiAPI.Models;
 using PtyxiakiAPI.Services;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PtyxiakiAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/musician")]
     [ApiController]
     public class MusicianController : ControllerBase
     {
@@ -21,87 +22,32 @@ namespace PtyxiakiAPI.Controllers
             this._musicianService = musicianService;
         }
 
-        //GET: api/Musician
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Musician>>> GetMusicians()
+        [HttpPost("query")]
+        public ActionResult<IEnumerable<Musician>> Query(Lookup<Musician> lookup)
         {
-            return await _context.Musicians.ToListAsync();
+            List<Musician> musicians = _musicianService.Query(lookup).Result.ToList();
+            return musicians;
         }
 
-        //GET: api/Musician/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Musician>> GetMusician(Guid id)
+        [HttpGet("getSingle/{id}")]
+        public ActionResult<Musician> Get(Guid id)
         {
-            var musician = await _context.Musicians.FindAsync(id);
-
-            if (musician == null)
-            {
-                return NotFound();
-            }
-
+            Musician musician = _musicianService.GetSingle(id).Result;
             return musician;
         }
 
-        //PUT: api/Musician/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutMusician(Guid id, Musician musician)
+        [HttpPost("persist")]
+        public ActionResult<Musician> Persist(Musician persistModel)
         {
-            if (id != musician.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(musician).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch
-            {
-                if (!MusicianExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            Musician musician = _musicianService.Persist(persistModel).Result;
+            return musician;
         }
 
-        //POST: api/Musician
-        [HttpPost]
-        public async Task<ActionResult<Musician>> PostMusician(Musician musician)
+        [HttpDelete("delete/{id}")]
+        public ActionResult<Boolean> Delete(Guid id)
         {
-            _context.Musicians.Add(musician);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetMusician", new { id = musician.Id }, musician);
-        }
-
-        //DELETE: api/Musician/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMusician(Guid id)
-        {
-            var musician = await _context.Musicians.FindAsync(id);
-            if (musician == null)
-            {
-                return NotFound();
-            }
-
-            _context.Musicians.Remove(musician);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-
-        private bool MusicianExists(Guid id)
-        {
-            return _context.Musicians.Any(e => e.Id == id);
+            Boolean result = _musicianService.Delete(id).Result;
+            return result;
         }
     }
 }

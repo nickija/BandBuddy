@@ -29,6 +29,45 @@ export class UserService {
 
   query(userLookup : UserLookup): Observable<User[]>{
     const url = `${this.url}query`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     return this.http.post<User[]>(url,userLookup,this.httpOptions);
   }
 

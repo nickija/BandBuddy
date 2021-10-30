@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PtyxiakiAPI.Lookups;
 using PtyxiakiAPI.Models;
 using PtyxiakiAPI.Services;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PtyxiakiAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/band")]
     [ApiController]
     public class BandController : ControllerBase
     {
@@ -20,87 +21,32 @@ namespace PtyxiakiAPI.Controllers
             this._bandService = bandService;
         }
 
-        //GET: api/Band
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Band>>> GetBands()
+        [HttpPost("query")]
+        public ActionResult<IEnumerable<Band>> Query(Lookup<Band> lookup)
         {
-            return await _context.Bands.ToListAsync();
+            List<Band> bands = _bandService.Query(lookup).Result.ToList();
+            return bands;
         }
 
-        //GET: api/Band/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Band>> GetBand(Guid id)
+        [HttpGet("getSingle/{id}")]
+        public ActionResult<Band> Get(Guid id)
         {
-            var band = await _context.Bands.FindAsync(id);
-
-            if (band == null)
-            {
-                return NotFound();
-            }
-
+            Band band = _bandService.GetSingle(id).Result;
             return band;
         }
 
-        //PUT: api/Band/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutBand(Guid id, Band band)
+        [HttpPost("persist")]
+        public ActionResult<Band> Persist(Band persistModel)
         {
-            if (id != band.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(band).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch
-            {
-                if (!BandExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            Band band = _bandService.Persist(persistModel).Result;
+            return band;
         }
 
-        //POST: api/Band
-        [HttpPost]
-        public async Task<ActionResult<Band>> PostBand(Band band)
+        [HttpDelete("delete/{id}")]
+        public ActionResult<Boolean> Delete(Guid id)
         {
-            _context.Bands.Add(band);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetBand", new { id = band.Id }, band);
-        }
-
-        //DELETE: api/Band/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBand(Guid id)
-        {
-            var band = await _context.Bands.FindAsync(id);
-            if (band == null)
-            {
-                return NotFound();
-            }
-
-            _context.Bands.Remove(band);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-
-        private bool BandExists(Guid id)
-        {
-            return _context.Bands.Any(e => e.Id == id);
+            Boolean result = _bandService.Delete(id).Result;
+            return result;
         }
     }
 }

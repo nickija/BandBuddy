@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PtyxiakiAPI.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,7 +27,7 @@ namespace PtyxiakiAPI.Models
 
         public List<JobPosting> JobPosting { get; set; }
 
-        public bool? IsActive { get; set; }
+        public IsActive? IsActive { get; set; }
 
         public DateTime? CreatedAt { get; set; }
 

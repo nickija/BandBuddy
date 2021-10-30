@@ -19,9 +19,9 @@ namespace PtyxiakiAPI.Models
 
         public string Reason { get; set; }
 
-        public StatusEnum? Area { get; set; }
+        public StatusEnum? Status { get; set; }
 
-        public bool? IsActive { get; set; }
+        public IsActive? IsActive { get; set; }
 
         public DateTime? CreatedAt { get; set; }
 

@@ -1,15 +1,15 @@
 ﻿using PtyxiakiAPI.Lookups;
 using PtyxiakiAPI.Models;
+using PtyxiakiAPI.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using System.Threading.async Tasks;
 
 namespace PtyxiakiAPI.Services
 {
-    public class BandRequestService : IBasicService<BandRequest>
+    public class BandRequestService : IBandRequestService
     {
         private readonly ApplicationContext _context;
 
@@ -22,7 +22,7 @@ namespace PtyxiakiAPI.Services
         {
             BandRequest existingBandRequest = _context.BandRequests.Where(u => u.Id == id).FirstOrDefault();
 
-            existingBandRequest.IsActive = false;
+            existingBandRequest.IsActive = IsActive.Inactive;
 
             try
             {
@@ -44,7 +44,7 @@ namespace PtyxiakiAPI.Services
         {
             if (persistModel.Id == Guid.Empty)
             {
-                persistModel.IsActive = true;
+                persistModel.IsActive = IsActive.Active;
                 persistModel.CreatedAt = DateTime.Now;
                 persistModel.UpdatedAt = DateTime.Now;
                 await _context.BandRequests.AddAsync(persistModel);
@@ -53,8 +53,8 @@ namespace PtyxiakiAPI.Services
             {
                 BandRequest existingBandRequest = _context.BandRequests.Where(u => u.Id == persistModel.Id).FirstOrDefault();
 
-                existingBandRequest.Summary = persistModel.Summary;
                 existingBandRequest.Status = persistModel.Status;
+                existingBandRequest.Summary = persistModel.Summary;
                 existingBandRequest.UpdatedAt = DateTime.Now;
             }
             await _context.SaveChangesAsync();
@@ -68,9 +68,13 @@ namespace PtyxiakiAPI.Services
 
             IQueryable<BandRequest> foundBandRequests = _context.BandRequests.Skip(lookup.Start.Value);
 
-            if (lookup.Limit != null) lookup.Limit = 100;
+            if (lookup.Limit == null) lookup.Limit = 100;
 
             foundBandRequests = foundBandRequests.Take(lookup.Limit.Value);
+
+            if (!String.IsNullOrWhiteSpace(lookup.Like)) foundBandRequests = foundBandRequests.Where(x => x.Musician.Education.Contains(lookup.Like) || x.Musician.Education.Contains(lookup.Like));
+
+            if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundBandRequests = foundBandRequests.Where(u => u.IsActive == lookup.IsActive);
 
             return foundBandRequests;
         }

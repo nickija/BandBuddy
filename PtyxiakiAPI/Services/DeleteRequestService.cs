@@ -1,4 +1,6 @@
-﻿using PtyxiakiAPI.Models;
+﻿using PtyxiakiAPI.Lookups;
+using PtyxiakiAPI.Models;
+using PtyxiakiAPI.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PtyxiakiAPI.Services
 {
-    public class DeleteRequestService : IBasicService<DeleteRequest>
+    public class DeleteRequestService : IDeleteRequestService
     {
         private readonly ApplicationContext _context;
 
@@ -15,24 +17,65 @@ namespace PtyxiakiAPI.Services
             _context = context;
         }
 
-        public DeleteRequest Delete()
+        public async Task<bool> Delete(Guid id)
         {
-            throw new NotImplementedException();
+            DeleteRequest existingDeleteRequest = _context.DeleteRequests.Where(u => u.Id == id).FirstOrDefault();
+
+            existingDeleteRequest.IsActive = IsActive.Inactive;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public DeleteRequest GetSingle()
+        public async Task<DeleteRequest> GetSingle(Guid id)
         {
-            throw new NotImplementedException();
+            return _context.DeleteRequests.Where(u => u.Id == id).FirstOrDefault();
         }
 
-        public DeleteRequest Persist()
+        public async Task<DeleteRequest> Persist(DeleteRequest persistModel)
         {
-            throw new NotImplementedException();
+            if (persistModel.Id == Guid.Empty)
+            {
+                persistModel.IsActive = IsActive.Active;
+                persistModel.CreatedAt = DateTime.Now;
+                persistModel.UpdatedAt = DateTime.Now;
+                await _context.DeleteRequests.AddAsync(persistModel);
+            }
+            else if (persistModel.Id != Guid.Empty)
+            {
+                DeleteRequest existingDeleteRequest = _context.DeleteRequests.Where(u => u.Id == persistModel.Id).FirstOrDefault();
+
+                existingDeleteRequest.Status = persistModel.Status;
+                existingDeleteRequest.Reason = persistModel.Reason;
+                existingDeleteRequest.UpdatedAt = DateTime.Now;
+            }
+            await _context.SaveChangesAsync();
+
+            return persistModel;
         }
 
-        public IEnumerable<DeleteRequest> Query()
+        public async Task<IEnumerable<DeleteRequest>> Query(Lookup<DeleteRequest> lookup)
         {
-            throw new NotImplementedException();
+            if (lookup.Start == null) lookup.Start = 0;
+
+            IQueryable<DeleteRequest> foundDeleteRequests = _context.DeleteRequests.Skip(lookup.Start.Value);
+
+            if (lookup.Limit == null) lookup.Limit = 100;
+
+            foundDeleteRequests = foundDeleteRequests.Take(lookup.Limit.Value);
+
+            if (!String.IsNullOrWhiteSpace(lookup.Like)) foundDeleteRequests = foundDeleteRequests.Where(x => x.Band.BandName.Contains(lookup.Like) || x.Band.BandName.Contains(lookup.Like));
+
+            if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundDeleteRequests = foundDeleteRequests.Where(u => u.IsActive == lookup.IsActive);
+
+            return foundDeleteRequests;
         }
     }
 }

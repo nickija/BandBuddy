@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PtyxiakiAPI.Lookups;
 using PtyxiakiAPI.Models;
 using PtyxiakiAPI.Services;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PtyxiakiAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/deleteRequest")]
     [ApiController]
     public class DeleteRequestController : ControllerBase
     {
@@ -21,87 +22,32 @@ namespace PtyxiakiAPI.Controllers
             this._deleteRequestService = deleteRequestService;
         }
 
-        //GET: api/DeleteRequest
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<DeleteRequest>>> GetDeleteRequests()
+        [HttpPost("query")]
+        public ActionResult<IEnumerable<DeleteRequest>> Query(Lookup<DeleteRequest> lookup)
         {
-            return await _context.DeleteRequests.ToListAsync();
+            List<DeleteRequest> deleteRequests = _deleteRequestService.Query(lookup).Result.ToList();
+            return deleteRequests;
         }
 
-        //GET: api/DeleteRequest/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<DeleteRequest>> GetDeleteRequest(Guid id)
+        [HttpGet("getSingle/{id}")]
+        public ActionResult<DeleteRequest> Get(Guid id)
         {
-            var deleteRequest = await _context.DeleteRequests.FindAsync(id);
-
-            if (deleteRequest == null)
-            {
-                return NotFound();
-            }
-
+            DeleteRequest deleteRequest = _deleteRequestService.GetSingle(id).Result;
             return deleteRequest;
         }
 
-        //PUT: api/DeleteRequest/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDeleteRequest(Guid id, DeleteRequest deleteRequest)
+        [HttpPost("persist")]
+        public ActionResult<DeleteRequest> Persist(DeleteRequest persistModel)
         {
-            if (id != deleteRequest.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(deleteRequest).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch
-            {
-                if (!DeleteRequestExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            DeleteRequest deleteRequest = _deleteRequestService.Persist(persistModel).Result;
+            return deleteRequest;
         }
 
-        //POST: api/DeleteRequest
-        [HttpPost]
-        public async Task<ActionResult<DeleteRequest>> PostDeleteRequest(DeleteRequest deleteRequest)
+        [HttpDelete("delete/{id}")]
+        public ActionResult<Boolean> Delete(Guid id)
         {
-            _context.DeleteRequests.Add(deleteRequest);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetDeleteRequest", new { id = deleteRequest.Id }, deleteRequest);
-        }
-
-        //DELETE: api/DeleteRequest/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDeleteRequest(Guid id)
-        {
-            var deleteRequest = await _context.DeleteRequests.FindAsync(id);
-            if (deleteRequest == null)
-            {
-                return NotFound();
-            }
-
-            _context.DeleteRequests.Remove(deleteRequest);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-
-        private bool DeleteRequestExists(Guid id)
-        {
-            return _context.DeleteRequests.Any(e => e.Id == id);
+            Boolean result = _deleteRequestService.Delete(id).Result;
+            return result;
         }
     }
 }

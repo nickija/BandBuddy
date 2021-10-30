@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PtyxiakiAPI.Lookups;
 using PtyxiakiAPI.Models;
 using PtyxiakiAPI.Services;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PtyxiakiAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/jobPosting")]
     [ApiController]
     public class JobPostingController : ControllerBase
     {
@@ -21,87 +22,32 @@ namespace PtyxiakiAPI.Controllers
             this._jobPostingService = jobPostingService;
         }
 
-        //GET: api/JobPosting
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<JobPosting>>> GetJobPostings()
+        [HttpPost("query")]
+        public ActionResult<IEnumerable<JobPosting>> Query(Lookup<JobPosting> lookup)
         {
-            return await _context.JobPostings.ToListAsync();
+            List<JobPosting> jobPostings = _jobPostingService.Query(lookup).Result.ToList();
+            return jobPostings;
         }
 
-        //GET: api/JobPosting/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<JobPosting>> GetJobPosting(Guid id)
+        [HttpGet("getSingle/{id}")]
+        public ActionResult<JobPosting> Get(Guid id)
         {
-            var jobPosting = await _context.JobPostings.FindAsync(id);
-
-            if (jobPosting == null)
-            {
-                return NotFound();
-            }
-
+            JobPosting jobPosting = _jobPostingService.GetSingle(id).Result;
             return jobPosting;
         }
 
-        //PUT: api/JobPosting/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutJobPosting(Guid id, JobPosting jobPosting)
+        [HttpPost("persist")]
+        public ActionResult<JobPosting> Persist(JobPosting persistModel)
         {
-            if (id != jobPosting.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(jobPosting).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch
-            {
-                if (!JobPostingExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            JobPosting jobPosting = _jobPostingService.Persist(persistModel).Result;
+            return jobPosting;
         }
 
-        //POST: api/JobPosting
-        [HttpPost]
-        public async Task<ActionResult<JobPosting>> PostJobPosting(JobPosting jobPosting)
+        [HttpDelete("delete/{id}")]
+        public ActionResult<Boolean> Delete(Guid id)
         {
-            _context.JobPostings.Add(jobPosting);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetJobPosting", new { id = jobPosting.Id }, jobPosting);
-        }
-
-        //DELETE: api/JobPosting/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteJobPosting(Guid id)
-        {
-            var jobPosting = await _context.JobPostings.FindAsync(id);
-            if (jobPosting == null)
-            {
-                return NotFound();
-            }
-
-            _context.JobPostings.Remove(jobPosting);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-
-        private bool JobPostingExists(Guid id)
-        {
-            return _context.JobPostings.Any(e => e.Id == id);
+            Boolean result = _jobPostingService.Delete(id).Result;
+            return result;
         }
     }
 }

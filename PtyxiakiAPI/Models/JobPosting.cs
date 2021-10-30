@@ -25,7 +25,7 @@ namespace PtyxiakiAPI.Models
 
         public AreaEnum? Area { get; set; }
 
-        public bool? IsActive { get; set; }
+        public IsActive? IsActive { get; set; }
 
         public DateTime? CreatedAt { get; set; }
 

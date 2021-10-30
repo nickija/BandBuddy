@@ -34,6 +34,12 @@ namespace PtyxiakiAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PtyxiakiAPI", Version = "v1" });
             });
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IMusicianService, MusicianService>();
+            services.AddScoped<IJobPostingService, JobPostingService>();
+            services.AddScoped<IInstrumentService, InstrumentService>();
+            services.AddScoped<IDeleteRequestService, DeleteRequestService>();
+            services.AddScoped<IBandRequestService, BandRequestService>();
+            services.AddScoped<IBandService, BandService>();
             services.AddDbContext<ApplicationContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
             services.AddCors(options =>
