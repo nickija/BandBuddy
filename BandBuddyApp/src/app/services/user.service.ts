@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
+import { UserLookup } from '../lookups/user-lookup';
 
 
 @Injectable({
@@ -29,44 +30,6 @@ export class UserService {
 
   query(userLookup : UserLookup): Observable<User[]>{
     const url = `${this.url}query`;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     return this.http.post<User[]>(url,userLookup,this.httpOptions);
   }
@@ -83,16 +46,16 @@ export class UserService {
   
 }
 
-export class Lookup{
-  start : number;
-  limit : number;
-  like : string;
-}
+// export class Lookup{
+//   start : number;
+//   limit : number;
+//   like : string;
+// }
 
 
-export class UserLookup extends Lookup{
+// export class UserLookup extends Lookup{
 
 
-}
+// }
 
 

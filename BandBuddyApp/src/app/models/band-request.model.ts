@@ -1,11 +1,15 @@
 import { AreaEnum } from "./area-enum";
+import { IsActive } from "./is-active";
+import { StatusEnum } from "./status-enum";
 
 export class BandRequest {
-    id: number = 0;
-    bandName: string = '';
-    summary: string = '';
-    area: AreaEnum | null = null;
-    isActive: boolean | null = null;
-    createdAt: Date | null = null;
-    updatedAt: Date | null = null;
+    id: string;
+    bandId: string;
+    musicianId: string;
+    bandName: string;
+    summary: string;
+    status: StatusEnum;
+    isActive: IsActive;
+    createdAt: Date;
+    updatedAt: Date;
 }

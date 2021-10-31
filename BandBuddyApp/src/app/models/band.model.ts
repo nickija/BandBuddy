@@ -1,14 +1,15 @@
+import { IsActive } from "./is-active";
 import { JobPosting } from "./job-posting.model";
 import { Musician } from "./musician.model";
 
 export class Band {
-    id: number = 0;
-    ownerId: number = 0;//????????????
-    bandName: string = '';
-    genre: string = '';
-    musician: Musician[] | null = null;//???????
-    jobPosting: JobPosting[] | null = null;//???????
-    isActive: boolean | null = null;
-    createdAt: Date | null = null;
-    updatedAt: Date | null = null;
+    id: string;
+    ownerId: string;//????????????
+    bandName: string;
+    genre: string;
+    musician: Musician[];//???????
+    jobPosting: JobPosting[];//???????
+    isActive: IsActive;
+    createdAt: Date;
+    updatedAt: Date;
 }
