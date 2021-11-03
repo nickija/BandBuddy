@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { IsActive } from 'app/models/is-active';
 import { User } from 'app/models/user.model';
 import { UserService } from 'app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,7 +14,6 @@ import { UserService } from 'app/services/user.service';
 })
 export class UserFormComponent implements OnInit {
 
-  private createdUser: User;
 
   firstNameFormControl = new FormControl(null ,[Validators.required]);  
   lastNameFormControl = new FormControl(null ,[Validators.required]);
@@ -29,8 +29,12 @@ export class UserFormComponent implements OnInit {
 
   private userService: UserService;
 
-  constructor(private router: Router, service: UserService) { 
+  constructor(private router: Router, service: UserService, private toastr: ToastrService) { 
     this.userService = service;
+  }
+
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
   }
 
   
@@ -39,21 +43,22 @@ export class UserFormComponent implements OnInit {
 
   register(){
     if (this.userRegisterFormGroup.valid){
-      console.log(this.userRegisterFormGroup);
-
-      // this.createdUser.id = "";
-      // this.createdUser.isActive = IsActive.Active;
+      console.log(this.userRegisterFormGroup);    
       
-      this.createdUser.firstName = this.firstNameFormControl.value;
-      this.createdUser.lastName = this.lastNameFormControl.value;
-      this.createdUser.username = this.userNameFormControl.value;
-      this.createdUser.password = this.passWordFormControl.value;
-
       
-      this.userService.persist(this.createdUser)
+      this.userService.persist(this.userRegisterFormGroup.value).subscribe(
+        res => {
+          this.toastr.success('Welcome!',res.firstName)
+          console.log(res);
+        },
+        error => {
+          this.toastr.error('Something bad happened')
+        }
+      );
       console.log("kalispera mesaaaa");
       //this.router.navigate(['/login']);
     }
+    console.log(this.userRegisterFormGroup.value);
     console.log("kalispera");
   }
 

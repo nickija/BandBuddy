@@ -11,8 +11,8 @@
                       <form>
                           <!-- <div class="row"> -->
                               <div class="col-md-6">
-                                  <mat-form-field class="example-full-width" [formControl]="userNameFormControl">
-                                    <input matInput placeholder="Username">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Username" [formControl]="userNameFormControl">
                                     <mat-error *ngIf="userNameFormControl.hasError('required')">
                                       UserName is <strong>required</strong>
                                     </mat-error>

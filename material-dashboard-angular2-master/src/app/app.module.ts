@@ -24,6 +24,7 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { MaterialModule } from 'material/material.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -37,7 +38,9 @@ import { MaterialModule } from 'material/material.module';
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    }),
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot() 
   ],
   declarations: [
     AppComponent,

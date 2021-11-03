@@ -43,6 +43,8 @@ namespace PtyxiakiAPI.Services
         {
             if(persistModel.Id == Guid.Empty) 
             {
+                //persistModel.Role = persistModel.Role == null ? RoleEnum.USER : persistModel.Role;
+                persistModel.Role = persistModel.Role ?? RoleEnum.USER; //does the same as above
                 persistModel.IsActive = IsActive.Active;
                 persistModel.CreatedAt = DateTime.Now;
                 persistModel.UpdatedAt = DateTime.Now;
