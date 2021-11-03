@@ -4,9 +4,12 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 const routes: Routes =[
+  //{ path: 'user-form',        component: UserFormComponent },
   {
+    
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
