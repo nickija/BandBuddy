@@ -1,0 +1,93 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+        <div class="card-header card-header-danger col-md-12">
+          <h2 class="card-title">Musician Profile</h2>
+          <p class="card-category">Complete your profile</p>
+        
+          <div class="col-md-8">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title">General details</h4>
+                      <p class="card-category"></p>
+                  </div>
+                  <div class="card-body">
+                      <form>
+                          
+                              <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Education" [formControl]="educationFormControl">
+                                    <mat-error *ngIf="educationFormControl.hasError('required')">
+                                      Education is <strong>required</strong>
+                                    </mat-error>
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-6">
+                                  <mat-form-field class="example-full-width"> 
+                                  
+                                    <mat-label for="area">Area</mat-label>
+                                    <mat-select id="area" [formControl]="areaFormControl">
+                                      <mat-option >Select one...</mat-option>
+                                  <mat-option *ngFor="let type of eArea | keyvalue" [value]="type.key">{{type.value}}</mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="areaFormControl.hasError('required')">
+                                      Area is <strong>required</strong>
+                                    </mat-error>
+                                  </mat-form-field>
+                              </div>
+                          
+                          <button mat-raised-button (click)="updateMusicianProfile()" class="btn btn-danger pull-right">Update Musical Profile</button>
+                          <div class="clearfix"></div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card">
+                <div class="card-header card-header-danger">
+                    <h4 class="card-title">Instrument</h4>
+                    <p class="card-category">Add an instrument</p>
+                </div>
+                <div class="card-body">
+                    <form>
+                            <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Instrument" type="text" [formControl]="instrumentTypeFormControl">
+                                  <mat-error *ngIf="instrumentTypeFormControl.hasError('required')">
+                                    Instrument is <strong>required</strong>
+                                  </mat-error>
+                                </mat-form-field>
+                            </div>
+                        <!-- </div>
+                        <div class="row"> -->
+                            <div class="col-md-6">
+                              <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Years Experience" type="text" [formControl]="yearsExperienceTypeFormControl">
+                                <mat-error *ngIf="yearsExperienceTypeFormControl.hasError('required')">
+                                  Years Experience is <strong>required</strong>
+                                </mat-error>
+                              </mat-form-field>
+                            </div>
+                            
+                            <div class="col-md-6">
+                              <mat-form-field class="example-full-width">
+                                <mat-label for="skill">Skill</mat-label>
+                                <mat-select id="skill" [formControl]="skillFormControl">
+                                  <mat-option >Select one...</mat-option>
+                                  <mat-option *ngFor="let type of eSkill | keyvalue" [value]="type.key">{{type.value}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="skillFormControl.hasError('required')">
+                                  Skill is <strong>required</strong>
+                                </mat-error>
+                              </mat-form-field>
+                            </div>
+                        <button mat-raised-button (click)="addInstrument()" class="btn btn-danger pull-right">Add Instrument</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

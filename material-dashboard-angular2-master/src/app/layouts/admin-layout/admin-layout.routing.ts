@@ -9,6 +9,7 @@ import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { UserFormComponent } from 'app/user-form/user-form.component';
+import { MusicianFormComponent } from 'app/musician-form/musician-form.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -62,4 +63,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'upgrade',        component: UpgradeComponent },
     { path: 'user-form',        component: UserFormComponent },
+    { path: 'musician-form',        component: MusicianFormComponent },
+
 ];

@@ -25,6 +25,7 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { MaterialModule } from 'material/material.module';
 import { ToastrModule } from 'ngx-toastr';
+import { MusicianFormComponent } from './musician-form/musician-form.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { ToastrModule } from 'ngx-toastr';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    UserFormComponent
+    UserFormComponent,
+    MusicianFormComponent
 
   ],
   providers: [],

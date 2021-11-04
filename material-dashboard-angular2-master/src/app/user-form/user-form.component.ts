@@ -33,9 +33,9 @@ export class UserFormComponent implements OnInit {
     this.userService = service;
   }
 
-  showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
-  }
+  // showSuccess() {
+  //   this.toastr.success('Hello world!', 'Toastr fun!');
+  // }
 
   
   ngOnInit() {
