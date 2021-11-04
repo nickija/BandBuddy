@@ -28,7 +28,7 @@
                                     <mat-label for="area">Area</mat-label>
                                     <mat-select id="area" [formControl]="areaFormControl">
                                       <mat-option >Select one...</mat-option>
-                                  <mat-option *ngFor="let type of eArea | keyvalue" [value]="type.key">{{type.value}}</mat-option>
+                                      <mat-option *ngFor="let item of getEnumValues(eArea)" [value]="item">{{eArea[item]}}</mat-option>
                                     </mat-select>
                                     <mat-error *ngIf="areaFormControl.hasError('required')">
                                       Area is <strong>required</strong>
@@ -68,13 +68,13 @@
                                 </mat-error>
                               </mat-form-field>
                             </div>
-                            
+                            <!-- {{skillFormControl.value}} -->
                             <div class="col-md-6">
                               <mat-form-field class="example-full-width">
                                 <mat-label for="skill">Skill</mat-label>
                                 <mat-select id="skill" [formControl]="skillFormControl">
                                   <mat-option >Select one...</mat-option>
-                                  <mat-option *ngFor="let type of eSkill | keyvalue" [value]="type.key">{{type.value}}</mat-option>
+                                  <mat-option *ngFor="let item of getEnumValues(eSkill)" [value]="item">{{eSkill[item]}}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="skillFormControl.hasError('required')">
                                   Skill is <strong>required</strong>

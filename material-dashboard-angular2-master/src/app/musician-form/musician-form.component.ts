@@ -55,7 +55,7 @@ export class MusicianFormComponent implements OnInit {
 
   
   ngOnInit() {
-    console.log(this.eSkill);
+    //console.log(this.getSkillEnumValues());
   }
 
   updateMusicianProfile(){
@@ -100,5 +100,14 @@ export class MusicianFormComponent implements OnInit {
     console.log("kalispera");
 
   }
+
+  // getSkillEnumValues(): Array<number>{
+  //   var values = Object.values(SkillEnum);
+  //   return values.slice(values.length/2, values.length);
+  // }
+  getEnumValues(Enum): Array<any>{
+    const numericValues: any[] = Object.keys(Enum).map(key => Enum[key]).filter(value => typeof (value) === 'number');
+    if (numericValues.length > 0) { return numericValues; }
+}
 
 }
