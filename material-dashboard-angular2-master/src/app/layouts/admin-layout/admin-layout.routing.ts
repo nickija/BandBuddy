@@ -10,6 +10,8 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { UserFormComponent } from 'app/user-form/user-form.component';
 import { MusicianFormComponent } from 'app/musician-form/musician-form.component';
+import { BandFormComponent } from 'app/band-form/band-form.component';
+import { JobPostingFormComponent } from 'app/job-posting-form/job-posting-form.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -64,5 +66,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'upgrade',        component: UpgradeComponent },
     { path: 'user-form',        component: UserFormComponent },
     { path: 'musician-form',        component: MusicianFormComponent },
-
+    { path: 'band-form',        component: BandFormComponent },
+    { path: 'job-posting-form',        component: JobPostingFormComponent },
 ];

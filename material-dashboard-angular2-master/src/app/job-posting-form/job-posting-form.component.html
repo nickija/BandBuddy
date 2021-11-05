@@ -1,0 +1,61 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-6">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title">Band Job Posting</h4>
+                      <p class="card-category">Create an ad for your band</p>
+                  </div>
+                  <div class="card-body">
+                      <form>
+                          <!-- <div class="row"> -->
+                              <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Genre Played" [formControl]="genrePlayedFormControl">
+                                    <mat-error *ngIf="genrePlayedFormControl.hasError('required')">
+                                      Genre played is <strong>required</strong>
+                                    </mat-error>
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Instrument Required" [formControl]="instrumentRequiredFormControl">
+                                    <mat-error *ngIf="instrumentRequiredFormControl.hasError('required')">
+                                      Instrument is <strong>required</strong>
+                                    </mat-error>
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label for="skill">Skill required for the applicants</mat-label>
+                                  <mat-select id="skill" [formControl]="skillFormControl">
+                                    <mat-option >Select one...</mat-option>
+                                    <mat-option *ngFor="let item of getEnumValues(eSkill)" [value]="item">{{eSkill[item]}}</mat-option>
+                                  </mat-select>
+                                  <mat-error *ngIf="skillFormControl.hasError('required')">
+                                    Skill is <strong>required</strong>
+                                  </mat-error>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label for="area">Area the band is located</mat-label>
+                                  <mat-select id="area" [formControl]="areaFormControl">
+                                    <mat-option >Select one...</mat-option>
+                                    <mat-option *ngFor="let item of getEnumValues(eArea)" [value]="item">{{eArea[item]}}</mat-option>
+                                  </mat-select>
+                                  <mat-error *ngIf="areaFormControl.hasError('required')">
+                                    Area is <strong>required</strong>
+                                  </mat-error>
+                                </mat-form-field>
+                              </div>
+                          <button mat-raised-button (click)="register()" class="btn btn-danger pull-right">Create Job Posting</button>
+                          <div class="clearfix"></div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
