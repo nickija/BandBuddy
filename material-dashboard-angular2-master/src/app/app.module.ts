@@ -28,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MusicianFormComponent } from './musician-form/musician-form.component';
 import { BandFormComponent } from './band-form/band-form.component';
 import { JobPostingFormComponent } from './job-posting-form/job-posting-form.component';
+import { ProfileDashboardComponent } from './profile-dashboard/profile-dashboard.component';
 
 @NgModule({
   imports: [
@@ -51,7 +52,8 @@ import { JobPostingFormComponent } from './job-posting-form/job-posting-form.com
     UserFormComponent,
     MusicianFormComponent,
     BandFormComponent,
-    JobPostingFormComponent
+    JobPostingFormComponent,
+    ProfileDashboardComponent,
 
   ],
   providers: [],
