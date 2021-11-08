@@ -13,6 +13,7 @@ import { MusicianFormComponent } from 'app/musician-form/musician-form.component
 import { BandFormComponent } from 'app/band-form/band-form.component';
 import { JobPostingFormComponent } from 'app/job-posting-form/job-posting-form.component';
 import { ProfileDashboardComponent } from 'app/profile-dashboard/profile-dashboard.component';
+import { JobPostingPreviewComponent } from 'app/job-posting-preview/job-posting-preview.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -70,5 +71,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'band-form',        component: BandFormComponent },
     { path: 'job-posting-form',        component: JobPostingFormComponent },
     { path: 'profile-dashboard',        component: ProfileDashboardComponent },
+    { path: 'job-posting-preview',        component: JobPostingPreviewComponent },
 
 ];
