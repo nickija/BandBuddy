@@ -17,6 +17,7 @@ import { JobPostingPreviewComponent } from 'app/job-posting-preview/job-posting-
 import { BandJobPostingsComponent } from 'app/band-job-postings/band-job-postings.component';
 import { MyJobPostingsComponent } from 'app/my-job-postings/my-job-postings.component';
 import { JobPostingApplicantsComponent } from 'app/job-posting-applicants/job-posting-applicants.component';
+import { ApplicantPreviewComponent } from 'app/applicant-preview copy/applicant-preview.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -78,6 +79,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'band-job-postings',        component: BandJobPostingsComponent },
     { path: 'my-job-postings',        component: MyJobPostingsComponent },
     { path: 'job-posting-applicants',        component: JobPostingApplicantsComponent },
+    { path: 'applicant-preview',        component: ApplicantPreviewComponent },
+
 
 
 
