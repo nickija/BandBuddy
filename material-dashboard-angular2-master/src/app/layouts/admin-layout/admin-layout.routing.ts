@@ -15,6 +15,7 @@ import { JobPostingFormComponent } from 'app/job-posting-form/job-posting-form.c
 import { ProfileDashboardComponent } from 'app/profile-dashboard/profile-dashboard.component';
 import { JobPostingPreviewComponent } from 'app/job-posting-preview/job-posting-preview.component';
 import { BandJobPostingsComponent } from 'app/band-job-postings/band-job-postings.component';
+import { MyJobPostingsComponent } from 'app/my-job-postings/my-job-postings.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -74,6 +75,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'profile-dashboard',        component: ProfileDashboardComponent },
     { path: 'job-posting-preview',        component: JobPostingPreviewComponent },
     { path: 'band-job-postings',        component: BandJobPostingsComponent },
+    { path: 'my-job-postings',        component: MyJobPostingsComponent },
+
 
 
 ];
