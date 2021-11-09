@@ -32,6 +32,7 @@ import { ProfileDashboardComponent } from './profile-dashboard/profile-dashboard
 import { BandJobPostingsComponent } from './band-job-postings/band-job-postings.component';
 import { MyJobPostingsComponent } from './my-job-postings/my-job-postings.component';
 import { JobPostingApplicantsComponent } from './job-posting-applicants/job-posting-applicants.component';
+import { JobPostingListingComponent } from './job-posting/job-posting-listing/job-posting-listing.component';
 
 @NgModule({
   imports: [
@@ -59,7 +60,7 @@ import { JobPostingApplicantsComponent } from './job-posting-applicants/job-post
     ProfileDashboardComponent,
     BandJobPostingsComponent,
     MyJobPostingsComponent,
-    JobPostingApplicantsComponent,
+    JobPostingApplicantsComponent
 
   ],
   providers: [],

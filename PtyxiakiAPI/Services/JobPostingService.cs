@@ -12,6 +12,11 @@ namespace PtyxiakiAPI.Services
     {
         private readonly ApplicationContext _context;
 
+        public JobPostingService(ApplicationContext context)
+        {
+            _context = context;
+        }
+
         public async Task<bool> Delete(Guid id)
         {
             JobPosting existingJobPosting = _context.JobPostings.Where(u => u.Id == id).FirstOrDefault();
@@ -74,6 +79,32 @@ namespace PtyxiakiAPI.Services
             if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundJobPostings = foundJobPostings.Where(u => u.IsActive == lookup.IsActive);
 
             return foundJobPostings;
+        }
+
+        public async Task<QueryResult<JobPosting>> GetQueryResult(Lookup<JobPosting> lookup)
+        {
+            int total = 0;
+
+            total = _context.JobPostings.Count();
+            if (lookup.Start == null) lookup.Start = 0;
+
+            IQueryable<JobPosting> foundJobPostings = _context.JobPostings.Skip(lookup.Start.Value);
+
+            if (lookup.Limit == null) lookup.Limit = 100;
+
+            foundJobPostings = foundJobPostings.Take(lookup.Limit.Value);
+
+            if (!String.IsNullOrWhiteSpace(lookup.Like)) foundJobPostings = foundJobPostings.Where(x => x.InstrumentRequired.Contains(lookup.Like) || x.InstrumentRequired.Contains(lookup.Like));
+
+            if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundJobPostings = foundJobPostings.Where(u => u.IsActive == lookup.IsActive);
+
+            QueryResult<JobPosting> result = new QueryResult<JobPosting>()
+            {
+                Count = foundJobPostings.Count(),
+                Total = total,
+                Items = foundJobPostings
+            };
+            return result;
         }
     }
 }

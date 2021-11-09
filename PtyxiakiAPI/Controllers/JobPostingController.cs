@@ -23,10 +23,10 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("query")]
-        public ActionResult<IEnumerable<JobPosting>> Query(Lookup<JobPosting> lookup)
+        public ActionResult<QueryResult<JobPosting>> Query(Lookup<JobPosting> lookup)
         {
-            List<JobPosting> jobPostings = _jobPostingService.Query(lookup).Result.ToList();
-            return jobPostings;
+            QueryResult<JobPosting> result = _jobPostingService.GetQueryResult(lookup).Result;
+            return result;
         }
 
         [HttpGet("getSingle/{id}")]

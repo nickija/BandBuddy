@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { UserFormComponent } from './user-form/user-form.component';
 
-const routes: Routes =[
-  //{ path: 'user-form',        component: UserFormComponent },
+const routes: Routes = [
   {
-    
+
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
@@ -20,6 +19,12 @@ const routes: Routes =[
       path: '',
       loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
     }]
+  }, {
+    path: 'job-posting',
+    children: [{
+      path: '',
+      loadChildren: () => import('./job-posting/job-posting.module').then(m => m.JobPostingModule)
+    }]
   }
 ];
 
@@ -27,8 +32,8 @@ const routes: Routes =[
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
-       useHash: true
+    RouterModule.forRoot(routes, {
+      useHash: true
     })
   ],
   exports: [

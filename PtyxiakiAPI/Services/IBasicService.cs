@@ -1,4 +1,5 @@
 ﻿using PtyxiakiAPI.Lookups;
+using PtyxiakiAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,7 @@ namespace PtyxiakiAPI.Services
         Task<IEnumerable<T>> Query(Lookup<T> lookup);
 
         Task<Boolean> Delete(Guid id);
+
+        //Task<QueryResult<T>> GetQueryResult(Lookup<T> lookup);
     }
 }

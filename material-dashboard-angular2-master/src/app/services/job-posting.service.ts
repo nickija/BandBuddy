@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { JobPostingLookup } from '../lookups/job-posting-lookup';
+import { QueryResult } from 'app/models/query-result';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +26,10 @@ export class JobPostingService {
     return this.http.get<JobPosting>(url,this.httpOptions);
   }
 
-  query(jobPostingLookup : JobPostingLookup): Observable<JobPosting[]>{
+  query(jobPostingLookup : JobPostingLookup): Observable<QueryResult<JobPosting>>{
     const url = `${this.url}query`;
     
-    return this.http.post<JobPosting[]>(url,jobPostingLookup,this.httpOptions);
+    return this.http.post<QueryResult<JobPosting>>(url,jobPostingLookup,this.httpOptions);
   }
 
   persist(persistedJobPosting : JobPosting) : Observable<JobPosting>{
