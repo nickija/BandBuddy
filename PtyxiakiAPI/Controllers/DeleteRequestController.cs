@@ -23,10 +23,10 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("query")]
-        public ActionResult<IEnumerable<DeleteRequest>> Query(Lookup<DeleteRequest> lookup)
+        public ActionResult<QueryResult<DeleteRequest>> Query(Lookup<DeleteRequest> lookup)
         {
-            List<DeleteRequest> deleteRequests = _deleteRequestService.Query(lookup).Result.ToList();
-            return deleteRequests;
+            QueryResult<DeleteRequest> result = _deleteRequestService.GetQueryResult(lookup).Result;
+            return result;
         }
 
         [HttpGet("getSingle/{id}")]

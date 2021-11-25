@@ -23,10 +23,10 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("query")]
-        public ActionResult<IEnumerable<User>> Query(Lookup<User> lookup)
+        public ActionResult<QueryResult<User>> Query(Lookup<User> lookup)
         {
-            List<User> users = _userService.Query(lookup).Result.ToList();
-            return users;
+            QueryResult<User> result = _userService.GetQueryResult(lookup).Result;
+            return result;
         }
 
         [HttpGet("getSingle/{id}")]

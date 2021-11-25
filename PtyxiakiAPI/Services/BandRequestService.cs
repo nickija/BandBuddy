@@ -78,5 +78,30 @@ namespace PtyxiakiAPI.Services
 
             return foundBandRequests;
         }
+
+        public async Task<QueryResult<BandRequest>> GetQueryResult(Lookup<BandRequest> lookup)
+        {
+            int total = 0;
+
+            total = _context.BandRequests.Count();
+            if (lookup.Start == null) lookup.Start = 0;
+
+            IQueryable<BandRequest> foundBandRequests = _context.BandRequests.Skip(lookup.Start.Value);
+
+            if (lookup.Limit == null) lookup.Limit = 100;
+
+            foundBandRequests = foundBandRequests.Take(lookup.Limit.Value);
+
+
+            if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundBandRequests = foundBandRequests.Where(u => u.IsActive == lookup.IsActive);
+
+            QueryResult<BandRequest> result = new QueryResult<BandRequest>()
+            {
+                Count = foundBandRequests.Count(),
+                Total = total,
+                Items = foundBandRequests
+            };
+            return result;
+        }
     }
 }

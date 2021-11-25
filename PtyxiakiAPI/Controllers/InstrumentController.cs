@@ -22,10 +22,10 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("query")]
-        public ActionResult<IEnumerable<Instrument>> Query(Lookup<Instrument> lookup)
+        public ActionResult<QueryResult<Instrument>> Query(Lookup<Instrument> lookup)
         {
-            List<Instrument> instruments = _instrumentService.Query(lookup).Result.ToList();
-            return instruments;
+            QueryResult<Instrument> result = _instrumentService.GetQueryResult(lookup).Result;
+            return result;
         }
 
         [HttpGet("getSingle/{id}")]

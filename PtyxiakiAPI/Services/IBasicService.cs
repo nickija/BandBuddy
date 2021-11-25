@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PtyxiakiAPI.Services
 {
-    public interface IBasicService<T> 
+    public interface IBasicService<T> where T: class
     {
         Task<T> Persist(T persistModel);
 
@@ -17,6 +17,6 @@ namespace PtyxiakiAPI.Services
 
         Task<Boolean> Delete(Guid id);
 
-        //Task<QueryResult<T>> GetQueryResult(Lookup<T> lookup);
+        Task<QueryResult<T>> GetQueryResult(Lookup<T> lookup);
     }
 }

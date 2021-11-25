@@ -78,5 +78,30 @@ namespace PtyxiakiAPI.Services
 
             return foundMusicians;
         }
+
+        public async Task<QueryResult<Musician>> GetQueryResult(Lookup<Musician> lookup)
+        {
+            int total = 0;
+
+            total = _context.Musicians.Count();
+            if (lookup.Start == null) lookup.Start = 0;
+
+            IQueryable<Musician> foundMusicians = _context.Musicians.Skip(lookup.Start.Value);
+
+            if (lookup.Limit == null) lookup.Limit = 100;
+
+            foundMusicians = foundMusicians.Take(lookup.Limit.Value);
+
+
+            if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundMusicians = foundMusicians.Where(u => u.IsActive == lookup.IsActive);
+
+            QueryResult<Musician> result = new QueryResult<Musician>()
+            {
+                Count = foundMusicians.Count(),
+                Total = total,
+                Items = foundMusicians
+            };
+            return result;
+        }
     }
 }

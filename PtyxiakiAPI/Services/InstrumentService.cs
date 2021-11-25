@@ -78,5 +78,30 @@ namespace PtyxiakiAPI.Services
 
             return foundInstruments;
         }
+
+        public async Task<QueryResult<Instrument>> GetQueryResult(Lookup<Instrument> lookup)
+        {
+            int total = 0;
+
+            total = _context.Instruments.Count();
+            if (lookup.Start == null) lookup.Start = 0;
+
+            IQueryable<Instrument> foundInstruments = _context.Instruments.Skip(lookup.Start.Value);
+
+            if (lookup.Limit == null) lookup.Limit = 100;
+
+            foundInstruments = foundInstruments.Take(lookup.Limit.Value);
+
+
+            if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundInstruments = foundInstruments.Where(u => u.IsActive == lookup.IsActive);
+
+            QueryResult<Instrument> result = new QueryResult<Instrument>()
+            {
+                Count = foundInstruments.Count(),
+                Total = total,
+                Items = foundInstruments
+            };
+            return result;
+        }
     }
 }

@@ -9,6 +9,6 @@ namespace PtyxiakiAPI.Services
 {
     public interface IJobPostingService : IBasicService<JobPosting>
     {
-        Task<QueryResult<JobPosting>> GetQueryResult(Lookup<JobPosting> lookup);
+
     }
 }

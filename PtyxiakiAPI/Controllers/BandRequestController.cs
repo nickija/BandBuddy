@@ -23,10 +23,10 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("query")]
-        public ActionResult<IEnumerable<BandRequest>> Query(Lookup<BandRequest> lookup)
+        public ActionResult<QueryResult<BandRequest>> Query(Lookup<BandRequest> lookup)
         {
-            List<BandRequest> bandRequests = _bandRequestService.Query(lookup).Result.ToList();
-            return bandRequests;
+            QueryResult<BandRequest> result = _bandRequestService.GetQueryResult(lookup).Result;
+            return result;
         }
 
         [HttpGet("getSingle/{id}")]

@@ -77,5 +77,30 @@ namespace PtyxiakiAPI.Services
 
             return foundDeleteRequests;
         }
+
+        public async Task<QueryResult<DeleteRequest>> GetQueryResult(Lookup<DeleteRequest> lookup)
+        {
+            int total = 0;
+
+            total = _context.DeleteRequests.Count();
+            if (lookup.Start == null) lookup.Start = 0;
+
+            IQueryable<DeleteRequest> foundDeleteRequests = _context.DeleteRequests.Skip(lookup.Start.Value);
+
+            if (lookup.Limit == null) lookup.Limit = 100;
+
+            foundDeleteRequests = foundDeleteRequests.Take(lookup.Limit.Value);
+
+
+            if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundDeleteRequests = foundDeleteRequests.Where(u => u.IsActive == lookup.IsActive);
+
+            QueryResult<DeleteRequest> result = new QueryResult<DeleteRequest>()
+            {
+                Count = foundDeleteRequests.Count(),
+                Total = total,
+                Items = foundDeleteRequests
+            };
+            return result;
+        }
     }
 }

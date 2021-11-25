@@ -82,6 +82,31 @@ namespace PtyxiakiAPI.Services
             return foundUsers;
         }
 
+        public async Task<QueryResult<User>> GetQueryResult(Lookup<User> lookup)
+        {
+            int total = 0;
+
+            total = _context.Users.Count();
+            if (lookup.Start == null) lookup.Start = 0;
+
+            IQueryable<User> foundUsers = _context.Users.Skip(lookup.Start.Value);
+
+            if (lookup.Limit == null) lookup.Limit = 100;
+
+            foundUsers = foundUsers.Take(lookup.Limit.Value);
+
+            
+            if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundUsers = foundUsers.Where(u => u.IsActive == lookup.IsActive);
+
+            QueryResult<User> result = new QueryResult<User>()
+            {
+                Count = foundUsers.Count(),
+                Total = total,
+                Items = foundUsers
+            };
+            return result;
+        }
+
     }
 }
 
