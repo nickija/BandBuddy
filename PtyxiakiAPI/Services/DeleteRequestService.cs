@@ -43,6 +43,7 @@ namespace PtyxiakiAPI.Services
         {
             if (persistModel.Id == Guid.Empty)
             {
+                persistModel.Status = StatusEnum.PENDING;
                 persistModel.IsActive = IsActive.Active;
                 persistModel.CreatedAt = DateTime.Now;
                 persistModel.UpdatedAt = DateTime.Now;

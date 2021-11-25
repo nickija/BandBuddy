@@ -92,7 +92,6 @@ namespace PtyxiakiAPI.Services
 
             foundInstruments = foundInstruments.Take(lookup.Limit.Value);
 
-
             if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundInstruments = foundInstruments.Where(u => u.IsActive == lookup.IsActive);
 
             QueryResult<Instrument> result = new QueryResult<Instrument>()
