@@ -6,25 +6,25 @@
                 <div class="card card-chart">
                     <div class="card-header card-header-warning">
                          <h2>Job Posting </h2>
-                                        
+                                    
                     </div>
                     <div class="card-body">
                           <h4 class="card-title">Instrument required:</h4>
-                          <p class="card-category"> kitharoumpa</p>
+                          <p class="card-category"> {{itemModel.instrumentRequired}}</p>
                           <p></p>
                           <h4 class="card-title">Skill required:</h4>
-                          <p class="card-category"> expert</p>
+                          <p class="card-category"> {{skillEnum[itemModel.skill]}}</p>
                           <p></p>
                           <h4 class="card-title">Genre:</h4>
-                          <p class="card-category"> prograssive metal</p>
+                          <p class="card-category"> {{itemModel.genrePlayed}}</p>
                           <p></p>
                           <h4 class="card-title">Area:</h4>
-                          <p class="card-category"> athens</p>
+                          <p class="card-category"> {{areaEnum[itemModel.area]}}</p>
                           
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> Date Posted:
+                            <i class="material-icons">access_time</i> Date Posted: {{itemModel.createdAt | date}}
                         </div>
                     </div>
                     <div >

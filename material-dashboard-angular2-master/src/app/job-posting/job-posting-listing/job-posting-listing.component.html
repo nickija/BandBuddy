@@ -13,6 +13,7 @@
       [offset]="lookup.start"
       [limit]="lookup.limit"
       (page)="setPage($event)"
+      (activate)="navigateToPreview($event)"
     >
     </ngx-datatable>
   </div>

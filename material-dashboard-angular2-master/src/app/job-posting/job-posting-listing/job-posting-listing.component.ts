@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Lookup } from 'app/lookups/lookup';
 import { JobPosting } from 'app/models/job-posting.model';
@@ -17,7 +18,7 @@ export class JobPostingListingComponent implements OnInit {
 
   columns = [{ name: 'Skill' }, { name: 'Area' }, { name: 'GenrePlayed' }, {name: 'InstrumentRequired'}];
 
-  constructor(private jobPostingService:JobPostingService) { }
+  constructor(private jobPostingService:JobPostingService, private route: ActivatedRoute, protected router: Router) { }
 
   lookup:Lookup
 
@@ -42,5 +43,14 @@ export class JobPostingListingComponent implements OnInit {
     this.lookup = new Lookup();
     this.lookup.limit = 5;
     this.lookup.start = 0;
+  }
+
+  navigateToPreview(event: any){
+    if (event.type === "click"){
+      const id = event?.row?.id;
+      this.router.navigate([id], {relativeTo:this.route, replaceUrl:true})
+    }
+
+    
   }
 }
