@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { UserLookup } from '../lookups/user-lookup';
+import { QueryResult } from 'app/models/query-result';
 
 
 @Injectable({
@@ -28,10 +29,10 @@ export class UserService {
     return this.http.get<User>(url,this.httpOptions);
   }
 
-  query(userLookup : UserLookup): Observable<User[]>{
+  query(userLookup : UserLookup): Observable<QueryResult<User>>{
     const url = `${this.url}query`;
     
-    return this.http.post<User[]>(url,userLookup,this.httpOptions);
+    return this.http.post<QueryResult<User>>(url,userLookup,this.httpOptions);
   }
 
   persist(persistedUser : User) : Observable<User>{

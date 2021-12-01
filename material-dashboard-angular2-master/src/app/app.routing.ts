@@ -25,6 +25,12 @@ const routes: Routes = [
       path: '',
       loadChildren: () => import('./job-posting/job-posting.module').then(m => m.JobPostingModule)
     }]
+  }, {
+    path: 'applicants',
+    children: [{
+      path: '',
+      loadChildren: () => import('./job-posting copy/user.module').then(m => m.UserModule)
+    }]
   }
 ];
 

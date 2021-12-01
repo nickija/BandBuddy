@@ -1,0 +1,19 @@
+<div>
+    
+    <ngx-datatable
+      class="material"
+      [rows]="rows"
+      [columns]="columns"
+      [columnMode]="ColumnMode"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      rowHeight="auto"
+      [externalPaging]="true"
+      [count]="total"
+      [offset]="lookup.start"
+      [limit]="lookup.limit"
+      (page)="setPage($event)"
+      (activate)="navigateToPreview($event)"
+    >
+    </ngx-datatable>
+  </div>
