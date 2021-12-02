@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { DeleteRequestLookup } from '../lookups/delete-request-lookup';
+import { QueryResult } from 'app/models/query-result';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +26,10 @@ export class DeleteRequestService {
     return this.http.get<DeleteRequest>(url,this.httpOptions);
   }
 
-  query(deleteRequestLookup : DeleteRequestLookup): Observable<DeleteRequest[]>{
+  query(userLookup : DeleteRequestLookup): Observable<QueryResult<DeleteRequest>>{
     const url = `${this.url}query`;
     
-    return this.http.post<DeleteRequest[]>(url,deleteRequestLookup,this.httpOptions);
+    return this.http.post<QueryResult<DeleteRequest>>(url,userLookup,this.httpOptions);
   }
 
   persist(persistedDeleteRequest : DeleteRequest) : Observable<DeleteRequest>{

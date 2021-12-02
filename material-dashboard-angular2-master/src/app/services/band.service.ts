@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { BandLookup } from '../lookups/band-lookup';
+import { QueryResult } from 'app/models/query-result';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +26,10 @@ export class BandService {
     return this.http.get<Band>(url,this.httpOptions);
   }
 
-  query(bandLookup : BandLookup): Observable<Band[]>{
+  query(userLookup : BandLookup): Observable<QueryResult<Band>>{
     const url = `${this.url}query`;
     
-    return this.http.post<Band[]>(url,bandLookup,this.httpOptions);
+    return this.http.post<QueryResult<Band>>(url,userLookup,this.httpOptions);
   }
 
   persist(persistedBand : Band) : Observable<Band>{

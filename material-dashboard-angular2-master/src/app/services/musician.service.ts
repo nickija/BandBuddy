@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MusicianLookup } from '../lookups/musician-lookup';
+import { QueryResult } from 'app/models/query-result';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +25,12 @@ export class MusicianService {
     return this.http.get<Musician>(url,this.httpOptions);
   }
 
-  query(musicianLookup : MusicianLookup): Observable<Musician[]>{
+  query(userLookup : MusicianLookup): Observable<QueryResult<Musician>>{
     const url = `${this.url}query`;
     
-    return this.http.post<Musician[]>(url,musicianLookup,this.httpOptions);
+    return this.http.post<QueryResult<Musician>>(url,userLookup,this.httpOptions);
   }
+  
 
   persist(persistedMusician : Musician) : Observable<Musician>{
     const url = `${this.url}persist`;

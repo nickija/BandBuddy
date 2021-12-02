@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { InstrumentLookup } from '../lookups/instrument-lookup';
+import { QueryResult } from 'app/models/query-result';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +26,10 @@ export class InstrumentService {
     return this.http.get<Instrument>(url,this.httpOptions);
   }
 
-  query(instrumentLookup : InstrumentLookup): Observable<Instrument[]>{
+  query(userLookup : InstrumentLookup): Observable<QueryResult<Instrument>>{
     const url = `${this.url}query`;
     
-    return this.http.post<Instrument[]>(url,instrumentLookup,this.httpOptions);
+    return this.http.post<QueryResult<Instrument>>(url,userLookup,this.httpOptions);
   }
 
   persist(persistedInstrument : Instrument) : Observable<Instrument>{
