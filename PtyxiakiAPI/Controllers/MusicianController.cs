@@ -36,6 +36,13 @@ namespace PtyxiakiAPI.Controllers
             return musician;
         }
 
+        [HttpGet("getByUserId/{id}")]
+        public ActionResult<Musician> GetBy(Guid id)
+        {
+            Musician musician = _musicianService.GetByUserId(id).Result;
+            return musician;
+        }
+
         [HttpPost("persist")]
         public ActionResult<Musician> Persist(Musician persistModel)
         {

@@ -8,5 +8,6 @@ namespace PtyxiakiAPI.Services
 {
     public interface IMusicianService : IBasicService<Musician>
     {
+        Task<Musician> GetByUserId(Guid id);
     }
 }

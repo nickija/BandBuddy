@@ -6,20 +6,19 @@
                 <div class="card card-chart">
                     <div class="card-header card-header-warning">
                          <h2>Applicant </h2>
-                                        
                     </div>
                     <div class="card-body">
                           <h4 class="card-title">First Name:</h4>
-                          <p class="card-category"> kitharoumpa</p>
+                          <p class="card-category"> {{userModel.firstName}}</p>
                           <p></p>
                           <h4 class="card-title">Latst Name:</h4>
-                          <p class="card-category"> expert</p>
+                          <p class="card-category"> {{userModel.lastName}}</p>
                           <p></p>
                           <h4 class="card-title">Education:</h4>
-                          <p class="card-category"> prograssive metal</p>
+                          <p class="card-category"> {{musicianModel.education}}</p>
                           <p></p>
                           <h4 class="card-title">Area:</h4>
-                          <p class="card-category"> athens</p>
+                          <p class="card-category"> {{areaEnum[musicianModel.area]}}</p>
                           <div class ="col-md-2 float-right"></div>
                           <button mat-raised-button (click)="accept()" class="btn btn-success pull-right float-right">Accept </button>
           

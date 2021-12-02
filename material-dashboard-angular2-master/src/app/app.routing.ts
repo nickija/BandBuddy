@@ -29,7 +29,7 @@ const routes: Routes = [
     path: 'applicants',
     children: [{
       path: '',
-      loadChildren: () => import('./job-posting copy/user.module').then(m => m.UserModule)
+      loadChildren: () => import('./user/user.module').then(m => m.UserModule)
     }]
   }
 ];

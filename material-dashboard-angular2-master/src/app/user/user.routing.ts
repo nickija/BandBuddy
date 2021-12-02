@@ -18,7 +18,7 @@ import { UserListingComponent } from './user-listing/user-listing.component';
 export const routes: Routes = [
 
     { path: '',      component: UserListingComponent },
-    { path: ':id',      component: JobPostingPreviewComponent }//userpreview
+    { path: ':id',      component: ApplicantPreviewComponent }//userpreview
 
 ];
 @NgModule({

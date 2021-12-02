@@ -19,6 +19,11 @@ export class MusicianService {
   constructor(private http: HttpClient,) { }
 
   private url = 'http://localhost:5000/api/musician/'; 
+
+  getByUserId(userId): Observable<Musician>{
+    const url = `${this.url}getByUserId/${userId}`;
+    return this.http.get<Musician>(url,this.httpOptions);
+  }
   
   getSingle(id: string): Observable<Musician> {
     const url = `${this.url}getSingle/${id}`;

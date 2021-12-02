@@ -39,6 +39,11 @@ namespace PtyxiakiAPI.Services
             return _context.Musicians.Where(u => u.Id == id).FirstOrDefault();
         }
 
+        public async Task<Musician> GetByUserId(Guid id)
+        {
+            return _context.Musicians.Where(u => u.UserId == id).FirstOrDefault();
+        }
+
         public async Task<Musician> Persist(Musician persistModel)
         {
             if (persistModel.Id == Guid.Empty)
