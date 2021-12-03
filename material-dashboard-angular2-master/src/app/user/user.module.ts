@@ -20,6 +20,7 @@ import { UserListingComponent } from './user-listing/user-listing.component';
 import { ApplicantRoutingModule } from './user.routing';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { JobPostingPreviewComponent } from 'app/job-posting-preview/job-posting-preview.component';
+import { ApplicantPreviewComponent } from 'app/applicant-preview/applicant-preview.component';
 
 @NgModule({
   imports: [
@@ -33,11 +34,12 @@ import { JobPostingPreviewComponent } from 'app/job-posting-preview/job-posting-
     MatSelectModule,
     MatTooltipModule,
     ApplicantRoutingModule,
-    NgxDatatableModule
+    NgxDatatableModule,
   ],
   declarations: [
     
     UserListingComponent,
+    ApplicantPreviewComponent
     
   ]
 })

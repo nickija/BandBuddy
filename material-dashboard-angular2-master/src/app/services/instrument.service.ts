@@ -26,10 +26,10 @@ export class InstrumentService {
     return this.http.get<Instrument>(url,this.httpOptions);
   }
 
-  query(userLookup : InstrumentLookup): Observable<QueryResult<Instrument>>{
+  query(instrumentLookup : InstrumentLookup): Observable<QueryResult<Instrument>>{
     const url = `${this.url}query`;
     
-    return this.http.post<QueryResult<Instrument>>(url,userLookup,this.httpOptions);
+    return this.http.post<QueryResult<Instrument>>(url,instrumentLookup,this.httpOptions);
   }
 
   persist(persistedInstrument : Instrument) : Observable<Instrument>{
