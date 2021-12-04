@@ -37,6 +37,12 @@ const routes: Routes = [
       path: '',
       loadChildren: () => import('./band/band.module').then(m => m.BandModule)
     }]
+  }, {
+    path: 'band-request',
+    children: [{
+      path: '',
+      loadChildren: () => import('./band-request/band-request.module').then(m => m.BandRequestModule)
+    }]
   }
 ];
 
