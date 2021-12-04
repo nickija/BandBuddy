@@ -35,7 +35,7 @@ const routes: Routes = [
     path: 'band',
     children: [{
       path: '',
-      loadChildren: () => import('./job-posting copy/band.module').then(m => m.BandModule)
+      loadChildren: () => import('./band/band.module').then(m => m.BandModule)
     }]
   }
 ];

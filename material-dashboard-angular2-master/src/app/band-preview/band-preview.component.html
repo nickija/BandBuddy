@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="container-fluid">
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-chart">
+                    <div class="card-header card-header-warning">
+                         <h2>Band </h2>
+                                    
+                    </div>
+                    <div class="card-body">
+                          <h4 class="card-title">Band Name:</h4>
+                          <p class="card-category"> {{itemModel.bandName}}</p>
+                          <p></p>
+                          <h4 class="card-title">Genre:</h4>
+                          <p class="card-category"> {{itemModel.genre}}</p>
+                          <p></p>
+                          
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> Date Created: {{itemModel.createdAt | date}}
+                        </div>
+                    </div>
+                    <div >
+                        <button mat-raised-button (click)="edit()" class="btn btn-warning pull-right float-right">Edit Band</button>
+
+                    </div>
+                         
+                    
+                </div>
+            </div>
+            
+    </div>
+  </div>
+  

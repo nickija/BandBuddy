@@ -8,12 +8,13 @@ import { ProfileDashboardComponent } from 'app/profile-dashboard/profile-dashboa
 import { ApplicantPreviewComponent } from 'app/applicant-preview/applicant-preview.component';
 import { NgModule } from '@angular/core';
 import { BandListingComponent } from './band-listing/band-listing.component';
+import { BandPreviewComponent } from 'app/band-preview/band-preview.component';
 
 
 export const routes: Routes = [
 
     { path: '',      component: BandListingComponent },
-    //{ path: ':id',      component: BandPreviewComponent }
+    { path: ':id',      component: BandPreviewComponent }
 
 ];
 @NgModule({
