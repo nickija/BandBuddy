@@ -26,10 +26,16 @@ const routes: Routes = [
       loadChildren: () => import('./job-posting/job-posting.module').then(m => m.JobPostingModule)
     }]
   }, {
-    path: 'applicants',
+    path: 'applicant',
     children: [{
       path: '',
       loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+    }]
+  }, {
+    path: 'band',
+    children: [{
+      path: '',
+      loadChildren: () => import('./job-posting copy/band.module').then(m => m.BandModule)
     }]
   }
 ];
