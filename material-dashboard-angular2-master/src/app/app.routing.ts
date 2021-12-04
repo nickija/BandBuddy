@@ -43,6 +43,12 @@ const routes: Routes = [
       path: '',
       loadChildren: () => import('./band-request/band-request.module').then(m => m.BandRequestModule)
     }]
+  }, {
+    path: 'delete-request',
+    children: [{
+      path: '',
+      loadChildren: () => import('./delete-request/delete-request.module').then(m => m.DeleteRequestModule)
+    }]
   }
 ];
 
