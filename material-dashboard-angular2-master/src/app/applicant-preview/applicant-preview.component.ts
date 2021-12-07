@@ -68,7 +68,7 @@ export class ApplicantPreviewComponent implements OnInit {
     this.lookup = new Lookup();
     this.lookup.limit = 5;
     this.lookup.start = 0;
-    //this.lookup.like = ""
+    //this.lookup.itemId = this.musicianModel.id;
   }
 
   getUserDetails(id: string){

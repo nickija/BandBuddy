@@ -11,6 +11,7 @@ namespace PtyxiakiAPI.Lookups
         public int? Start { get; set; }
         public int? Limit { get; set; }
         public string Like { get; set; }
+        public Guid? ItemId { get; set; }
         public IsActive? IsActive { get; set; }
     }
 }
