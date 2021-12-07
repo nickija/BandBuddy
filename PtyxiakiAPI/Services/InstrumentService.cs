@@ -83,23 +83,31 @@ namespace PtyxiakiAPI.Services
         {
             int total = 0;
 
-            total = _context.Instruments.Count();
+            //FILTERS
             if (lookup.Start == null) lookup.Start = 0;
 
-            IQueryable<Instrument> foundInstruments = _context.Instruments.Skip(lookup.Start.Value);
+            IQueryable<Instrument> foundInstruments = _context.Instruments; 
+            
+            if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundInstruments = foundInstruments.Where(u => u.IsActive == lookup.IsActive);
+
 
             if (lookup.Limit == null) lookup.Limit = 100;
 
+
+            if (lookup.ItemId != null) foundInstruments = foundInstruments.Where(x => x.MusicianId == lookup.ItemId);
+
+
+            //COUNT SKIP TAKE
+            total = foundInstruments.Count();
+
+            foundInstruments = foundInstruments.Skip(lookup.Start.Value);
             foundInstruments = foundInstruments.Take(lookup.Limit.Value);
 
-            //if (!String.IsNullOrWhiteSpace(lookup.Like)) foundInstruments = foundInstruments.Where(x => x.MusicianId == lookup.ItemId);
 
-
-            if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundInstruments = foundInstruments.Where(u => u.IsActive == lookup.IsActive);
 
             QueryResult<Instrument> result = new QueryResult<Instrument>()
             {
-                Count = foundInstruments.Count(),
+                Count = lookup.Limit,
                 Total = total,
                 Items = foundInstruments
             };

@@ -1,4 +1,4 @@
-<div class="main-content">
+<div class="main-content" *ngIf="this.userModel && this.musicianModel">
     <div class="container-fluid">
         
         <div class="row">
@@ -7,7 +7,7 @@
                     <div class="card-header card-header-warning">
                          <h2>Applicant </h2>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" >
                           <h4 class="card-title">First Name:</h4>
                           <p class="card-category"> {{userModel.firstName}}</p>
                           <p></p>
@@ -49,7 +49,8 @@
                               [count]="total"
                               [offset]="lookup.start"
                               [limit]="lookup.limit"
-                              (page)="setPage($event)"
+                              (page)="onPageLoad($event)"
+
                               
                             >
                             </ngx-datatable>

@@ -31,7 +31,7 @@ export class ApplicantPreviewComponent implements OnInit {
   page: number;
   total: number;
 
-  columns = [{ name: 'InstrumentType' }, { name: 'YearsExperience' }, { name: 'Skill' }];
+  columns = [{ name: 'InstrumentType' }, { name: 'YearsExperiecnce' }, { name: 'Skill' }];
 
   constructor(userService: UserService, musicianService: MusicianService, instrumentService: InstrumentService, private route: ActivatedRoute) { 
     this.musicianService = musicianService;
@@ -44,36 +44,48 @@ export class ApplicantPreviewComponent implements OnInit {
   ColumnMode = ColumnMode.force;
   
   ngOnInit() {
+    this.generateLookup();
+
     this.route.paramMap.subscribe((paramMap)=>{
       if (paramMap.has("id")){
         this.itemId = paramMap.get("id");
         this.getUserDetails(this.itemId);
-        this.generateLookup();
-        this.setPage({ offset: 0 });
       }
     })
   }
 
-  setPage(pageInfo) {
-    this.lookup.start = pageInfo.offset;
+  onPageLoad(event: any) {
+		if (event) {
+			this.lookup.start = event.offset * this.lookup.limit ;
+      this.setPage({offset : this.lookup.start})
+		}
+	}
+
+  loadListing(){
     this.instrumentService.query(this.lookup).subscribe(pagedData => {
       this.page = pagedData.count;
       this.rows = pagedData.items;
       this.total = pagedData.total;
     });
   }
+  
+
+  setPage(pageInfo) {
+    this.lookup.start = pageInfo.offset;
+    this.instrumentService.query(this.lookup).subscribe(pagedData => {
+      this.page = pagedData.count;
+      this.rows = pagedData.items;
+    });
+  }
 
   generateLookup(){
-
     this.lookup = new Lookup();
     this.lookup.limit = 5;
     this.lookup.start = 0;
-    //this.lookup.itemId = this.musicianModel.id;
   }
 
   getUserDetails(id: string){
     this.userService.getSingle(id).subscribe(res => {
-      console.log(res);
       this.userModel = res;
       this.getMusicianDetails(this.userModel.id);
     })
@@ -81,8 +93,9 @@ export class ApplicantPreviewComponent implements OnInit {
 
   getMusicianDetails(id: string){
     this.musicianService.getByUserId(id).subscribe(res => {
-      console.log(res);
       this.musicianModel = res;
+      this.lookup.itemId = this.musicianModel.id;
+      this.loadListing();
     })
   } 
 
