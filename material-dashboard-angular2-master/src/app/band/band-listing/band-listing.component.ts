@@ -26,15 +26,29 @@ export class BandListingComponent implements OnInit {
 
   ngOnInit(): void {
     this.generateLookup();
-    this.setPage({ offset: 0 });
+    this.loadListing();
   }
+
+  loadListing(){
+    this.bandService.query(this.lookup).subscribe(pagedData => {
+      this.page = pagedData.count;
+      this.rows = pagedData.items;
+      this.total = pagedData.total;
+    });
+  }
+
+  onPageLoad(event: any) {
+		if (event) {
+			this.lookup.start = event.offset * this.lookup.limit ;
+      this.setPage({offset : this.lookup.start})
+		}
+	}
 
   setPage(pageInfo) {
     this.lookup.start = pageInfo.offset;
     this.bandService.query(this.lookup).subscribe(pagedData => {
       this.page = pagedData.count;
       this.rows = pagedData.items;
-      this.total = pagedData.total;
     });
   }
 

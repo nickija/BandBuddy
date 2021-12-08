@@ -12,7 +12,7 @@
       [count]="total"
       [offset]="lookup.start"
       [limit]="lookup.limit"
-      (page)="setPage($event)"
+      (page)="onPageLoad($event)"
       (activate)="navigateToPreview($event)"
     >
     </ngx-datatable>
