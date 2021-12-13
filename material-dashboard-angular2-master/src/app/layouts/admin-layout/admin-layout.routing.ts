@@ -18,6 +18,7 @@ import { BandJobPostingsComponent } from 'app/band-job-postings/band-job-posting
 import { MyJobPostingsComponent } from 'app/my-job-postings/my-job-postings.component';
 import { JobPostingApplicantsComponent } from 'app/job-posting-applicants/job-posting-applicants.component';
 import { ApplicantPreviewComponent } from 'app/applicant-preview/applicant-preview.component';
+import { LoginFormComponent } from 'app/login-form/login-form.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -80,6 +81,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'my-job-postings',        component: MyJobPostingsComponent },
     { path: 'job-posting-applicants',        component: JobPostingApplicantsComponent },
     { path: 'applicant-preview',        component: ApplicantPreviewComponent },
+    { path: 'login',        component: LoginFormComponent },
+
 
 
 

@@ -33,6 +33,7 @@ import { BandJobPostingsComponent } from './band-job-postings/band-job-postings.
 import { MyJobPostingsComponent } from './my-job-postings/my-job-postings.component';
 import { JobPostingApplicantsComponent } from './job-posting-applicants/job-posting-applicants.component';
 import { JobPostingListingComponent } from './job-posting/job-posting-listing/job-posting-listing.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   imports: [
@@ -60,7 +61,8 @@ import { JobPostingListingComponent } from './job-posting/job-posting-listing/jo
     ProfileDashboardComponent,
     BandJobPostingsComponent,
     MyJobPostingsComponent,
-    JobPostingApplicantsComponent
+    JobPostingApplicantsComponent,
+    LoginFormComponent
 
   ],
   providers: [],
