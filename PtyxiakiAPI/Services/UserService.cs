@@ -5,16 +5,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PtyxiakiAPI.Models.Enums;
+using PtyxiakiAPI.Helpers;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace PtyxiakiAPI.Services
 {
     public class UserService : IUserService
     {
         private readonly ApplicationContext _context;
-
-        public UserService(ApplicationContext context)
+        private readonly AppSettings _appSettings;
+        public UserService(ApplicationContext context, IOptions<AppSettings> appSettings)
         {
             _context = context;
+            _appSettings = appSettings.Value;
         }
 
         public async Task<bool> Delete(Guid id)
@@ -34,9 +41,22 @@ namespace PtyxiakiAPI.Services
             }
         }
 
+        public AuthenticateResponse Authenticate(AuthenticateRequest model)
+        {
+			User user = _context.Users.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
+			// return null if user not found
+			if (user == null) return null;
+
+            // authentication successful so generate jwt token
+            var token = generateJwtToken(user);
+
+            return new AuthenticateResponse(user, token);
+        }
+
+
         public async Task<User> GetSingle(Guid id)
         {
-            return _context.Users.Where(u => u.Id == id).FirstOrDefault();
+            return _context.Users.FirstOrDefault(u => u.Id == id);
         }
 
         public async Task<User> Persist(User persistModel)
@@ -107,6 +127,22 @@ namespace PtyxiakiAPI.Services
             return result;
         }
 
+
+        // helper methods
+        private string generateJwtToken(User user)
+        {
+            // generate token that is valid for 7 days
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[] {new Claim("name", user.FirstName),new Claim("id", user.Id.ToString()), new Claim("role",user.Role.ToString()) }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
     }
 }
 

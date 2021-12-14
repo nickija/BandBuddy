@@ -7,12 +7,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PtyxiakiAPI.Helpers;
 using PtyxiakiAPI.Models;
 using PtyxiakiAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Helpers;
 
 namespace PtyxiakiAPI
 {
@@ -38,6 +40,9 @@ namespace PtyxiakiAPI
             services.AddScoped<IJobPostingService, JobPostingService>();
             services.AddScoped<IInstrumentService, InstrumentService>();
             services.AddScoped<IDeleteRequestService, DeleteRequestService>();
+            // configure strongly typed settings object
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
             services.AddScoped<IBandRequestService, BandRequestService>();
             services.AddScoped<IBandService, BandService>();
             services.AddDbContext<ApplicationContext>(options =>
@@ -52,6 +57,7 @@ namespace PtyxiakiAPI
                                             .AllowAnyMethod();
                                   });
             });
+
             services.AddControllers();
 
 
@@ -72,7 +78,10 @@ namespace PtyxiakiAPI
 
             app.UseCors(MyAllowSpecificOrigins);
 
-            app.UseAuthorization();
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
+
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

@@ -23,16 +23,19 @@ namespace PtyxiakiAPI.Controllers
             this._userService = userService;
             //this.loginService = loginService;
         }
+        [HttpPost("authenticate")]
+        public ActionResult Authenticate(AuthenticateRequest model)
+        {
+            var response = _userService.Authenticate(model);
 
-        //[HttpPost("authenticate")]
-        //public ActionResult<User> Authenticate(string username, string password)
-        //{
-        //    User user = loginService.Authenticate(username, password).Result;
+            if (response == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
 
-        //    return user;
-        //}
+            return Ok(response);
+        }
 
         [HttpPost("query")]
+        [Authorize]
         public ActionResult<QueryResult<User>> Query(Lookup<User> lookup)
         {
             QueryResult<User> result = _userService.GetQueryResult(lookup).Result;

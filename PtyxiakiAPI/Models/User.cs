@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PtyxiakiAPI.Models
@@ -16,6 +17,7 @@ namespace PtyxiakiAPI.Models
         [Column(TypeName = "nvarchar(100)")]
         public string Username { get; set; }
 
+        [JsonIgnore]
         [Column(TypeName = "nvarchar(100)")]
         public string Password { get; set; }
 
