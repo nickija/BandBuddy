@@ -19,7 +19,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { JobPostingListingComponent } from './job-posting-listing/job-posting-listing.component';
 import { JobPostingRoutingModule } from './job-posting.routing';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { JobPostingPreviewComponent } from 'app/job-posting-preview/job-posting-preview.component';
+import { JobPostingPreviewComponent } from 'app/job-posting/job-posting-preview/job-posting-preview.component';
+import { JobPostingFormComponent } from './job-posting-form/job-posting-form.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { JobPostingPreviewComponent } from 'app/job-posting-preview/job-posting-
   declarations: [
     
     JobPostingListingComponent,
-    JobPostingPreviewComponent
+    JobPostingPreviewComponent,
+    JobPostingFormComponent
   ]
 })
 

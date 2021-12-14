@@ -19,7 +19,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { BandListingComponent } from './band-listing/band-listing.component';
 import { BandRoutingModule } from './band.routing';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { BandPreviewComponent } from 'app/band-preview/band-preview.component';
+import { BandPreviewComponent } from 'app/band/band-preview/band-preview.component';
+import { BandFormComponent } from './band-form/band-form.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { BandPreviewComponent } from 'app/band-preview/band-preview.component';
   declarations: [
     
     BandListingComponent,
-    BandPreviewComponent
+    BandPreviewComponent,
+    BandFormComponent
   ]
 })
 

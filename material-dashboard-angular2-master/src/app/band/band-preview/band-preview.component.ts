@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BandFormComponent } from 'app/band-form/band-form.component';
+import { BandFormComponent } from 'app/band/band-form/band-form.component';
 import { AreaEnum } from 'app/models/area-enum';
 import { Band } from 'app/models/band.model';
 import { Musician } from 'app/models/musician.model';

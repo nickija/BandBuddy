@@ -1,20 +1,17 @@
 import { RouterModule, Routes } from '@angular/router';
 
 
-import { UserFormComponent } from 'app/user-form/user-form.component';
-import { MusicianFormComponent } from 'app/musician-form/musician-form.component';
-import { BandFormComponent } from 'app/band-form/band-form.component';
-import { ProfileDashboardComponent } from 'app/profile-dashboard/profile-dashboard.component';
-import { ApplicantPreviewComponent } from 'app/applicant-preview/applicant-preview.component';
+import { BandFormComponent } from 'app/band/band-form/band-form.component';
 import { NgModule } from '@angular/core';
 import { BandListingComponent } from './band-listing/band-listing.component';
-import { BandPreviewComponent } from 'app/band-preview/band-preview.component';
+import { BandPreviewComponent } from 'app/band/band-preview/band-preview.component';
 
 
 export const routes: Routes = [
 
     { path: '',      component: BandListingComponent },
-    { path: ':id',      component: BandPreviewComponent }
+    { path: ':id',      component: BandPreviewComponent },
+    // { path: '/form',      component: BandFormComponent }
 
 ];
 @NgModule({

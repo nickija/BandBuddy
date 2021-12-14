@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JobPostingFormComponent } from 'app/job-posting-form/job-posting-form.component';
+import { JobPostingFormComponent } from 'app/job-posting/job-posting-form/job-posting-form.component';
 import { AreaEnum } from 'app/models/area-enum';
 import { JobPosting } from 'app/models/job-posting.model';
 import { Musician } from 'app/models/musician.model';

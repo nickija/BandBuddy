@@ -19,8 +19,11 @@ import {MatSelectModule} from '@angular/material/select';
 import { UserListingComponent } from './user-listing/user-listing.component';
 import { ApplicantRoutingModule } from './user.routing';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { JobPostingPreviewComponent } from 'app/job-posting-preview/job-posting-preview.component';
-import { ApplicantPreviewComponent } from 'app/applicant-preview/applicant-preview.component';
+import { JobPostingPreviewComponent } from 'app/job-posting/job-posting-preview/job-posting-preview.component';
+import { ApplicantPreviewComponent } from 'app/user/applicant-preview/applicant-preview.component';
+import { UserFormComponent } from './user-form/user-form.component';
+import { Musician } from 'app/models/musician.model';
+import { MusicianFormComponent } from './musician-form/musician-form.component';
 
 @NgModule({
   imports: [
@@ -39,7 +42,9 @@ import { ApplicantPreviewComponent } from 'app/applicant-preview/applicant-previ
   declarations: [
     
     UserListingComponent,
-    ApplicantPreviewComponent
+    ApplicantPreviewComponent,
+    UserFormComponent,
+    MusicianFormComponent
     
   ]
 })
