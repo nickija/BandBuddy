@@ -5,6 +5,8 @@ import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from "jquery";
+import { AuthenticationService } from './services/authentication.service';
+import { User } from './models/user.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,10 +16,11 @@ export class AppComponent {
   private _router: Subscription;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
-
-  constructor( public location: Location, private router: Router) {}
+  currentUser: User;
+  constructor( public location: Location, private router: Router,private authenticationService : AuthenticationService) {}
 
   ngOnInit() {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
       const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
       if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
@@ -125,6 +128,10 @@ export class AppComponent {
               $sidebar_responsive.css('background-image','url("' + new_image + '")');
           }
       });
+  }
+
+  isAuthenticated(){
+      return this.currentUser != null;
   }
   ngAfterViewInit() {
       this.runOnRouteChange();

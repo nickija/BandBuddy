@@ -17,5 +17,11 @@
                 <p>{{menuItem.title}}</p>
             </a>
         </li>
+        <li routerLinkActive="active" class="d-flex justify-content-center align-items-center">
+            <a mat-button  (click)="logout()" [matTooltip]="'Logout'">
+                <i class="material-icons">logout</i>
+            </a>
+        </li>
     </ul>
+    
 </div>

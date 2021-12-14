@@ -11,7 +11,7 @@ const routes: Routes = [
   {
 
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full',
   }, {
     path: 'job-posting',

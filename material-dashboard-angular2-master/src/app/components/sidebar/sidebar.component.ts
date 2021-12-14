@@ -1,4 +1,7 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'app/services/authentication.service';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -12,8 +15,6 @@ export const ROUTES: RouteInfo[] = [
     { path: '/job-posting', title: 'Search for Band',  icon:'search', class: '' },
     { path: '/band', title: 'My bands',  icon:'dashboard', class: '' },
     { path: '/job-posting', title: 'Applied Job Postings',  icon:'content_paste', class: '' },
-    
-    { path: '/logout', title: 'Logout',  icon:'exit_app', class: 'active-pro' },
 ];
 
 @Component({
@@ -24,7 +25,7 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  constructor() { }
+  constructor(private authenticationService : AuthenticationService,        private router: Router) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
@@ -35,4 +36,9 @@ export class SidebarComponent implements OnInit {
       }
       return true;
   };
+
+  logout(){
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+    }
 }
