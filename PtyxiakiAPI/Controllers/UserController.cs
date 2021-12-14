@@ -24,6 +24,14 @@ namespace PtyxiakiAPI.Controllers
             this.loginService = loginService;
         }
 
+        [HttpPost("authenticate")]
+        public ActionResult<User> Authenticate(string username, string password)
+        {
+            User user = loginService.Authenticate(username, password).Result;
+
+            return user;
+        }
+
         [HttpPost("query")]
         public ActionResult<QueryResult<User>> Query(Lookup<User> lookup)
         {

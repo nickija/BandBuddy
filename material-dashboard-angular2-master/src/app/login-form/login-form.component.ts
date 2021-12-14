@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IsActive } from 'app/models/is-active';
 import { User } from 'app/models/user.model';
+import { LoginService } from 'app/services/login.service';
 import { UserService } from 'app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -22,10 +23,10 @@ export class LoginFormComponent implements OnInit {
     passWord: this.passWordFormControl,
   })
 
-  private userService: UserService;
+  private loginService: LoginService;
 
-  constructor(private router: Router, service: UserService, private toastr: ToastrService) { 
-    this.userService = service;
+  constructor(private router: Router, service: LoginService, private toastr: ToastrService) { 
+    this.loginService = service;
   }
 
   // showSuccess() {
@@ -37,11 +38,11 @@ export class LoginFormComponent implements OnInit {
   }
 
   login(){
-    // if (this.userRegisterFormGroup.valid){
+    if (this.userRegisterFormGroup.valid){
     //   console.log(this.userRegisterFormGroup);    
       
       
-    //   this.userService.persist(this.userRegisterFormGroup.value).subscribe(
+    //  this.loginService.authenticate().subscribe(
     //     res => {
     //       this.toastr.success('Welcome!',res.firstName)
     //       console.log(res);
@@ -51,9 +52,7 @@ export class LoginFormComponent implements OnInit {
     //     }
     //   );
     //   console.log("kalispera mesaaaa");
-    // }
-    // console.log(this.userRegisterFormGroup.value);
-    // console.log("kalispera");
+    }
   }
 
 }
