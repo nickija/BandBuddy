@@ -17,7 +17,6 @@ namespace PtyxiakiAPI.Models
         [Column(TypeName = "nvarchar(100)")]
         public string Username { get; set; }
 
-        [JsonIgnore]
         [Column(TypeName = "nvarchar(100)")]
         public string Password { get; set; }
 

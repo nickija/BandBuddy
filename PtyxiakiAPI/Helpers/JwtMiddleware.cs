@@ -52,7 +52,7 @@ namespace WebApi.Helpers
                 var userId = Guid.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
                 // attach user to context on successful jwt validation
-                context.Items["User"] = userService.GetSingle(userId);
+                context.Items["User"] = userService.GetSingle(userId).Result;
             }
             catch
             {

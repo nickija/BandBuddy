@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UserFormComponent } from './user/user-form/user-form.component';
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 const routes: Routes = [
   {
@@ -28,7 +29,7 @@ const routes: Routes = [
     path: 'band',
     children: [{
       path: '',
-      loadChildren: () => import('./band/band.module').then(m => m.BandModule)
+      loadChildren: () => import('./band/band.module').then(m => m.BandModule),
     }]
   }, {
     path: 'band-request',
@@ -44,6 +45,9 @@ const routes: Routes = [
     }]
   },
   { path: 'dashboard',      component: UserDashboardComponent },
+  {
+    path: 'login', component: LoginFormComponent
+  }
 ];
 
 @NgModule({

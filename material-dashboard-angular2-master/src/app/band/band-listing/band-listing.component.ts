@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Lookup } from 'app/lookups/lookup';
 import { Band } from 'app/models/band.model';
+import { User } from 'app/models/user.model';
+import { AuthenticationService } from 'app/services/authentication.service';
 import { BandService } from 'app/services/band.service';
 
 @Component({
@@ -11,20 +13,25 @@ import { BandService } from 'app/services/band.service';
   styleUrls: ['./band-listing.component.scss']
 })
 export class BandListingComponent implements OnInit {
-
+  currentUser: User;
   rows: Band[];
   page: number;
   total: number;
 
   columns = [{ name: 'BandName' }, { name: 'Genre' }];
 
-  constructor(private bandService:BandService, private route: ActivatedRoute, protected router: Router) { }
+  constructor(private bandService:BandService, private route: ActivatedRoute, protected router: Router,        private authenticationService: AuthenticationService) { }
 
   lookup:Lookup
 
   ColumnMode = ColumnMode.force;
 
   ngOnInit(): void {
+    this.authenticationService.currentUser.subscribe(x => {
+      this.currentUser = x;
+      console.log(this.currentUser);
+
+    });
     this.generateLookup();
     this.loadListing();
   }

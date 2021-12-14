@@ -11,5 +11,5 @@ export class User {
     isActive: IsActive;
     createdAt: Date;
     updatedAt: Date;
-
+    token?: string;
 }
