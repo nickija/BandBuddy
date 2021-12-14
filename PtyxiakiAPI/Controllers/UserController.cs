@@ -16,21 +16,21 @@ namespace PtyxiakiAPI.Controllers
     public class UserController : ControllerBase
     {
         private IUserService _userService;
-        private LoginService loginService;
+        //private LoginService loginService;
 
-        public UserController(IUserService userService, LoginService loginService)
+        public UserController(IUserService userService)
         {
             this._userService = userService;
-            this.loginService = loginService;
+            //this.loginService = loginService;
         }
 
-        [HttpPost("authenticate")]
-        public ActionResult<User> Authenticate(string username, string password)
-        {
-            User user = loginService.Authenticate(username, password).Result;
+        //[HttpPost("authenticate")]
+        //public ActionResult<User> Authenticate(string username, string password)
+        //{
+        //    User user = loginService.Authenticate(username, password).Result;
 
-            return user;
-        }
+        //    return user;
+        //}
 
         [HttpPost("query")]
         public ActionResult<QueryResult<User>> Query(Lookup<User> lookup)

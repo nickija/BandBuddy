@@ -2,14 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import { UserProfileComponent } from '../user-profile/user-profile.component';
-import { TableListComponent } from '../table-list/table-list.component';
-import { TypographyComponent } from '../typography/typography.component';
 import { IconsComponent } from '../icons/icons.component';
-import { MapsComponent } from '../maps/maps.component';
 import { NotificationsComponent } from '../notifications/notifications.component';
-import { UpgradeComponent } from '../upgrade/upgrade.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatRippleModule} from '@angular/material/core';
@@ -24,6 +18,7 @@ import { ApplicantPreviewComponent } from 'app/user/applicant-preview/applicant-
 import { UserFormComponent } from './user-form/user-form.component';
 import { Musician } from 'app/models/musician.model';
 import { MusicianFormComponent } from './musician-form/musician-form.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 @NgModule({
   imports: [
@@ -44,7 +39,8 @@ import { MusicianFormComponent } from './musician-form/musician-form.component';
     UserListingComponent,
     ApplicantPreviewComponent,
     UserFormComponent,
-    MusicianFormComponent
+    MusicianFormComponent,
+    UserDashboardComponent
     
   ]
 })

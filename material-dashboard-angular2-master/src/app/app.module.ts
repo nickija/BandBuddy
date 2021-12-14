@@ -10,24 +10,21 @@ import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserFormComponent } from './user/user-form/user-form.component';
-import { TableListComponent } from './table-list/table-list.component';
-import { TypographyComponent } from './typography/typography.component';
 import { IconsComponent } from './icons/icons.component';
-import { MapsComponent } from './maps/maps.component';
 import { NotificationsComponent } from './notifications/notifications.component';
-import { UpgradeComponent } from './upgrade/upgrade.component';
 import {
   AgmCoreModule
 } from '@agm/core';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { MaterialModule } from 'material/material.module';
 import { ToastrModule } from 'ngx-toastr';
 import { MusicianFormComponent } from './user/musician-form/musician-form.component';
 import { BandFormComponent } from './band/band-form/band-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { CommonModule } from '@angular/common';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -43,12 +40,17 @@ import { LoginFormComponent } from './login-form/login-form.component';
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     }),
     BrowserAnimationsModule, 
-    ToastrModule.forRoot() 
+    ToastrModule.forRoot() ,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    
+    
 
   ],
   providers: [],

@@ -3,8 +3,8 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { UserFormComponent } from './user/user-form/user-form.component';
+import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
   {
@@ -12,13 +12,6 @@ const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  }, {
-    path: '',
-    component: AdminLayoutComponent,
-    children: [{
-      path: '',
-      loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
-    }]
   }, {
     path: 'job-posting',
     children: [{
@@ -49,7 +42,8 @@ const routes: Routes = [
       path: '',
       loadChildren: () => import('./delete-request/delete-request.module').then(m => m.DeleteRequestModule)
     }]
-  }
+  },
+  { path: 'dashboard',      component: UserDashboardComponent },
 ];
 
 @NgModule({

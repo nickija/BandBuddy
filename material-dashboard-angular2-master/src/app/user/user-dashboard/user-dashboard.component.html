@@ -1,0 +1,69 @@
+<!-- <div class="main-content" *ngIf="this.userModel && this.musicianModel"> -->
+<div class="main-content" >
+    <div class="container-fluid">
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-chart">
+                    <div class="card-header card-header-warning">
+                         <h2>Applicant </h2>
+                    </div>
+                    <div class="card-body" >
+                          <h4 class="card-title">First Name:</h4>
+                          <p class="card-category"> {{userModel.firstName}}</p>
+                          <p></p>
+                          <h4 class="card-title">Latst Name:</h4>
+                          <p class="card-category"> {{userModel.lastName}}</p>
+                          <p></p>
+                          <h4 class="card-title">Education:</h4>
+                          <p class="card-category"> {{musicianModel.education}}</p>
+                          <p></p>
+                          <h4 class="card-title">Area:</h4>
+                          <p class="card-category"> {{areaEnum[musicianModel.area]}}</p>
+                          <div class ="col-md-2 float-right"></div>
+                          <button mat-raised-button (click)="accept()" class="btn btn-success pull-right float-right">Accept </button>
+          
+                          <button mat-raised-button (click)="reject()" class="btn btn-danger pull-right float-right">Reject </button>
+                          </div>
+          
+                    </div>                   
+                    
+                </div>
+            
+            <div class="col-md-4">
+                <div class="card card-chart">
+                    <div class="card-header card-header-warning">
+                    <h3 >Applicant's instruments</h3>
+                </div>
+                    <div class="card-body">
+                        <div>
+    
+                            <ngx-datatable
+                              class="material"
+                              [rows]="rows"
+                              [columns]="columns"
+                              [columnMode]="ColumnMode"
+                              [headerHeight]="50"
+                              [footerHeight]="50"
+                              rowHeight="auto"
+                              [externalPaging]="true"
+                              [count]="total"
+                              [offset]="lookup.start"
+                              [limit]="lookup.limit"
+                              (page)="onPageLoad($event)"
+
+                              
+                            >
+                            </ngx-datatable>
+                          </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+            
+            
+    </div>
+  </div>
+  

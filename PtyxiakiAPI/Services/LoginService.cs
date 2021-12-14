@@ -8,17 +8,17 @@ namespace PtyxiakiAPI.Services
 {
     public class LoginService
     {
-        private readonly ApplicationContext _context;
+        //private readonly ApplicationContext _context;
 
-        public LoginService(ApplicationContext context)
-        {
-            _context = context;
-        }
+        //public LoginService(ApplicationContext context)
+        //{
+        //    _context = context;
+        //}
 
-        public async Task<User> Authenticate(string username, string password)
-        {
-           return _context.Users.Where(u => u.Username == username && u.Password == password).FirstOrDefault();
+        //public async Task<User> Authenticate(string username, string password)
+        //{
+        //   return _context.Users.Where(u => u.Username == username && u.Password == password).FirstOrDefault();
 
-        }
+        //}
     }
 }
