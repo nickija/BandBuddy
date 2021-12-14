@@ -11,7 +11,6 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 
 import { UserFormComponent } from './user/user-form/user-form.component';
-import { IconsComponent } from './icons/icons.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import {
   AgmCoreModule
