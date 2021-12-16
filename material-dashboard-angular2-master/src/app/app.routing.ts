@@ -6,12 +6,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserFormComponent } from './user/user-form/user-form.component';
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   {
 
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home',
     pathMatch: 'full',
   }, {
     path: 'job-posting',
@@ -47,6 +48,12 @@ const routes: Routes = [
   { path: 'dashboard',      component: UserDashboardComponent },
   {
     path: 'login', component: LoginFormComponent
+  },
+  {
+    path: 'home', component: HomePageComponent
+  },
+  {
+    path: 'user-form', component: UserFormComponent
   }
 ];
 

@@ -9,11 +9,11 @@ import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.css']
+  selector: 'app-home-page',
+  templateUrl: './home-page.component.html',
+  styleUrls: ['./home-page.component.css']
 })
-export class LoginFormComponent implements OnInit {
+export class HomePageComponent implements OnInit {
 
   userNameFormControl = new FormControl(null ,[Validators.required]);  
   passWordFormControl = new FormControl(null ,[Validators.required]);
@@ -51,6 +51,7 @@ export class LoginFormComponent implements OnInit {
           this.toastr.error('Something bad happened')
         }
       );
+      console.log("kalispera mesaaaa");
     }
   }
 
