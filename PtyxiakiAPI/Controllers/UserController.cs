@@ -16,12 +16,10 @@ namespace PtyxiakiAPI.Controllers
     public class UserController : ControllerBase
     {
         private IUserService _userService;
-        //private LoginService loginService;
 
         public UserController(IUserService userService)
         {
             this._userService = userService;
-            //this.loginService = loginService;
         }
         [HttpPost("authenticate")]
         public ActionResult Authenticate(AuthenticateRequest model)

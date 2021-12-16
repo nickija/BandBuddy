@@ -7,6 +7,7 @@ import { UserFormComponent } from './user/user-form/user-form.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { MusicianFormComponent } from './user/musician-form/musician-form.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,9 @@ const routes: Routes = [
   },
   {
     path: 'user-form', component: UserFormComponent
+  },
+  {
+    path: 'musician-form', component: MusicianFormComponent
   }
 ];
 
