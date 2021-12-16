@@ -27,6 +27,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HomePageComponent } from './home-page/home-page.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
@@ -46,12 +48,14 @@ import { HomePageComponent } from './home-page/home-page.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxDatatableModule,
 
   ],
   declarations: [
     AppComponent,
     LoginFormComponent,
-    HomePageComponent
+    HomePageComponent,
+    UserDashboardComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

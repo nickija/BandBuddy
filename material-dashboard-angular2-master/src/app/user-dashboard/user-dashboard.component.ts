@@ -6,6 +6,7 @@ import { AreaEnum } from 'app/models/area-enum';
 import { Instrument } from 'app/models/instrument.model';
 import { Musician } from 'app/models/musician.model';
 import { User } from 'app/models/user.model';
+import { AuthenticationService } from 'app/services/authentication.service';
 import { InstrumentService } from 'app/services/instrument.service';
 import { MusicianService } from 'app/services/musician.service';
 import { UserService } from 'app/services/user.service';
@@ -26,6 +27,7 @@ export class UserDashboardComponent implements OnInit {
   public userModel: User;
   public musicianModel: Musician;
   public areaEnum = AreaEnum;
+  currentUser : User;
 
   rows: Instrument[];
   page: number;
@@ -33,7 +35,7 @@ export class UserDashboardComponent implements OnInit {
 
   columns = [{ name: 'InstrumentType' }, { name: 'YearsExperiecnce' }, { name: 'Skill' }];
 
-  constructor(userService: UserService, musicianService: MusicianService, instrumentService: InstrumentService, private route: ActivatedRoute) { 
+  constructor(private authenticationService : AuthenticationService ,userService: UserService, musicianService: MusicianService, instrumentService: InstrumentService, private route: ActivatedRoute) { 
     this.musicianService = musicianService;
     this.userService = userService;
     this.instrumentService = instrumentService;
@@ -46,12 +48,18 @@ export class UserDashboardComponent implements OnInit {
   ngOnInit() {
     this.generateLookup();
 
-    this.route.paramMap.subscribe((paramMap)=>{
-      if (paramMap.has("id")){
-        this.itemId = paramMap.get("id");
-        this.getUserDetails(this.itemId);
-      }
-    })
+    // this.route.paramMap.subscribe((paramMap)=>{
+    //   if (paramMap.has("id")){
+    //     this.itemId = paramMap.get("id");
+    //     this.getUserDetails(this.itemId);
+    //   }
+    // })
+
+    this.authenticationService.currentUser.subscribe(x => {
+      this.currentUser = x;
+      console.log(this.currentUser.id, this.currentUser.username);
+    });
+    this.getUserDetails(this.currentUser.id);
   }
 
   onPageLoad(event: any) {

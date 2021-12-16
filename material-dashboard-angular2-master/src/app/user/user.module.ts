@@ -17,7 +17,7 @@ import { ApplicantPreviewComponent } from 'app/user/applicant-preview/applicant-
 import { UserFormComponent } from './user-form/user-form.component';
 import { Musician } from 'app/models/musician.model';
 import { MusicianFormComponent } from './musician-form/musician-form.component';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { UserDashboardComponent } from '../user-dashboard/user-dashboard.component';
 
 @NgModule({
   imports: [
@@ -39,7 +39,6 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     ApplicantPreviewComponent,
     UserFormComponent,
     MusicianFormComponent,
-    UserDashboardComponent
     
   ]
 })

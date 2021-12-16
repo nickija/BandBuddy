@@ -11,10 +11,14 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/applicant', title: 'Dashboard Profile',  icon: 'person', class: '' },
-    { path: '/job-posting', title: 'Search for Band',  icon:'search', class: '' },
+    { path: '/dashboard', title: 'Dashboard Profile',  icon: 'person', class: '' },
+    { path: '/applicant', title: 'Search for Band',  icon:'search', class: '' },
     { path: '/band', title: 'My bands',  icon:'dashboard', class: '' },
     { path: '/job-posting', title: 'Applied Job Postings',  icon:'content_paste', class: '' },
+    { path: '/user-form', title: 'Edit User Profile',  icon:'edit', class: '' },
+    { path: '/musician-form', title: 'Edit Musical Profile',  icon:'edit', class: '' },
+
+
 ];
 
 @Component({
@@ -39,6 +43,6 @@ export class SidebarComponent implements OnInit {
 
   logout(){
     this.authenticationService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
     }
 }

@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { UserFormComponent } from './user/user-form/user-form.component';
-import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
 
@@ -45,7 +45,9 @@ const routes: Routes = [
       loadChildren: () => import('./delete-request/delete-request.module').then(m => m.DeleteRequestModule)
     }]
   },
-  { path: 'dashboard',      component: UserDashboardComponent },
+  {
+     path: 'dashboard',      component: UserDashboardComponent 
+  },
   {
     path: 'login', component: LoginFormComponent
   },

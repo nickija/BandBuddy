@@ -12,8 +12,6 @@ export const routes: Routes = [
 
     { path: '',      component: UserListingComponent },
     { path: ':id',      component: ApplicantPreviewComponent },//userpreview
-    // { path: '/form',      component: UserFormComponent },
-    // { path: '/musician-form',      component: MusicianFormComponent },
 
 
 

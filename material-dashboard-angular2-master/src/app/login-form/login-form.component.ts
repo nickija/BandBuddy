@@ -45,7 +45,8 @@ export class LoginFormComponent implements OnInit {
         res => {
           this.toastr.success('Welcome!',res.firstName)
           console.log(res);
-          this.router.navigate['/dashboard']
+          this.router.navigate(['/dashboard'])
+          
         },
         error => {
           this.toastr.error('Something bad happened')
