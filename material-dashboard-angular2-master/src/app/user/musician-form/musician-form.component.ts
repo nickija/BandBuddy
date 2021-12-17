@@ -92,7 +92,7 @@ export class MusicianFormComponent implements OnInit {
       
       this.musicianService.persist(this.musicianRegisterFormGroup.value).subscribe(
         res => {
-          this.toastr.success('Musical Profile Updated!')
+          this.toastr.info('Musical Profile Updated!')
           console.log(res);
         },
         error => {

@@ -9,6 +9,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MusicianFormComponent } from './user/musician-form/musician-form.component';
 import { EditUserFormComponent } from './edit-user-form/edit-user-form.component';
+import { BandFormComponent } from './band/band-form/band-form.component';
+import { EditBandFormComponent } from './edit-band-form/edit-band-form.component';
 
 const routes: Routes = [
   {
@@ -64,6 +66,12 @@ const routes: Routes = [
   },
   {
     path: 'edit-user-form', component: EditUserFormComponent
+  },
+  {
+    path: 'band-form', component: BandFormComponent
+  },
+  {
+    path: 'edit-band-form', component: EditBandFormComponent
   }
 ];
 

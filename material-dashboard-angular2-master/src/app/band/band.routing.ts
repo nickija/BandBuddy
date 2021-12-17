@@ -11,7 +11,6 @@ export const routes: Routes = [
 
     { path: '',      component: BandListingComponent },
     { path: ':id',      component: BandPreviewComponent },
-    // { path: '/form',      component: BandFormComponent }
 
 ];
 @NgModule({

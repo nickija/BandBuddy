@@ -10,28 +10,30 @@ import { User } from 'app/models/user.model';
 
 
 @Component({
-  selector: 'app-band-form',
-  templateUrl: './band-form.component.html',
-  styleUrls: ['./band-form.component.css']
+  selector: 'app-edit-band-form',
+  templateUrl: './edit-band-form.component.html',
+  styleUrls: ['./edit-band-form.component.css']
 })
-export class BandFormComponent implements OnInit {
+export class EditBandFormComponent implements OnInit {
 
-  currentUser: User;
+  bandId: string;
+  bandModel: Band;
   
   bandNameFormControl = new FormControl(null ,[Validators.required]);  
   genreFormControl = new FormControl(null ,[Validators.required]);
-  ownerIdFormControl = new FormControl(null ,[Validators.required]);
+  idFormControl = new FormControl(null ,[Validators.required]);
+  
 
   bandRegisterFormGroup = new FormGroup({
     bandName: this.bandNameFormControl,
     genre: this.genreFormControl,
-    ownerId: this.ownerIdFormControl
+    id: this.idFormControl
     
   })
 
   private bandService: BandService;
 
-  constructor(private router: Router, service: BandService, private toastr: ToastrService, private authenticationService: AuthenticationService) { 
+  constructor(private router: Router, service: BandService, private toastr: ToastrService) { 
     this.bandService = service;
   }
 
@@ -41,10 +43,9 @@ export class BandFormComponent implements OnInit {
 
   
   ngOnInit() {
-    this.authenticationService.currentUser.subscribe(x => {
-      this.currentUser = x;
-      this.ownerIdFormControl.setValue(this.currentUser.id);
-    });
+    
+    this.getBandDetails(this.bandId);
+    
   }
 
   addBand(){
@@ -54,7 +55,7 @@ export class BandFormComponent implements OnInit {
       
       this.bandService.persist(this.bandRegisterFormGroup.value).subscribe(
         res => {
-          this.toastr.success('Band Created!', res.bandName)
+          this.toastr.info('Band Updated!', res.bandName)
           console.log(res);
         },
         error => {
@@ -65,5 +66,12 @@ export class BandFormComponent implements OnInit {
     }
     
   }
+
+  getBandDetails(id: string){
+    this.bandService.getSingle(id).subscribe(res => {
+      this.bandModel = res;
+      this.idFormControl.setValue(this.bandModel.id);
+    })
+  } 
 
 }
