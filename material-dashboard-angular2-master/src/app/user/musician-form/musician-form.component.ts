@@ -5,6 +5,8 @@ import { AreaEnum } from 'app/models/area-enum';
 import { IsActive } from 'app/models/is-active';
 import { Musician } from 'app/models/musician.model';
 import { SkillEnum } from 'app/models/skill-enum';
+import { User } from 'app/models/user.model';
+import { AuthenticationService } from 'app/services/authentication.service';
 import { InstrumentService } from 'app/services/instrument.service';
 import { MusicianService } from 'app/services/musician.service';
 import { ToastrService } from 'ngx-toastr';
@@ -17,34 +19,45 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MusicianFormComponent implements OnInit {
 
+  currentUser: User;
+  musicianModel: Musician;
+
   eArea = AreaEnum;
   eSkill = SkillEnum;
-  //userid where?
+
+  educationTextBox: string;
+  areaTextBox: AreaEnum;
+
+  //MUSICIAN
   educationFormControl = new FormControl(null ,[Validators.required]);  
   areaFormControl = new FormControl(null ,[Validators.required]);
+  idFormControl = new FormControl(null ,[Validators.required]);
+
 
   musicianRegisterFormGroup = new FormGroup({
     education: this.educationFormControl,
-    area: this.areaFormControl
+    area: this.areaFormControl,
+    id: this.idFormControl
   })
 
-
-  //musicianIdFormControl = new FormControl(null ,[Validators.required]);  
+  //INSTRUMENT
   instrumentTypeFormControl = new FormControl(null ,[Validators.required]);
   yearsExperienceTypeFormControl = new FormControl(null ,[Validators.required]);
   skillFormControl = new FormControl(null ,[Validators.required]);
+  musicianIdFormControl = new FormControl(null ,[Validators.required]);
+
 
   instrumentRegisterFormGroup = new FormGroup({
-    //musicianId: this.musicianIdFormControl,
     instrumentType: this.instrumentTypeFormControl,
-    yearsExperience: this.yearsExperienceTypeFormControl,
-    skill: this.skillFormControl
+    yearsExperiecnce: this.yearsExperienceTypeFormControl,
+    skill: this.skillFormControl,
+    musicianId: this.musicianIdFormControl
   })
 
   private musicianService: MusicianService;
   private instrumentService: InstrumentService;
 
-  constructor(private router: Router, musicianService: MusicianService, instrumentService: InstrumentService, private toastr: ToastrService) { 
+  constructor(private router: Router, musicianService: MusicianService, instrumentService: InstrumentService, private toastr: ToastrService, private authenticationService :AuthenticationService) { 
     this.musicianService = musicianService;
     this.instrumentService = instrumentService;
   }
@@ -55,8 +68,22 @@ export class MusicianFormComponent implements OnInit {
 
   
   ngOnInit() {
-    //console.log(this.getSkillEnumValues());
+    this.authenticationService.currentUser.subscribe(x => {
+      this.currentUser = x;
+
+      this.getMusicianDetails(this.currentUser.id);
+    });
   }
+
+  getMusicianDetails(id: string){
+    this.musicianService.getByUserId(id).subscribe(res => {
+      this.musicianModel = res;
+      this.educationTextBox = this.musicianModel.education;
+      this.areaTextBox = this.musicianModel.area;
+      this.idFormControl.setValue(this.musicianModel.id);
+      this.musicianIdFormControl.setValue(this.musicianModel.id);
+    })
+  } 
 
   updateMusicianProfile(){
     if (this.musicianRegisterFormGroup.valid){
@@ -72,11 +99,9 @@ export class MusicianFormComponent implements OnInit {
           this.toastr.error('Something bad happened')
         }
       );
-      console.log("kalispera mesaaaa");
-      //this.router.navigate(['/login']);
+      
     }
-    console.log(this.musicianRegisterFormGroup.value);
-    console.log("kalispera");
+    
   }
 
   addInstrument(){
@@ -93,11 +118,8 @@ export class MusicianFormComponent implements OnInit {
           this.toastr.error('Something bad happened')
         }
       );
-      console.log("kalispera mesaaaa");
-      //this.router.navigate(['/login']);
+
     }
-    console.log(this.instrumentRegisterFormGroup.value);
-    console.log("kalispera");
 
   }
 

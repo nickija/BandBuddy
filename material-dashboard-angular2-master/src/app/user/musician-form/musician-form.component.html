@@ -16,7 +16,7 @@
                           
                               <div class="col-md-6">
                                   <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Education" [formControl]="educationFormControl">
+                                    <input matInput placeholder="Education" [formControl]="educationFormControl" [(ngModel)]="educationTextBox">
                                     <mat-error *ngIf="educationFormControl.hasError('required')">
                                       Education is <strong>required</strong>
                                     </mat-error>
@@ -26,7 +26,7 @@
                                   <mat-form-field class="example-full-width"> 
                                   
                                     <mat-label for="area">Area</mat-label>
-                                    <mat-select id="area" [formControl]="areaFormControl">
+                                    <mat-select id="area" [formControl]="areaFormControl" [(ngModel)]="areaTextBox">
                                       <mat-option >Select one...</mat-option>
                                       <mat-option *ngFor="let item of getEnumValues(eArea)" [value]="item">{{eArea[item]}}</mat-option>
                                     </mat-select>
