@@ -8,6 +8,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { LoginFormComponent } from './login-form/login-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MusicianFormComponent } from './user/musician-form/musician-form.component';
+import { EditUserFormComponent } from './edit-user-form/edit-user-form.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,9 @@ const routes: Routes = [
   },
   {
     path: 'musician-form', component: MusicianFormComponent
+  },
+  {
+    path: 'edit-user-form', component: EditUserFormComponent
   }
 ];
 

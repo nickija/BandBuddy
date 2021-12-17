@@ -29,6 +29,7 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HomePageComponent } from './home-page/home-page.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { EditUserFormComponent } from './edit-user-form/edit-user-form.component';
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     AppComponent,
     LoginFormComponent,
     HomePageComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    EditUserFormComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
