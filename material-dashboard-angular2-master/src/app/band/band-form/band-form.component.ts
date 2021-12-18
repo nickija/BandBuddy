@@ -24,7 +24,7 @@ export class BandFormComponent implements OnInit {
   bandNameFormControl = new FormControl(null ,[Validators.required]);  
   genreFormControl = new FormControl(null ,[Validators.required]);
   ownerIdFormControl = new FormControl(null ,[Validators.required]);
-  idFormControl = new FormControl(null ,[Validators.required]);
+  idFormControl = new FormControl("00000000-0000-0000-0000-000000000000");
 
   bandRegisterFormGroup = new FormGroup({
     bandName: this.bandNameFormControl,
@@ -59,8 +59,20 @@ export class BandFormComponent implements OnInit {
       
       this.bandService.persist(this.bandRegisterFormGroup.value).subscribe(
         res => {
-          this.toastr.success('Band Created!', res.bandName)
+          if(this.modelId)
+          {
+          this.toastr.success('Band Updated!', res.bandName)
+
           console.log(res);
+          this.router.navigate(['/band'], { relativeTo: this.route });
+          }
+          else
+          {
+            this.toastr.success('Band Created!', res.bandName)
+
+            console.log(res);
+            this.router.navigate(['/band'], { relativeTo: this.route });
+          }
         },
         error => {
           this.toastr.error('Something bad happened')

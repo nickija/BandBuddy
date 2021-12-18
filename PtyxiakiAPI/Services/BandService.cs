@@ -84,21 +84,31 @@ namespace PtyxiakiAPI.Services
         {
             int total = 0;
 
-            total = _context.Bands.Count();
+            //FILTERS
             if (lookup.Start == null) lookup.Start = 0;
 
-            IQueryable<Band> foundBands = _context.Bands.Skip(lookup.Start.Value);
-
-            if (lookup.Limit == null) lookup.Limit = 100;
-
-            foundBands = foundBands.Take(lookup.Limit.Value);
-
+            IQueryable<Band> foundBands = _context.Bands;
 
             if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundBands = foundBands.Where(u => u.IsActive == lookup.IsActive);
 
+
+            if (lookup.Limit == null) lookup.Limit = 100;
+
+
+            if (lookup.ItemId != null) foundBands = foundBands.Where(x => x.OwnerId == lookup.ItemId);
+
+
+            //COUNT SKIP TAKE
+            total = foundBands.Count();
+
+            foundBands = foundBands.Skip(lookup.Start.Value);
+            foundBands = foundBands.Take(lookup.Limit.Value);
+
+
+
             QueryResult<Band> result = new QueryResult<Band>()
             {
-                Count = foundBands.Count(),
+                Count = lookup.Limit,
                 Total = total,
                 Items = foundBands
             };

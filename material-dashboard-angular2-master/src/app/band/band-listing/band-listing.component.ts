@@ -20,19 +20,22 @@ export class BandListingComponent implements OnInit {
 
   columns = [{ name: 'BandName' }, { name: 'Genre' }];
 
-  constructor(private bandService:BandService, private route: ActivatedRoute, protected router: Router,        private authenticationService: AuthenticationService) { }
+  constructor(private bandService:BandService, private route: ActivatedRoute, protected router: Router, private authenticationService: AuthenticationService) { }
 
   lookup:Lookup
 
   ColumnMode = ColumnMode.force;
 
   ngOnInit(): void {
+    this.generateLookup();
+
     this.authenticationService.currentUser.subscribe(x => {
       this.currentUser = x;
-      console.log(this.currentUser);
+      
+      this.lookup.itemId = this.currentUser.id;
 
     });
-    this.generateLookup();
+
     this.loadListing();
   }
 
@@ -47,7 +50,7 @@ export class BandListingComponent implements OnInit {
   onPageLoad(event: any) {
 		if (event) {
 			this.lookup.start = event.offset * this.lookup.limit ;
-      this.setPage({offset : this.lookup.start})
+      this.setPage({offset : this.lookup.start});
 		}
 	}
 
@@ -64,6 +67,8 @@ export class BandListingComponent implements OnInit {
     this.lookup = new Lookup();
     this.lookup.limit = 5;
     this.lookup.start = 0;
+    
+    
   }
 
   navigateToPreview(event: any){
