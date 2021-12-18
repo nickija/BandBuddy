@@ -83,14 +83,14 @@ export class BandFormComponent implements OnInit {
       if (paramMap.has("id")){
         this.modelId = paramMap.get("id");
         this.getBandDetails(this.modelId);
-        this.isNew = false;
+        
       }
     })
   }
 
   getBandDetails(id: string){
     this.bandService.getSingle(id).subscribe(res => {
-
+      this.isNew = false;
       this.model = res;
       this.generateEditorModel(this.model);
     })

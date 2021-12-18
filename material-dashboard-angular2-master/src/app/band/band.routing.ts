@@ -10,7 +10,7 @@ import { BandPreviewComponent } from 'app/band/band-preview/band-preview.compone
 export const routes: Routes = [
 
     { path: '',      component: BandListingComponent },
-    { path: ':id',      component: BandPreviewComponent },
+    { path: 'preview/:id',      component: BandPreviewComponent },
     { path: 'new',      component: BandFormComponent },
     { path: 'edit/:id',      component: BandFormComponent },
 

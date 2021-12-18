@@ -27,7 +27,8 @@
                                   </mat-form-field>
                               </div>
                           <div>
-                            <button mat-raised-button (click)="addBand()" class="btn btn-danger pull-right">Create Band</button>
+                            
+                            <button mat-raised-button (click)="addBand()" class="btn btn-danger pull-right"><span *ngIf="isNew else EditText">Create Band</span> </button>
                             <button routerLink="/band" routerLinkActive="active" mat-stroked-button class="pull-left float-left">Back</button>
                           </div>
                           <div class="clearfix"></div>
@@ -38,3 +39,4 @@
       </div>
   </div>
 </div>
+<ng-template #EditText>Edit Band</ng-template>

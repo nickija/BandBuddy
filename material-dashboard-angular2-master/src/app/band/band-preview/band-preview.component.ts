@@ -42,7 +42,7 @@ export class BandPreviewComponent implements OnInit {
   } 
 
   edit(){
-    this.router.navigate(["/edit/"+ this.itemId], { relativeTo: this.route });
+    this.router.navigate(["/band/edit/"+ this.itemId], { relativeTo: this.route });
 
     
   }

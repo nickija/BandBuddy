@@ -64,7 +64,7 @@ export class JobPostingListingComponent implements OnInit {
   navigateToPreview(event: any){
     if (event.type === "click"){
       const id = event?.row?.id;
-      this.router.navigate([id], {relativeTo:this.route, replaceUrl:true})
+      this.router.navigate(["preview/"+id], {relativeTo:this.route, replaceUrl:true})
     }
 
     

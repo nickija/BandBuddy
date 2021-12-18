@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class JobPostingFormComponent implements OnInit {
 
+  isNew: boolean = true;
   eArea = AreaEnum;
   eSkill = SkillEnum;
 
