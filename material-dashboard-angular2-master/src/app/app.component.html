@@ -1,9 +1,9 @@
 <div class="wrapper">
-    <div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg" *ngIf="isAuthenticated()">
+    <div class="sidebar" data-color="danger"  data-background-color="white" data-image="./assets/img/sidebar-1.jpg" *ngIf="isAuthenticated()">
         <app-sidebar></app-sidebar>
         <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
     </div>
-    <div class="main-panel">
+    <div [ngClass]="isAuthenticated() ?  'main-panel' : 'main-panel-notLoggedin'">
         <app-navbar  *ngIf="isAuthenticated()"></app-navbar >
         <router-outlet></router-outlet>
         <div>

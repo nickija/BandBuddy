@@ -51,18 +51,18 @@ const routes: Routes = [
   {
      path: 'dashboard',      component: UserDashboardComponent 
   },
-  {
-    path: 'login', component: LoginFormComponent
-  },
-  {
-    path: 'home', component: HomePageComponent
-  },
-  {
-    path: 'edit-user-form', component: EditUserFormComponent
-  },
-  {
-    path: 'musician-form', component: MusicianFormComponent
-  }
+  // {
+  //   path: 'login', component: LoginFormComponent
+  // },
+  // {
+  //   path: 'home', component: HomePageComponent
+  // },
+  // {
+  //   path: 'edit-user-form', component: EditUserFormComponent
+  // },
+  // {
+  //   path: 'musician-form', component: MusicianFormComponent
+  // }
 ];
 
 @NgModule({

@@ -66,7 +66,10 @@ export class JobPostingListingComponent implements OnInit {
       const id = event?.row?.id;
       this.router.navigate(["preview/"+id], {relativeTo:this.route, replaceUrl:true})
     }
+  }
 
-    
+  changeFilter(likeText : string){
+     this.lookup.like = likeText;
+     this.loadListing();
   }
 }

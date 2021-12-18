@@ -94,7 +94,7 @@ namespace PtyxiakiAPI.Services
 
             foundJobPostings = foundJobPostings.Take(lookup.Limit.Value);
 
-            if (!String.IsNullOrWhiteSpace(lookup.Like)) foundJobPostings = foundJobPostings.Where(x => x.InstrumentRequired.Contains(lookup.Like) || x.InstrumentRequired.Contains(lookup.Like));
+            if (!String.IsNullOrWhiteSpace(lookup.Like)) foundJobPostings = foundJobPostings.Where(x => x.InstrumentRequired.Contains(lookup.Like) || x.GenrePlayed.Contains(lookup.Like));
 
             if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundJobPostings = foundJobPostings.Where(u => u.IsActive == lookup.IsActive);
 

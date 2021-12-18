@@ -14,6 +14,7 @@ import { JobPostingRoutingModule } from './job-posting.routing';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { JobPostingPreviewComponent } from 'app/job-posting/job-posting-preview/job-posting-preview.component';
 import { JobPostingFormComponent } from './job-posting-form/job-posting-form.component';
+import { JobPostingFiltersComponent } from './job-posting-filters/job-posting-filters.component';
 
 @NgModule({
   imports: [
@@ -30,10 +31,16 @@ import { JobPostingFormComponent } from './job-posting-form/job-posting-form.com
     NgxDatatableModule
   ],
   declarations: [
-    
     JobPostingListingComponent,
     JobPostingPreviewComponent,
-    JobPostingFormComponent
+    JobPostingFormComponent,
+    JobPostingFiltersComponent
+  ],
+  exports:[
+    JobPostingListingComponent,
+    JobPostingPreviewComponent,
+    JobPostingFormComponent,
+    JobPostingFiltersComponent
   ]
 })
 
