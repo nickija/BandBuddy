@@ -13,4 +13,5 @@ export class JobPosting {
     isActive: IsActive;
     createdAt: Date
     updatedAt: Date;
+    isApplied: boolean;
 }

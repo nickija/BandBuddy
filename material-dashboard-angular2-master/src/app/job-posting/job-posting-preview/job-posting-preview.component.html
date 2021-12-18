@@ -1,4 +1,4 @@
-<div class="main-content">
+<div class="main-content" *ngIf="this.itemModel">
     <div class="container-fluid">
         
         <div class="row">
@@ -27,10 +27,13 @@
                             <i class="material-icons">access_time</i> Date Posted: {{itemModel.createdAt | date}}
                         </div>
                     </div>
-                    <div >
-                        <button mat-raised-button (click)="apply()" class="btn btn-warning pull-right float-right">Apply to Job posting</button>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button mat-raised-button *ngIf="!this.itemModel.isApplied" (click)="apply()" class="mr-3 mb-2 btn btn-warning pull-right float-right">Apply to Job posting</button>
 
-                        <button routerLink="/job-posting" routerLinkActive="active" mat-stroked-button class="pull-left float-left">Back</button>
+                            <button routerLink="/job-posting" routerLinkActive="active" mat-raised-button class="ml-3 mb-2 btn btn-info pull-left float-left">Back</button>
+                        </div>
+                       
                     </div>
                          
                     

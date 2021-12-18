@@ -9,7 +9,9 @@ import { FormControl } from '@angular/forms';
 export class JobPostingFiltersComponent implements OnInit {
 
   likeFormControl = new FormControl(null)
+
   @Output() changedLikeFilter = new EventEmitter<string>();
+  
   constructor() { }
 
   ngOnInit(): void {

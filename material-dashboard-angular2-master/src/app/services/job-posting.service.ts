@@ -6,6 +6,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { JobPostingLookup } from '../lookups/job-posting-lookup';
 import { QueryResult } from 'app/models/query-result';
+import { JobPostingRequest } from 'app/models/requests/job-posting-request.model';
+import { Musician } from 'app/models/musician.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +42,20 @@ export class JobPostingService {
   delete(id : string) : Observable<JobPosting>{
     const url = `${this.url}delete/${id}`;
     return this.http.delete<JobPosting>(url,this.httpOptions)
+  }
+
+  applyJob(JobPostingRequest : JobPostingRequest) : Observable<Boolean>{
+    const url = `${this.url}applyJobPosting`;
+    return this.http.post<Boolean>(url,JobPostingRequest,this.httpOptions);
+  }
+
+  getJobPostingsByMusician(musicianId : string) : Observable<JobPosting[]>{
+    const url = `${this.url}getJobPostingsByMusician/${musicianId}`
+    return this.http.get<JobPosting[]>(url,this.httpOptions)
+  }
+
+  getMusiciansByJobPosting(jobPostingId : string) : Observable<Musician[]>{
+    const url = `${this.url}getMusiciansByJobPosting/${jobPostingId}`
+    return this.http.get<Musician[]>(url,this.httpOptions)
   }
 }

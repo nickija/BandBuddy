@@ -21,5 +21,12 @@ namespace PtyxiakiAPI.Models
         public DbSet<JobPosting> JobPostings { get; set; }
         public DbSet<BandRequest> BandRequests { get; set; }
         public DbSet<DeleteRequest> DeleteRequests { get; set; }
+        public DbSet<JobPostingMusician> JobPostingMusicians { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<JobPostingMusician>()
+                .HasKey(nameof(JobPostingMusician.JobPostingId), nameof(JobPostingMusician.MusicianId));
+        }
     }
 }

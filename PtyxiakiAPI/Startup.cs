@@ -59,6 +59,7 @@ namespace PtyxiakiAPI
             });
 
             services.AddControllers();
+            services.AddHttpContextAccessor();
 
 
 
