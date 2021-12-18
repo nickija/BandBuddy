@@ -57,21 +57,6 @@ const routes: Routes = [
   },
   {
     path: 'home', component: HomePageComponent
-  },
-  {
-    path: 'user-form', component: UserFormComponent
-  },
-  {
-    path: 'musician-form', component: MusicianFormComponent
-  },
-  {
-    path: 'edit-user-form', component: EditUserFormComponent
-  },
-  {
-    path: 'band-form', component: BandFormComponent
-  },
-  {
-    path: 'edit-band-form', component: EditBandFormComponent
   }
 ];
 
@@ -79,9 +64,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes, {
-      useHash: true
-    })
+    RouterModule.forRoot(routes)
   ],
   exports: [
   ],

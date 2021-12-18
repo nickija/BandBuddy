@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IsActive } from 'app/models/is-active';
 import { Band } from 'app/models/band.model';
 import { BandService } from 'app/services/band.service';
@@ -17,21 +17,28 @@ import { User } from 'app/models/user.model';
 export class BandFormComponent implements OnInit {
 
   currentUser: User;
+  isNew: boolean = true;
+  modelId: string;
+  model: Band;
   
   bandNameFormControl = new FormControl(null ,[Validators.required]);  
   genreFormControl = new FormControl(null ,[Validators.required]);
   ownerIdFormControl = new FormControl(null ,[Validators.required]);
+  idFormControl = new FormControl(null ,[Validators.required]);
 
   bandRegisterFormGroup = new FormGroup({
     bandName: this.bandNameFormControl,
     genre: this.genreFormControl,
-    ownerId: this.ownerIdFormControl
+    ownerId: this.ownerIdFormControl,
+    id: this.idFormControl
     
   })
 
   private bandService: BandService;
 
-  constructor(private router: Router, service: BandService, private toastr: ToastrService, private authenticationService: AuthenticationService) { 
+  constructor(private router: Router, service: BandService, private toastr: ToastrService, 
+    private authenticationService: AuthenticationService, private route: ActivatedRoute) { 
+
     this.bandService = service;
   }
 
@@ -41,10 +48,8 @@ export class BandFormComponent implements OnInit {
 
   
   ngOnInit() {
-    this.authenticationService.currentUser.subscribe(x => {
-      this.currentUser = x;
-      this.ownerIdFormControl.setValue(this.currentUser.id);
-    });
+    this.generateUser();
+    this.loadBand();
   }
 
   addBand(){
@@ -64,6 +69,38 @@ export class BandFormComponent implements OnInit {
       
     }
     
+  }
+
+  generateUser(){
+    this.authenticationService.currentUser.subscribe(x => {
+      this.currentUser = x;
+      this.ownerIdFormControl.setValue(this.currentUser.id);
+    });
+  }
+
+  loadBand(){
+    this.route.paramMap.subscribe((paramMap)=>{
+      if (paramMap.has("id")){
+        this.modelId = paramMap.get("id");
+        this.getBandDetails(this.modelId);
+        this.isNew = false;
+      }
+    })
+  }
+
+  getBandDetails(id: string){
+    this.bandService.getSingle(id).subscribe(res => {
+
+      this.model = res;
+      this.generateEditorModel(this.model);
+    })
+  } 
+
+  generateEditorModel(model: Band){
+    this.bandRegisterFormGroup.get("bandName").setValue(model.bandName);
+    this.bandRegisterFormGroup.get("genre").setValue(model.genre);
+    this.bandRegisterFormGroup.get("ownerId").setValue(model.ownerId);
+    this.bandRegisterFormGroup.get("id").setValue(model.id);
   }
 
 }

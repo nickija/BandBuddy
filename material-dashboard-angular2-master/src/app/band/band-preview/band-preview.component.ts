@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BandFormComponent } from 'app/band/band-form/band-form.component';
 import { AreaEnum } from 'app/models/area-enum';
 import { Band } from 'app/models/band.model';
@@ -20,7 +20,7 @@ export class BandPreviewComponent implements OnInit {
   private bandService: BandService;
   public itemModel: Band;
 
-  constructor(bandService: BandService, private route: ActivatedRoute) { 
+  constructor(bandService: BandService, private route: ActivatedRoute,protected router: Router) { 
     this.bandService = bandService;
   }
   
@@ -42,6 +42,7 @@ export class BandPreviewComponent implements OnInit {
   } 
 
   edit(){
+    this.router.navigate(["/edit/"+ this.itemId], { relativeTo: this.route });
 
     
   }
