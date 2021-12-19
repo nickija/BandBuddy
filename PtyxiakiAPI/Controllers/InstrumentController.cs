@@ -22,6 +22,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("query")]
+        [Authorize]
         public ActionResult<QueryResult<Instrument>> Query(Lookup<Instrument> lookup)
         {
             QueryResult<Instrument> result = _instrumentService.GetQueryResult(lookup).Result;
@@ -29,6 +30,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpGet("getSingle/{id}")]
+        [Authorize]
         public ActionResult<Instrument> Get(Guid id)
         {
             Instrument instrument = _instrumentService.GetSingle(id).Result;
@@ -36,6 +38,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("persist")]
+        [Authorize]
         public ActionResult<Instrument> Persist(Instrument persistModel)
         {
             Instrument instrument = _instrumentService.Persist(persistModel).Result;
@@ -43,6 +46,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpDelete("delete/{id}")]
+        [Authorize]
         public ActionResult<Boolean> Delete(Guid id)
         {
             Boolean result = _instrumentService.Delete(id).Result;

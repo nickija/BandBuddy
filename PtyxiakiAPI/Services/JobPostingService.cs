@@ -107,22 +107,32 @@ namespace PtyxiakiAPI.Services
         {
             int total = 0;
 
-            total = _context.JobPostings.Count();
+            //FILTERS
             if (lookup.Start == null) lookup.Start = 0;
 
-            IQueryable<JobPosting> foundJobPostings = _context.JobPostings.Skip(lookup.Start.Value);
-
-            if (lookup.Limit == null) lookup.Limit = 100;
-
-            foundJobPostings = foundJobPostings.Take(lookup.Limit.Value);
-
-            if (!String.IsNullOrWhiteSpace(lookup.Like)) foundJobPostings = foundJobPostings.Where(x => x.InstrumentRequired.Contains(lookup.Like) || x.GenrePlayed.Contains(lookup.Like));
+            IQueryable<JobPosting> foundJobPostings = _context.JobPostings;
 
             if (lookup.IsActive != null && lookup.IsActive != IsActive.All) foundJobPostings = foundJobPostings.Where(u => u.IsActive == lookup.IsActive);
 
+
+            if (lookup.Limit == null) lookup.Limit = 100;
+
+
+            if (lookup.ItemId != null) foundJobPostings = foundJobPostings.Where(x => x.BandId == lookup.ItemId);
+
+            if (!String.IsNullOrWhiteSpace(lookup.Like)) foundJobPostings = foundJobPostings.Where(x => x.InstrumentRequired.Contains(lookup.Like) || x.GenrePlayed.Contains(lookup.Like));
+
+            //COUNT SKIP TAKE
+            total = foundJobPostings.Count();
+
+            foundJobPostings = foundJobPostings.Skip(lookup.Start.Value);
+            foundJobPostings = foundJobPostings.Take(lookup.Limit.Value);
+
+
+
             QueryResult<JobPosting> result = new QueryResult<JobPosting>()
             {
-                Count = foundJobPostings.Count(),
+                Count = lookup.Limit,
                 Total = total,
                 Items = foundJobPostings
             };

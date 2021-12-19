@@ -25,6 +25,7 @@ export class JobPostingPreviewComponent implements OnInit {
   public itemModel: JobPosting;
   public skillEnum = SkillEnum;
   public areaEnum = AreaEnum;
+  bandJobPosting: boolean
 
   constructor(
     private jobPostingService: JobPostingService, 
@@ -38,6 +39,11 @@ export class JobPostingPreviewComponent implements OnInit {
       if (paramMap.has("id")){
         this.itemId = paramMap.get("id");
         this.getJobPostingDetails(this.itemId);
+      }
+      if(this.route.toString().includes("band")){
+        this.bandJobPosting = true;
+      }else{
+        this.bandJobPosting = false;
       }
     })
     this.generateCurrentUser();
@@ -75,5 +81,12 @@ export class JobPostingPreviewComponent implements OnInit {
     this.jobPostingService.getMusiciansByJobPosting(this.itemId).subscribe(
       res => console.log(res)
     )
+  }
+
+  edit(){
+
+  }
+  jobPostingApplicants(){
+
   }
 }

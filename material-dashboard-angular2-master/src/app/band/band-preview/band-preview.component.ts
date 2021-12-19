@@ -46,6 +46,10 @@ export class BandPreviewComponent implements OnInit {
 
     
   }
+  bandJobPostings(){
+    this.router.navigate(["/band/jobPosting/"+ this.itemId], { relativeTo: this.route });
+  }
+
 
 
 }

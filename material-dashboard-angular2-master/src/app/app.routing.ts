@@ -10,6 +10,9 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { MusicianFormComponent } from './user/musician-form/musician-form.component';
 import { EditUserFormComponent } from './edit-user-form/edit-user-form.component';
 import { BandFormComponent } from './band/band-form/band-form.component';
+import { JobPostingListingComponent } from './job-posting/job-posting-listing/job-posting-listing.component';
+import { JobPostingFormComponent } from './job-posting/job-posting-form/job-posting-form.component';
+import { JobPostingPreviewComponent } from './job-posting/job-posting-preview/job-posting-preview.component';
 
 const routes: Routes = [
   {
@@ -51,18 +54,28 @@ const routes: Routes = [
   {
      path: 'dashboard',      component: UserDashboardComponent 
   },
-  // {
-  //   path: 'login', component: LoginFormComponent
-  // },
-  // {
-  //   path: 'home', component: HomePageComponent
-  // },
-  // {
-  //   path: 'edit-user-form', component: EditUserFormComponent
-  // },
-  // {
-  //   path: 'musician-form', component: MusicianFormComponent
-  // }
+  {
+    path: 'login', component: LoginFormComponent
+  },
+  {
+    path: 'home', component: HomePageComponent
+  },
+  {
+    path: 'edit-user-form', component: EditUserFormComponent
+  },
+  {
+    path: 'musician-form', component: MusicianFormComponent
+  },
+  {
+    path: 'band/jobPosting/:id', component: JobPostingListingComponent
+  },
+  {
+    path: 'band/jobPosting/new/:id', component: JobPostingFormComponent
+  }
+  ,
+  {
+    path: 'band/jobPosting/preview/:id', component: JobPostingPreviewComponent
+  }
 ];
 
 @NgModule({

@@ -14,7 +14,7 @@ export const routes: Routes = [
 
     { path: '',      component: JobPostingListingComponent },
     { path: 'preview/:id',      component: JobPostingPreviewComponent },
-    { path: 'new',      component: JobPostingFormComponent },
+    //{ path: 'new/:id',      component: JobPostingFormComponent },
     { path: 'edit/:id',      component: JobPostingFormComponent },
 
 ];

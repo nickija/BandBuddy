@@ -23,6 +23,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("query")]
+        [Authorize]
         public ActionResult<QueryResult<DeleteRequest>> Query(Lookup<DeleteRequest> lookup)
         {
             QueryResult<DeleteRequest> result = _deleteRequestService.GetQueryResult(lookup).Result;
@@ -30,6 +31,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpGet("getSingle/{id}")]
+        [Authorize]
         public ActionResult<DeleteRequest> Get(Guid id)
         {
             DeleteRequest deleteRequest = _deleteRequestService.GetSingle(id).Result;
@@ -37,6 +39,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("persist")]
+        [Authorize]
         public ActionResult<DeleteRequest> Persist(DeleteRequest persistModel)
         {
             DeleteRequest deleteRequest = _deleteRequestService.Persist(persistModel).Result;
@@ -44,6 +47,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpDelete("delete/{id}")]
+        [Authorize]
         public ActionResult<Boolean> Delete(Guid id)
         {
             Boolean result = _deleteRequestService.Delete(id).Result;

@@ -25,6 +25,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("query")]
+        [Authorize]
         public ActionResult<QueryResult<JobPosting>> Query(Lookup<JobPosting> lookup)
         {
             QueryResult<JobPosting> result = _jobPostingService.GetQueryResult(lookup).Result;
@@ -32,6 +33,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpGet("getSingle/{id}")]
+        [Authorize]
         public ActionResult<JobPostingVM> Get(Guid id)
         {
             JobPostingVM jobPosting = _jobPostingService.GetSingleVM(id).Result;

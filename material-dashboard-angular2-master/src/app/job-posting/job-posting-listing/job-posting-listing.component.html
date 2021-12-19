@@ -3,11 +3,27 @@
     <job-posting-filters (changedLikeFilter)="changeFilter($event)"></job-posting-filters>
     <div class="row">
       <div class="col-md-12">
-        <ngx-datatable class="material" [rows]="rows" [columns]="columns" [columnMode]="ColumnMode" [headerHeight]="50"
-          [footerHeight]="50" rowHeight="auto" [externalPaging]="true" [count]="total" [offset]="lookup.start"
-          [limit]="lookup.limit" (page)="onPageLoad($event)" (activate)="navigateToPreview($event)">
+        <ngx-datatable class="material" 
+        [rows]="rows" 
+        [columns]="columns" 
+        [columnMode]="ColumnMode" 
+        [headerHeight]="50"
+        [footerHeight]="50" 
+        rowHeight="auto" 
+        [externalPaging]="true" 
+        [count]="total" 
+        [offset]="lookup.start"
+        [limit]="lookup.limit" 
+        (page)="onPageLoad($event)" 
+        (activate)="navigateToPreview($event)">
         </ngx-datatable>
       </div>
+      
+    </div>
+    <div class="col-md-2" *ngIf="modelId">
+      <a mat-button class="btn btn-danger"  (click)="addJobPosting()" >
+        Add new Job Posting <i class="material-icons">add_box</i>
+    </a>
     </div>
   </div>
 </div>

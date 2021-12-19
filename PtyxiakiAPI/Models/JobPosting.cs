@@ -19,6 +19,8 @@ namespace PtyxiakiAPI.Models
         [Column(TypeName = "nvarchar(100)")]
         public string InstrumentRequired { get; set; }
 
+        public Guid? BandId { get; set; }
+
         public List<Musician> Musician { get; set; }
 
         public SkillEnum? Skill { get; set; }

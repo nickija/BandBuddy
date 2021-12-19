@@ -41,12 +41,14 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpGet("getSingle/{id}")]
+        [Authorize]
         public ActionResult<User> Get(Guid id)
         {
             User user = _userService.GetSingle(id).Result;
             return user;
         }
 
+        [Authorize]
         [HttpPost("persist")]
         public ActionResult<User> Persist(User persistModel)
         {
@@ -55,6 +57,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpDelete("delete/{id}")]
+        [Authorize]
         public ActionResult<Boolean> Delete(Guid id)
         {
             Boolean result = _userService.Delete(id).Result;

@@ -23,6 +23,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("query")]
+        [Authorize]
         public ActionResult<QueryResult<BandRequest>> Query(Lookup<BandRequest> lookup)
         {
             QueryResult<BandRequest> result = _bandRequestService.GetQueryResult(lookup).Result;
@@ -30,6 +31,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpGet("getSingle/{id}")]
+        [Authorize]
         public ActionResult<BandRequest> Get(Guid id)
         {
             BandRequest bandRequest = _bandRequestService.GetSingle(id).Result;
@@ -37,6 +39,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("persist")]
+        [Authorize]
         public ActionResult<BandRequest> Persist(BandRequest persistModel)
         {
             BandRequest bandRequest = _bandRequestService.Persist(persistModel).Result;
@@ -44,6 +47,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpDelete("delete/{id}")]
+        [Authorize]
         public ActionResult<Boolean> Delete(Guid id)
         {
             Boolean result = _bandRequestService.Delete(id).Result;

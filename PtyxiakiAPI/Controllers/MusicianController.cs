@@ -23,6 +23,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("query")]
+        [Authorize]
         public ActionResult<QueryResult<Musician>> Query(Lookup<Musician> lookup)
         {
             QueryResult<Musician> result = _musicianService.GetQueryResult(lookup).Result;
@@ -30,6 +31,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpGet("getSingle/{id}")]
+        [Authorize]
         public ActionResult<Musician> Get(Guid id)
         {
             Musician musician = _musicianService.GetSingle(id).Result;
@@ -37,6 +39,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpGet("getByUserId/{id}")]
+        [Authorize]
         public ActionResult<Musician> GetBy(Guid id)
         {
             Musician musician = _musicianService.GetByUserId(id).Result;
@@ -44,6 +47,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpPost("persist")]
+        [Authorize]
         public ActionResult<Musician> Persist(Musician persistModel)
         {
             Musician musician = _musicianService.Persist(persistModel).Result;
@@ -51,6 +55,7 @@ namespace PtyxiakiAPI.Controllers
         }
 
         [HttpDelete("delete/{id}")]
+        [Authorize]
         public ActionResult<Boolean> Delete(Guid id)
         {
             Boolean result = _musicianService.Delete(id).Result;
