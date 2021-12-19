@@ -26,6 +26,7 @@ export class JobPostingPreviewComponent implements OnInit {
   public skillEnum = SkillEnum;
   public areaEnum = AreaEnum;
   bandJobPosting: boolean
+  myJobPosting: boolean
 
   constructor(
     private jobPostingService: JobPostingService, 
@@ -43,8 +44,11 @@ export class JobPostingPreviewComponent implements OnInit {
       }
       if(this.route.toString().includes("band")){
         this.bandJobPosting = true;
+      }else if(this.route.toString().includes("my")){
+        this.myJobPosting = true;
       }else{
         this.bandJobPosting = false;
+        this.myJobPosting = false;
       }
     })
     this.generateCurrentUser();

@@ -67,14 +67,20 @@ export class JobPostingListingComponent implements OnInit {
 
   navigateToPreview(event: any){
     if (event.type === "click"){
-      if (this.modelId){
+      if(this.route.toString().includes("my")){
         const id = event?.row?.id;
-        this.router.navigate(["band/jobPosting/preview/"+id], {replaceUrl:true});
+        this.router.navigate(["my/job-posting/preview/"+id], {replaceUrl:true});
+      }else{
+        
+        if (this.modelId){
+          const id = event?.row?.id;
+          this.router.navigate(["band/jobPosting/preview/"+id], {replaceUrl:true});
 
-      }
-      else{
-      const id = event?.row?.id;
-      this.router.navigate(["preview/"+id], {relativeTo:this.route, replaceUrl:true});
+        }
+        else{
+        const id = event?.row?.id;
+        this.router.navigate(["preview/"+id], {relativeTo:this.route, replaceUrl:true});
+        }
       }
     }
   }

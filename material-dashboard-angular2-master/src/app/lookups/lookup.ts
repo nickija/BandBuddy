@@ -3,4 +3,5 @@ export class Lookup {
     limit : number;
     like : string;
     itemId: string;
+    my: boolean;
 }

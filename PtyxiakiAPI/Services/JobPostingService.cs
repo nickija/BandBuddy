@@ -117,7 +117,7 @@ namespace PtyxiakiAPI.Services
 
             if (lookup.Limit == null) lookup.Limit = 100;
 
-
+            
             if (lookup.ItemId != null) foundJobPostings = foundJobPostings.Where(x => x.BandId == lookup.ItemId);
 
             if (!String.IsNullOrWhiteSpace(lookup.Like)) foundJobPostings = foundJobPostings.Where(x => x.InstrumentRequired.Contains(lookup.Like) || x.GenrePlayed.Contains(lookup.Like));

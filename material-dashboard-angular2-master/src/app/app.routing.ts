@@ -72,8 +72,7 @@ const routes: Routes = [
   },
   {
     path: 'band/jobPosting/new/:id', component: JobPostingFormComponent
-  }
-  ,
+  },
   {
     path: 'band/jobPosting/preview/:id', component: JobPostingPreviewComponent
   },
@@ -82,6 +81,12 @@ const routes: Routes = [
   },
   {
     path: 'band/jobPosting/edit/:id', component: JobPostingFormComponent
+  },
+  {
+    path: 'my/job-posting', component: JobPostingListingComponent
+  },
+  {
+    path: 'my/job-posting/preview/:id', component: JobPostingPreviewComponent
   },
 ];
 

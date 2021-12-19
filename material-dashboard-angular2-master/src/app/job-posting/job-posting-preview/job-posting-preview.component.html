@@ -28,11 +28,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12" *ngIf="!bandJobPosting">
+                        <div class="col-md-12" *ngIf="!bandJobPosting && !myJobPosting">
                             <button mat-raised-button *ngIf="!this.itemModel.isApplied else alreadyApplied" (click)="apply()" class="mr-3 mb-2 btn btn-warning pull-right float-right">Apply to Job posting</button>
                             <button routerLink="/job-posting" routerLinkActive="active" mat-stroked-button class="ml-3 mb-2 pull-left float-left">Back</button>
                         </div>
-                        <div class="col-md-12" *ngIf="bandJobPosting">
+                        <div class="col-md-12" *ngIf="bandJobPosting && !myJobPosting">
                             <button mat-raised-button (click)="editJobPosting()" class="mr-3 mb-2 btn btn-warning pull-right float-right">Edit Job posting</button>
                             <button mat-raised-button (click)="jobPostingApplicants()" class="btn btn-info pull-right float-right">Show Applicants</button>
 
