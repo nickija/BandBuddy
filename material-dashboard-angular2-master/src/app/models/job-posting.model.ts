@@ -7,9 +7,10 @@ export class JobPosting {
     id: string;
     genrePlayed: string;
     instrumentRequired: string;
-    musician: Musician[];//???????
+    musician: Musician[];
     skill: SkillEnum;
     area: AreaEnum;
+    bandId: string;
     isActive: IsActive;
     createdAt: Date
     updatedAt: Date;

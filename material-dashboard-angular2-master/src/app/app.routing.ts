@@ -13,6 +13,7 @@ import { BandFormComponent } from './band/band-form/band-form.component';
 import { JobPostingListingComponent } from './job-posting/job-posting-listing/job-posting-listing.component';
 import { JobPostingFormComponent } from './job-posting/job-posting-form/job-posting-form.component';
 import { JobPostingPreviewComponent } from './job-posting/job-posting-preview/job-posting-preview.component';
+import { UserListingComponent } from './user/user-listing/user-listing.component';
 
 const routes: Routes = [
   {
@@ -75,7 +76,13 @@ const routes: Routes = [
   ,
   {
     path: 'band/jobPosting/preview/:id', component: JobPostingPreviewComponent
-  }
+  },
+  {
+    path: 'band/jobPosting/applicant/:id', component: UserListingComponent
+  },
+  {
+    path: 'band/jobPosting/edit/:id', component: JobPostingFormComponent
+  },
 ];
 
 @NgModule({

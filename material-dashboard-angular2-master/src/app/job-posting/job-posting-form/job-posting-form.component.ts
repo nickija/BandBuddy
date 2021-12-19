@@ -17,8 +17,11 @@ import { ToastrService } from 'ngx-toastr';
 export class JobPostingFormComponent implements OnInit {
 
   isNew: boolean = true;
+  model: JobPosting;
+
   eArea = AreaEnum;
   eSkill = SkillEnum;
+
 
   modelId: string;
 
@@ -49,13 +52,19 @@ export class JobPostingFormComponent implements OnInit {
     this.loadBand();
   }
 
-  register(){
+  addJobPosting(){
+
     if (this.jobPostingRegisterFormGroup.valid){
-        
+
       this.jobPostingService.persist(this.jobPostingRegisterFormGroup.value).subscribe(
         res => {
+          if(this.modelId == res.id){
+            this.toastr.success('Job posting updated!')
+          console.log(res);
+          }else{
           this.toastr.success('Job posting added!')
           console.log(res);
+          }
         },
         error => {
           this.toastr.error('Something bad happened')
@@ -71,10 +80,40 @@ export class JobPostingFormComponent implements OnInit {
 
   loadBand(){
     this.route.paramMap.subscribe((paramMap)=>{
-      if (paramMap.has("id")){
-        this.modelId = paramMap.get("id");   
-        this.bandIdFormControl.setValue(this.modelId);   
+      if(this.route.toString().includes("new")){
+        if (paramMap.has("id")){
+          this.modelId = paramMap.get("id");   
+          this.bandIdFormControl.setValue(this.modelId);   
+          
+        }
+      }else{
+        if (paramMap.has("id")){
+          this.modelId = paramMap.get("id");   
+          
+          this.getJobPostingDetails(this.modelId);
+        }
+        
       }
+      
     })
+  }
+
+  getJobPostingDetails(id: string){
+    this.jobPostingService.getSingle(id).subscribe(res => {
+      this.isNew = false;
+      this.model = res;
+      console.log(res);
+      this.generateEditorModel(this.model);
+    })
+  } 
+
+  generateEditorModel(model: JobPosting){
+    this.jobPostingRegisterFormGroup.get("genrePlayed").setValue(model.genrePlayed);
+    this.jobPostingRegisterFormGroup.get("instrumentRequired").setValue(model.instrumentRequired);
+    this.jobPostingRegisterFormGroup.get("skill").setValue(model.skill);
+    this.jobPostingRegisterFormGroup.get("area").setValue(model.area);
+    this.jobPostingRegisterFormGroup.get("bandId").setValue(model.bandId);
+    this.jobPostingRegisterFormGroup.get("id").setValue(model.id);
+  
   }
 }

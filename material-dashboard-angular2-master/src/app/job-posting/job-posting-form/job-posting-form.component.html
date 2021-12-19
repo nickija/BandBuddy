@@ -50,7 +50,7 @@
                                   </mat-error>
                                 </mat-form-field>
                               </div>
-                          <button mat-raised-button (click)="register()" class="btn btn-danger pull-right">Create Job Posting</button>
+                              <button mat-raised-button (click)="addJobPosting()" class="btn btn-danger pull-right"><span *ngIf="isNew else EditText">Create JobPosting</span> </button>
                           <div class="clearfix"></div>
                       </form>
                   </div>
@@ -59,3 +59,4 @@
       </div>
   </div>
 </div>
+<ng-template #EditText>Edit Job Posting</ng-template>

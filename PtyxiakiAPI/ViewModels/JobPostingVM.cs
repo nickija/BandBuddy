@@ -11,6 +11,8 @@ namespace PtyxiakiAPI.ViewModels
     {
         public Guid Id { get; set; }
 
+        public Guid? BandId { get; set; }
+
         public string GenrePlayed { get; set; }
 
         public string InstrumentRequired { get; set; }
@@ -31,6 +33,7 @@ namespace PtyxiakiAPI.ViewModels
         public JobPostingVM(JobPosting jobPosting)
         {
             this.Id = jobPosting.Id;
+            this.BandId = jobPosting.BandId;
             this.GenrePlayed = jobPosting.GenrePlayed;
             this.InstrumentRequired = jobPosting.InstrumentRequired;
             this.Musician = jobPosting.Musician;
@@ -44,6 +47,7 @@ namespace PtyxiakiAPI.ViewModels
         public JobPostingVM(JobPosting jobPosting,Boolean isApplied)
         {
             this.Id = jobPosting.Id;
+            this.BandId = jobPosting.BandId;
             this.GenrePlayed = jobPosting.GenrePlayed;
             this.InstrumentRequired = jobPosting.InstrumentRequired;
             this.Musician = jobPosting.Musician;

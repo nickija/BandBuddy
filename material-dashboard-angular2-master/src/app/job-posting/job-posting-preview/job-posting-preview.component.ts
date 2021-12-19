@@ -1,6 +1,6 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JobPostingFormComponent } from 'app/job-posting/job-posting-form/job-posting-form.component';
 import { AreaEnum } from 'app/models/area-enum';
 import { JobPosting } from 'app/models/job-posting.model';
@@ -31,7 +31,8 @@ export class JobPostingPreviewComponent implements OnInit {
     private jobPostingService: JobPostingService, 
     private route: ActivatedRoute,
     private authenticationService : AuthenticationService,
-    private toastr: ToastrService) { 
+    private toastr: ToastrService,
+    protected router: Router) { 
   }
   
   ngOnInit() {
@@ -83,10 +84,11 @@ export class JobPostingPreviewComponent implements OnInit {
     )
   }
 
-  edit(){
-
+  editJobPosting(){
+    this.router.navigate(["band/jobPosting/edit/"+ this.itemId], {replaceUrl:true});
   }
   jobPostingApplicants(){
+    this.router.navigate(["band/jobPosting/applicant/"+ this.itemId], {replaceUrl:true});
 
   }
 }
