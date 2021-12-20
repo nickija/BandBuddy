@@ -59,7 +59,7 @@ export class JobPostingPreviewComponent implements OnInit {
     this.jobPostingService.getSingle(id).subscribe(res => {
       this.itemModel = res;
 
-      this.getMusiciansByJobPosting();
+      //this.getMusiciansByJobPosting();
     })
 
   } 

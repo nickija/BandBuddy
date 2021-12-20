@@ -23,6 +23,7 @@ export class ApplicantPreviewComponent implements OnInit {
   private musicianService: MusicianService;
   private instrumentService: InstrumentService;
   private itemId;
+  private jpId
   public userModel: User;
   public musicianModel: Musician;
   public areaEnum = AreaEnum;
@@ -50,6 +51,9 @@ export class ApplicantPreviewComponent implements OnInit {
       if (paramMap.has("id")){
         this.itemId = paramMap.get("id");
         this.getUserDetails(this.itemId);
+      }
+      if (paramMap.has("jpId")){
+        this.jpId = paramMap.get("jpId");
       }
     })
   }

@@ -164,8 +164,12 @@ namespace PtyxiakiAPI.Services
             IEnumerable<JobPostingMusician> jobPostingMusicians = _context.JobPostingMusicians.Where(x => x.JobPostingId == jobPostingId);
             if (jobPostingMusicians == null) throw new Exception("Entity not found");
             IEnumerable<Guid> musicianIds = jobPostingMusicians.Select(x => x.MusicianId);
-            IEnumerable<Musician> musicians = _context.Musicians.Where(x => musicianIds.Contains(x.Id));
-            return musicians.ToList();
+            List<Musician> musicians = _context.Musicians.Where(x => musicianIds.Contains(x.Id)).ToList();
+            foreach (Musician m in musicians)
+            {
+                m.User = m.User ?? _context.Users.SingleOrDefault(u => u.Id == m.UserId);
+            }
+            return musicians;
         }
 
         public async Task<List<JobPosting>> GetJobPostingOfSpecificMusician(Guid musicianId)

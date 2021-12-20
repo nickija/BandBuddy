@@ -59,7 +59,7 @@ export class JobPostingFormComponent implements OnInit {
       this.jobPostingService.persist(this.jobPostingRegisterFormGroup.value).subscribe(
         res => {
           if(this.modelId == res.id){
-            this.toastr.success('Job posting updated!')
+            this.toastr.info('Job posting updated!')
           console.log(res);
           }else{
           this.toastr.success('Job posting added!')

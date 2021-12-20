@@ -31,12 +31,14 @@ export class MusicianFormComponent implements OnInit {
   //MUSICIAN
   educationFormControl = new FormControl(null ,[Validators.required]);  
   areaFormControl = new FormControl(null ,[Validators.required]);
-  idFormControl = new FormControl(null ,[Validators.required]);
+  userIdFormControl = new FormControl(null ,[Validators.required]);
+  idFormControl = new FormControl("00000000-0000-0000-0000-000000000000");
 
 
   musicianRegisterFormGroup = new FormGroup({
     education: this.educationFormControl,
     area: this.areaFormControl,
+    userId: this.userIdFormControl,
     id: this.idFormControl
   })
 
@@ -71,7 +73,7 @@ export class MusicianFormComponent implements OnInit {
   ngOnInit() {
     this.authenticationService.currentUser.subscribe(x => {
       this.currentUser = x;
-
+      this.userIdFormControl.setValue(this.currentUser.id);
       this.getMusicianDetails(this.currentUser.id);
     });
   }

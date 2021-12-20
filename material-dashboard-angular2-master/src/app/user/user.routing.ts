@@ -11,7 +11,7 @@ import { MusicianFormComponent } from './musician-form/musician-form.component';
 export const routes: Routes = [
 
     { path: '',      component: UserListingComponent },
-    { path: ':id',      component: ApplicantPreviewComponent },
+    { path: 'preview/:id/:jpId',      component: ApplicantPreviewComponent },
 
 
 
