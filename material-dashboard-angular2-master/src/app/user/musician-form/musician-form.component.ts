@@ -57,7 +57,8 @@ export class MusicianFormComponent implements OnInit {
   private musicianService: MusicianService;
   private instrumentService: InstrumentService;
 
-  constructor(private router: Router, musicianService: MusicianService, instrumentService: InstrumentService, private toastr: ToastrService, private authenticationService :AuthenticationService) { 
+  constructor(private router: Router, musicianService: MusicianService, instrumentService: InstrumentService, 
+    private toastr: ToastrService, private authenticationService :AuthenticationService) { 
     this.musicianService = musicianService;
     this.instrumentService = instrumentService;
   }

@@ -4,7 +4,11 @@ import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Lookup } from 'app/lookups/lookup';
 import { Band } from 'app/models/band.model';
 import { JobPosting } from 'app/models/job-posting.model';
+import { Musician } from 'app/models/musician.model';
+import { User } from 'app/models/user.model';
+import { AuthenticationService } from 'app/services/authentication.service';
 import { JobPostingService } from 'app/services/job-posting.service';
+import { MusicianService } from 'app/services/musician.service';
 
 @Component({
   selector: 'app-job-posting-listing',
@@ -17,11 +21,19 @@ export class JobPostingListingComponent implements OnInit {
   page: number;
   total: number;
 
+  filteredJobPostings: JobPosting[];
+
+  currentUser: User;
+  musicianModel: Musician;
+
   modelId: string;
+
+  musicianId: string;
 
   columns = [{ name: 'GenrePlayed' }, {name: 'InstrumentRequired'}];
 
-  constructor(private jobPostingService:JobPostingService, private route: ActivatedRoute, protected router: Router) { }
+  constructor(private jobPostingService:JobPostingService, private musicianService: MusicianService, private route: ActivatedRoute,
+     protected router: Router, private authenticationService :AuthenticationService) { }
 
   lookup:Lookup
 
@@ -29,9 +41,28 @@ export class JobPostingListingComponent implements OnInit {
 
   ngOnInit(): void {
     this.generateLookup();
+    if(this.route.toString().includes("my")){
+      this.authenticationService.currentUser.subscribe(x => {
+        this.currentUser = x;
+        this.getMusicianDetails(this.currentUser.id);
+      });
+  }else{
     this.loadBand();
     this.loadListing();
   }
+
+    
+    
+  }
+
+  getMusicianDetails(id: string){
+    this.musicianService.getByUserId(id).subscribe(res => {
+      this.musicianModel = res;
+      this.musicianId = this.musicianModel.id;
+      this.getJobPostingsByMusician();
+      
+    })
+  } 
 
   loadListing(){
     this.jobPostingService.query(this.lookup).subscribe(pagedData => {
@@ -103,5 +134,17 @@ export class JobPostingListingComponent implements OnInit {
   addJobPosting(){
     
     this.router.navigate(["/band/jobPosting/new/"+this.modelId], {relativeTo:this.route, replaceUrl:true})
+  }
+
+  getJobPostingsByMusician(){
+    this.jobPostingService.getJobPostingsByMusician(this.musicianId).subscribe(
+      res => {
+        console.log(res)
+        this.filteredJobPostings = res;
+        this.page = this.filteredJobPostings.length;
+      this.rows = this.filteredJobPostings;
+      this.total = this.filteredJobPostings.length;
+      }
+    )
   }
 }
