@@ -31,5 +31,15 @@ namespace PtyxiakiAPI.Models
 
         public DateTime? UpdatedAt { get; set; }
 
+		public BandRequest(Guid bandId,Guid musicianId)
+		{
+            this.Status = StatusEnum.PENDING;
+            this.CreatedAt = DateTime.Now;
+            this.UpdatedAt = DateTime.Now;
+            this.BandId = bandId;
+            this.MusicianId = musicianId;
+            this.IsActive = IsActive;
+		}
+
     }
 }

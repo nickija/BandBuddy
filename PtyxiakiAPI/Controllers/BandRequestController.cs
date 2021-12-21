@@ -53,5 +53,45 @@ namespace PtyxiakiAPI.Controllers
             Boolean result = _bandRequestService.Delete(id).Result;
             return result;
         }
+
+        [HttpGet("apply/{id}")]
+        [Authorize]
+        public ActionResult<Boolean> Apply(Guid id)
+        {
+            Boolean result = _bandRequestService.Apply(id).Result;
+            return result;
+        }
+
+        [HttpGet("reject/{id}")]
+        [Authorize]
+        public ActionResult<Boolean> Reject(Guid id)
+        {
+            Boolean result = _bandRequestService.Reject(id).Result;
+            return result;
+        }
+
+        [HttpGet("apply/{id}")]
+        [Authorize]
+        public ActionResult<Boolean> Approve(Guid id)
+        {
+            Boolean result = _bandRequestService.Approve(id).Result;
+            return result;
+        }
+
+        [HttpPost("requesofmyband")]
+        [Authorize]
+        public ActionResult<QueryResult<BandRequest>> RequestOfMyBand(Lookup<BandRequest> lookup)
+        {
+            QueryResult<BandRequest> result = _bandRequestService.RequestsOfMyBand(lookup).Result;
+            return result;
+        }
+
+        [HttpPost("bandrequestmadebyme")]
+        [Authorize]
+        public ActionResult<QueryResult<BandRequest>> BandRequestsMadeByMe(Lookup<BandRequest> lookup)
+        {
+            QueryResult<BandRequest> result = _bandRequestService.BandRequestsMadeByMe(lookup).Result;
+            return result;
+        }
     }
 }
