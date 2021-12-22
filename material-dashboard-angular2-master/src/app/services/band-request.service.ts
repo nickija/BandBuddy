@@ -41,4 +41,28 @@ export class BandRequestService {
     const url = `${this.url}delete/${id}`;
     return this.http.delete<BandRequest>(url,this.httpOptions)
   }
+
+  apply(id: string) : Observable<BandRequest>{
+    const url = `${this.url}apply/${id}`;
+    return this.http.post<BandRequest>(url,this.httpOptions)
+  }
+  reject(id: string) : Observable<BandRequest>{
+    const url = `${this.url}reject/${id}`;
+    return this.http.post<BandRequest>(url,this.httpOptions)
+  }
+  approve(id: string) : Observable<BandRequest>{
+    const url = `${this.url}approve/${id}`;
+    return this.http.post<BandRequest>(url,this.httpOptions)
+  }
+
+  requestofmyband(userLookup : BandRequestLookup): Observable<QueryResult<BandRequest>>{
+    const url = `${this.url}requestofmyband`;
+    
+    return this.http.post<QueryResult<BandRequest>>(url,userLookup,this.httpOptions);
+  }
+  bandrequestmadebyme(userLookup : BandRequestLookup): Observable<QueryResult<BandRequest>>{
+    const url = `${this.url}bandrequestmadebyme`;
+    
+    return this.http.post<QueryResult<BandRequest>>(url,userLookup,this.httpOptions);
+  }
 }

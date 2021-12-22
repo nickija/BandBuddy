@@ -70,7 +70,7 @@ namespace PtyxiakiAPI.Controllers
             return result;
         }
 
-        [HttpGet("apply/{id}")]
+        [HttpGet("approve/{id}")]
         [Authorize]
         public ActionResult<Boolean> Approve(Guid id)
         {
@@ -78,7 +78,7 @@ namespace PtyxiakiAPI.Controllers
             return result;
         }
 
-        [HttpPost("requesofmyband")]
+        [HttpPost("requestofmyband")]
         [Authorize]
         public ActionResult<QueryResult<BandRequest>> RequestOfMyBand(Lookup<BandRequest> lookup)
         {
