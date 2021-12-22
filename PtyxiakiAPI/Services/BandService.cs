@@ -80,6 +80,24 @@ namespace PtyxiakiAPI.Services
             return foundBands;
         }
 
+        public async Task<Boolean> AcceptApplicant(BandUser bandUser)
+        {
+            //Find Band
+            Band band = _context.Bands.SingleOrDefault(x => x.Id == bandUser.BandId);
+
+            if (band == null) throw new Exception("Band not found");
+
+            //Find User;
+            User user = _context.Users.SingleOrDefault(x => x.Id == bandUser.UserId);
+
+            if (user == null) throw new Exception("User not found");
+            BandUser newBandUser = new BandUser(bandUser);
+            this._context.BandUsers.Add(newBandUser);
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
         public async Task<QueryResult<Band>> GetQueryResult(Lookup<Band> lookup)
         {
             int total = 0;

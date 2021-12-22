@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { BandLookup } from '../lookups/band-lookup';
 import { QueryResult } from 'app/models/query-result';
+import { BandUser } from 'app/models/band-user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,11 @@ export class BandService {
   delete(id : string) : Observable<Band>{
     const url = `${this.url}delete/${id}`;
     return this.http.delete<Band>(url,this.httpOptions)
+  }
+
+  acceptApplicant(bandUser : BandUser) : Observable<Boolean>{
+    const url = `${this.url}accept`;
+    console.log(bandUser);
+    return this.http.post<Boolean>(url,bandUser,this.httpOptions);
   }
 }

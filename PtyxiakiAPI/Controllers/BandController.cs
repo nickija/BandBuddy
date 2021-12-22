@@ -52,5 +52,13 @@ namespace PtyxiakiAPI.Controllers
             Boolean result = _bandService.Delete(id).Result;
             return result;
         }
+
+        [HttpPost("accept")]
+        [Authorize]
+        public ActionResult<Boolean> Accept(BandUser bandUser)
+        {
+            Boolean result = _bandService.AcceptApplicant(bandUser).Result;
+            return result;
+        }
     }
 }

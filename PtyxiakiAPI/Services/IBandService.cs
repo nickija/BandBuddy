@@ -8,5 +8,6 @@ namespace PtyxiakiAPI.Services
 {
     public interface IBandService : IBasicService<Band>
     {
+        public Task<Boolean> AcceptApplicant(BandUser bandUser);
     }
 }

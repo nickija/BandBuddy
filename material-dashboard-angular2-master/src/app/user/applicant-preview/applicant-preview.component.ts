@@ -3,10 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Lookup } from 'app/lookups/lookup';
 import { AreaEnum } from 'app/models/area-enum';
+import { BandUser } from 'app/models/band-user.model';
 import { Instrument } from 'app/models/instrument.model';
 import { Musician } from 'app/models/musician.model';
 import { User } from 'app/models/user.model';
+import { BandService } from 'app/services/band.service';
 import { InstrumentService } from 'app/services/instrument.service';
+import { JobPostingService } from 'app/services/job-posting.service';
 import { MusicianService } from 'app/services/musician.service';
 import { UserService } from 'app/services/user.service';
 import * as Chartist from 'chartist';
@@ -22,8 +25,10 @@ export class ApplicantPreviewComponent implements OnInit {
   private userService: UserService;
   private musicianService: MusicianService;
   private instrumentService: InstrumentService;
-  private itemId;
-  private jpId
+  private itemId: string;
+  private jpId: string;
+  //private bandId: string;
+  private bandUser: BandUser = new BandUser();
   public userModel: User;
   public musicianModel: Musician;
   public areaEnum = AreaEnum;
@@ -34,7 +39,8 @@ export class ApplicantPreviewComponent implements OnInit {
 
   columns = [{ name: 'InstrumentType' }, { name: 'YearsExperiecnce' }, { name: 'Skill' }];
 
-  constructor(userService: UserService, musicianService: MusicianService, instrumentService: InstrumentService, private route: ActivatedRoute) { 
+  constructor(userService: UserService, musicianService: MusicianService, instrumentService: InstrumentService, 
+    private jobPostingService: JobPostingService, private bandService: BandService, private route: ActivatedRoute) { 
     this.musicianService = musicianService;
     this.userService = userService;
     this.instrumentService = instrumentService;
@@ -104,7 +110,16 @@ export class ApplicantPreviewComponent implements OnInit {
   } 
 
   accept(){
-
+    this.jobPostingService.getSingle(this.jpId).subscribe(res => {
+      this.bandUser.bandId = res.bandId;
+      this.bandUser.userId = this.itemId;
+      this.bandService.acceptApplicant(this.bandUser).subscribe(res =>{
+        console.log(res);
+      });
+    })
+   
+    //const id = this.bandId
+    //this.router.navigate(["band/preview/"+ id ], { replaceUrl:true})
     
   }
 
