@@ -6,6 +6,7 @@ import { Band } from 'app/models/band.model';
 import { Musician } from 'app/models/musician.model';
 import { SkillEnum } from 'app/models/skill-enum';
 import { BandService } from 'app/services/band.service';
+import { MusicianService } from 'app/services/musician.service';
 import * as Chartist from 'chartist';
 import { Observable } from 'rxjs';
 
@@ -20,7 +21,7 @@ export class BandPreviewComponent implements OnInit {
   private bandService: BandService;
   public itemModel: Band;
 
-  constructor(bandService: BandService, private route: ActivatedRoute,protected router: Router) { 
+  constructor(bandService: BandService, private musicianService: MusicianService, private route: ActivatedRoute,protected router: Router) { 
     this.bandService = bandService;
   }
   
@@ -38,6 +39,7 @@ export class BandPreviewComponent implements OnInit {
     this.bandService.getSingle(id).subscribe(res => {
       console.log(res);
       this.itemModel = res;
+      //this.getMusiciansByBandId(id);
     })
   } 
 
@@ -49,6 +51,13 @@ export class BandPreviewComponent implements OnInit {
   bandJobPostings(){
     this.router.navigate(["/band/jobPosting/"+ this.itemId], { relativeTo: this.route });
   }
+
+  // getMusiciansByBandId(id: string){
+  //   this.musicianService.getByBandId().subscribe(res => {
+
+  //   })
+
+  // }
 
 
 

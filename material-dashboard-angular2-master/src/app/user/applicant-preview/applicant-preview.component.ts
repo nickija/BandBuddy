@@ -116,11 +116,11 @@ export class ApplicantPreviewComponent implements OnInit {
       this.bandUser.userId = this.itemId;
       this.bandService.acceptApplicant(this.bandUser).subscribe(res =>{
         console.log(res);
+        this.reject()
       });
     })
    
-    const id = this.bandUser.bandId;
-    this.router.navigate(["band/preview/"+ id ], { replaceUrl:true})
+    
     
   }
 
@@ -131,7 +131,14 @@ export class ApplicantPreviewComponent implements OnInit {
       console.log(res);
 
     });
-    this.router.navigate(["band"], { replaceUrl:true})
+    if (this.bandUser.bandId){
+      const id = this.bandUser.bandId;
+      this.router.navigate(["band/preview/"+ id ], { replaceUrl:true})
+
+    }else{
+      this.router.navigate(["band"], { replaceUrl:true})
+
+    }
   }
 
 }
