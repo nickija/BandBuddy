@@ -64,6 +64,14 @@ namespace PtyxiakiAPI.Controllers
             return result;
         }
 
+        [HttpPost("rejectApplicant")]
+        [Authorize]
+        public ActionResult<Boolean> RejectApplicant(JobPostingRequest jobPostingRequest)
+        {
+            Boolean result = _jobPostingService.RejectApplicant(jobPostingRequest).Result;
+            return result;
+        }
+
         [HttpGet("getJobPostingsByMusician/{id}")]
         [Authorize]
         public ActionResult<List<JobPosting>> GetJobPostingsByMusician(Guid id)

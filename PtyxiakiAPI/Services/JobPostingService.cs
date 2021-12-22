@@ -158,6 +158,25 @@ namespace PtyxiakiAPI.Services
 
             return true;
         }
+        public async Task<bool> RejectApplicant(JobPostingRequest jobPostingRequest)
+        {
+            //Find JobPosting
+            JobPosting jobPosting = _context.JobPostings.SingleOrDefault(x => x.Id == jobPostingRequest.JobPostingId);
+
+            if (jobPosting == null) throw new Exception("Job Posting not found");
+
+            //Find Musician;
+            Musician musician = _context.Musicians.SingleOrDefault(x => x.UserId == jobPostingRequest.UserId);
+
+            if (musician == null) throw new Exception("Musician not found");
+
+            JobPostingMusician jobPostingMusician = new JobPostingMusician(jobPostingRequest.JobPostingId, musician.Id);
+            this._context.JobPostingMusicians.Remove(jobPostingMusician);
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
 
         public async Task<List<Musician>> GetMusiciansOfSpecificJobPosting(Guid jobPostingId)
         {
@@ -180,5 +199,7 @@ namespace PtyxiakiAPI.Services
             IEnumerable<JobPosting> jobPostings = _context.JobPostings.Where(x => jobPostingIds.Contains(x.Id));
             return jobPostings.ToList();
         }
+
+        
     }
 }

@@ -58,4 +58,9 @@ export class JobPostingService {
     const url = `${this.url}getMusiciansByJobPosting/${jobPostingId}`
     return this.http.get<Musician[]>(url,this.httpOptions)
   }
+
+  deleteApplication(JobPostingRequest : JobPostingRequest) : Observable<Boolean>{
+    const url = `${this.url}rejectApplicant`;
+    return this.http.post<Boolean>(url,JobPostingRequest,this.httpOptions);
+  }
 }

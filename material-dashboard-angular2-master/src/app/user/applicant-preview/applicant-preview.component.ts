@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Lookup } from 'app/lookups/lookup';
 import { AreaEnum } from 'app/models/area-enum';
 import { BandUser } from 'app/models/band-user.model';
 import { Instrument } from 'app/models/instrument.model';
 import { Musician } from 'app/models/musician.model';
+import { JobPostingRequest } from 'app/models/requests/job-posting-request.model';
 import { User } from 'app/models/user.model';
 import { BandService } from 'app/services/band.service';
 import { InstrumentService } from 'app/services/instrument.service';
@@ -40,7 +41,7 @@ export class ApplicantPreviewComponent implements OnInit {
   columns = [{ name: 'InstrumentType' }, { name: 'YearsExperiecnce' }, { name: 'Skill' }];
 
   constructor(userService: UserService, musicianService: MusicianService, instrumentService: InstrumentService, 
-    private jobPostingService: JobPostingService, private bandService: BandService, private route: ActivatedRoute) { 
+    private jobPostingService: JobPostingService, private bandService: BandService, private route: ActivatedRoute, private router: Router) { 
     this.musicianService = musicianService;
     this.userService = userService;
     this.instrumentService = instrumentService;
@@ -118,13 +119,19 @@ export class ApplicantPreviewComponent implements OnInit {
       });
     })
    
-    //const id = this.bandId
-    //this.router.navigate(["band/preview/"+ id ], { replaceUrl:true})
+    const id = this.bandUser.bandId;
+    this.router.navigate(["band/preview/"+ id ], { replaceUrl:true})
     
   }
 
   reject(){
-    
+    let jobPostingRequest : JobPostingRequest = {userId :  this.itemId, jobPostingId :  this.jpId};
+    console.log(jobPostingRequest);
+    this.jobPostingService.deleteApplication(jobPostingRequest).subscribe(res => {
+      console.log(res);
+
+    });
+    this.router.navigate(["band"], { replaceUrl:true})
   }
 
 }
