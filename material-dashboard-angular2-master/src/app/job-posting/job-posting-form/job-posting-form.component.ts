@@ -60,9 +60,12 @@ export class JobPostingFormComponent implements OnInit {
         res => {
           if(this.modelId == res.id){
             this.toastr.info('Job posting updated!')
+            this.router.navigate(["band"], {replaceUrl:true});
           console.log(res);
           }else{
           this.toastr.success('Job posting added!')
+          this.router.navigate(["band"], {replaceUrl:true});
+
           console.log(res);
           }
         },

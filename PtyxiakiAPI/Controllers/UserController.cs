@@ -48,7 +48,7 @@ namespace PtyxiakiAPI.Controllers
             return user;
         }
 
-        [Authorize]
+        
         [HttpPost("persist")]
         public ActionResult<User> Persist(User persistModel)
         {

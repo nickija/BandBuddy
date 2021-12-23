@@ -59,6 +59,9 @@ const routes: Routes = [
     path: 'login', component: LoginFormComponent
   },
   {
+    path: 'user-form', component: UserFormComponent
+  },
+  {
     path: 'home', component: HomePageComponent
   },
   {

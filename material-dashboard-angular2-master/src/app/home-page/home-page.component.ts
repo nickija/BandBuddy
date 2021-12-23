@@ -15,44 +15,19 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HomePageComponent implements OnInit {
 
-  userNameFormControl = new FormControl(null ,[Validators.required]);  
-  passWordFormControl = new FormControl(null ,[Validators.required]);
-
-  userRegisterFormGroup = new FormGroup({
-    userName: this.userNameFormControl,
-    passWord: this.passWordFormControl,
-  })
 
 
 
-  constructor(private authenticationService : AuthenticationService,private router: Router, private toastr: ToastrService) { 
+
+  constructor() { 
   }
 
-  // showSuccess() {
-  //   this.toastr.success('Hello world!', 'Toastr fun!');
-  // }
+ 
 
   
   ngOnInit() {
   }
 
-  login(){
-    if (this.userRegisterFormGroup.valid){
-    //   console.log(this.userRegisterFormGroup);    
-      
-      
-     this.authenticationService.login(this.userNameFormControl.value,this.passWordFormControl.value).subscribe(
-        res => {
-          this.toastr.success('Welcome!',res.firstName)
-          console.log(res);
-          this.router.navigate['/dashboard']
-        },
-        error => {
-          this.toastr.error('Something bad happened')
-        }
-      );
-      console.log("kalispera mesaaaa");
-    }
-  }
+ 
 
 }

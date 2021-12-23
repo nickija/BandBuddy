@@ -69,6 +69,7 @@ export class JobPostingPreviewComponent implements OnInit {
     this.jobPostingService.applyJob(jobPostingRequest).subscribe(
       res => {
         this.toastr.success('Job Applied!');
+        this.router.navigate(["my/job-posting"], {replaceUrl:true});
       },
       error =>{
         this.toastr.error("Something bad happens");
