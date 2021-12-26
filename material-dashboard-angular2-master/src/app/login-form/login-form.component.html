@@ -8,7 +8,7 @@
                       <p class="card-category">Provide credentials to enter:</p>
                   </div>
                   <div class="card-body">
-                      <form>
+                      <form (keyup.enter)="login()">
                           <!-- <div class="row"> -->
                               <div class="col-md-6 offset-md-3">
                                   <mat-form-field class="example-full-width">
@@ -26,16 +26,17 @@
                                     </mat-error>
                                   </mat-form-field>
                               </div>
-                              <div class="col-md-12  d-flex align-items-center justify-content-between">
-                                <button mat-raised-button (click)="goBack()">Back</button>
-                                <button mat-raised-button (click)="login()" class="btn btn-danger">Login
-                                  <mat-icon class="ml-2">login</mat-icon>
-                                </button>
-                              </div>
                 
 
-                          <div class="clearfix"></div>
                       </form>
+                      <div class="col-md-12  d-flex align-items-center justify-content-between">
+                        <button mat-raised-button (click)="$event.stopPropagation();goBack()">Back</button>
+                        <button mat-raised-button (click)="login()" class="btn btn-danger">Login
+                          <mat-icon class="ml-2">login</mat-icon>
+                        </button>
+                      </div>
+                      <div class="clearfix"></div>
+
                   </div>
               </div>
           </div>
