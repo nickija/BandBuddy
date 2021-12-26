@@ -7,6 +7,7 @@ import { BandUser } from 'app/models/band-user.model';
 import { Instrument } from 'app/models/instrument.model';
 import { Musician } from 'app/models/musician.model';
 import { JobPostingRequest } from 'app/models/requests/job-posting-request.model';
+import { SkillEnum } from 'app/models/skill-enum';
 import { User } from 'app/models/user.model';
 import { BandService } from 'app/services/band.service';
 import { InstrumentService } from 'app/services/instrument.service';
@@ -38,7 +39,7 @@ export class ApplicantPreviewComponent implements OnInit {
   page: number;
   total: number;
 
-  columns = [{ name: 'InstrumentType' }, { name: 'YearsExperiecnce' }, { name: 'Skill' }];
+  columns = [{ name: 'InstrumentType' }, { name: 'YearsExperiecnce' }, { name: 'Skill' ,pipe :this.skillPipe() }];
 
   constructor(userService: UserService, musicianService: MusicianService, instrumentService: InstrumentService, 
     private jobPostingService: JobPostingService, private bandService: BandService, private route: ActivatedRoute, private router: Router) { 
@@ -139,6 +140,10 @@ export class ApplicantPreviewComponent implements OnInit {
       this.router.navigate(["band"], { replaceUrl:true})
 
     }
+  }
+
+  skillPipe () {
+    return {transform: (value) =>  value != null ? SkillEnum[value] : "-"};
   }
 
 }

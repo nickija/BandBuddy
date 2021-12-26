@@ -54,4 +54,9 @@ export class NavbarComponent implements OnInit {
       }
       return '';
     }
+
+    logout(){
+      this.authenticationService.logout();
+      this.router.navigate(['/home']);
+      }
 }

@@ -1,6 +1,6 @@
 <div class="main-content">
   <div class="container-fluid">
-      <div class="row">
+      <div class="row main-middle">
           <div class="col-md-6">
               <div class="card">
                   <div class="card-header card-header-danger">
@@ -10,7 +10,7 @@
                   <div class="card-body">
                       <form>
                           <!-- <div class="row"> -->
-                              <div class="col-md-6">
+                              <div class="col-md-6 offset-md-3">
                                   <mat-form-field class="example-full-width">
                                     <input matInput placeholder="Band Name" [formControl]="bandNameFormControl">
                                     <mat-error *ngIf="bandNameFormControl.hasError('required')">
@@ -18,7 +18,7 @@
                                     </mat-error>
                                   </mat-form-field>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-6 offset-md-3">
                                   <mat-form-field class="example-full-width">
                                     <input matInput placeholder="Genre summary" type="text" [formControl]="genreFormControl">
                                     <mat-error *ngIf="genreFormControl.hasError('required')">
@@ -26,10 +26,10 @@
                                     </mat-error>
                                   </mat-form-field>
                               </div>
-                          <div>
-                            
-                            <button mat-raised-button (click)="addBand()" class="btn btn-danger pull-right"><span *ngIf="isNew else EditText">Create Band</span> </button>
-                            <button routerLink="/band" routerLinkActive="active" mat-stroked-button class="pull-left float-left">Back</button>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <button mat-stroked-button routerLink="/band">Back</button>
+
+                            <button mat-raised-button (click)="addBand()" class="btn btn-danger"><span *ngIf="isNew else EditText">Create Band</span> </button>
                           </div>
                           <div class="clearfix"></div>
                       </form>

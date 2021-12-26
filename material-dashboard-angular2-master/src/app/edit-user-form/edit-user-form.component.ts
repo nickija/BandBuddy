@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IsActive } from 'app/models/is-active';
@@ -14,7 +14,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./edit-user-form.component.css']
 })
 export class EditUserFormComponent implements OnInit {
-
   userModel: User;
   currentUser: User;
 
@@ -22,13 +21,15 @@ export class EditUserFormComponent implements OnInit {
   passWordTextBox: string;
   firstNameTextBox: string;
   lastNameTextBox: string;
-  
+  show = false;
+  visibilityPassword = "visibility_off"
+  showHide : String = "password";
 
-  firstNameFormControl = new FormControl(null ,[Validators.required]);  
-  lastNameFormControl = new FormControl(null ,[Validators.required]);
-  userNameFormControl = new FormControl(null ,[Validators.required]);  
-  passWordFormControl = new FormControl(null ,[Validators.required]);
-  idFormControl = new FormControl(null ,[Validators.required]);
+  firstNameFormControl = new FormControl(null, [Validators.required]);
+  lastNameFormControl = new FormControl(null, [Validators.required]);
+  userNameFormControl = new FormControl(null, [Validators.required]);
+  passWordFormControl = new FormControl(null, [Validators.required]);
+  idFormControl = new FormControl(null, [Validators.required]);
 
 
   userRegisterFormGroup = new FormGroup({
@@ -41,7 +42,7 @@ export class EditUserFormComponent implements OnInit {
 
   private userService: UserService;
 
-  constructor(private router: Router, service: UserService, private toastr: ToastrService, private authenticationService :AuthenticationService) { 
+  constructor(private router: Router, service: UserService, private toastr: ToastrService, private authenticationService: AuthenticationService) {
     this.userService = service;
   }
 
@@ -49,8 +50,9 @@ export class EditUserFormComponent implements OnInit {
   //   this.toastr.success('Hello world!', 'Toastr fun!');
   // }
 
-  
+
   ngOnInit() {
+
     this.authenticationService.currentUser.subscribe(x => {
       this.currentUser = x;
 
@@ -59,7 +61,7 @@ export class EditUserFormComponent implements OnInit {
     });
   }
 
-  getUserDetails(id: string){
+  getUserDetails(id: string) {
     this.userService.getSingle(this.currentUser.id).subscribe(res => {
       this.userModel = res;
 
@@ -68,15 +70,13 @@ export class EditUserFormComponent implements OnInit {
       this.firstNameTextBox = this.userModel.firstName;
       this.lastNameTextBox = this.userModel.lastName;
     })
-  } 
+  }
 
-  edit(){
-    if (this.userRegisterFormGroup.valid){
-      console.log(this.userRegisterFormGroup);    
-      
+  edit() {
+    if (this.userRegisterFormGroup.valid) {
       this.userService.persist(this.userRegisterFormGroup.value).subscribe(
         res => {
-          this.toastr.info('Profile Edited!',res.firstName)
+          this.toastr.info('Profile Edited!', res.firstName)
           console.log(res);
         },
         error => {
@@ -86,5 +86,17 @@ export class EditUserFormComponent implements OnInit {
       //this.router.navigate(['/login']);
     }
   }
+ 
 
+  toggleShow() {
+    this.show = !this.show;
+    if (this.show) {
+      this.showHide = "text"
+      this.visibilityPassword = "visibility"
+    }
+    else {
+      this.showHide = "password"
+      this.visibilityPassword = "visibility_off"
+    }
+  }
 }

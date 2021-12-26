@@ -18,7 +18,7 @@ export class BandListingComponent implements OnInit {
   page: number;
   total: number;
 
-  columns = [{ name: 'BandName' }, { name: 'Genre' }];
+  columns = [{ prop: 'bandName' }, { name: 'Genre' }];
 
   constructor(private bandService:BandService, private route: ActivatedRoute, protected router: Router, private authenticationService: AuthenticationService) { }
 

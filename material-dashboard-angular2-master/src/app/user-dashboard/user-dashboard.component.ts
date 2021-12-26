@@ -5,6 +5,7 @@ import { Lookup } from 'app/lookups/lookup';
 import { AreaEnum } from 'app/models/area-enum';
 import { Instrument } from 'app/models/instrument.model';
 import { Musician } from 'app/models/musician.model';
+import { SkillEnum } from 'app/models/skill-enum';
 import { User } from 'app/models/user.model';
 import { AuthenticationService } from 'app/services/authentication.service';
 import { InstrumentService } from 'app/services/instrument.service';
@@ -20,9 +21,6 @@ import { Observable } from 'rxjs';
 })
 export class UserDashboardComponent implements OnInit {
 
-  private userService: UserService;
-  private musicianService: MusicianService;
-  private instrumentService: InstrumentService;
   private itemId;
   public userModel: User;
   public musicianModel: Musician;
@@ -33,12 +31,13 @@ export class UserDashboardComponent implements OnInit {
   page: number;
   total: number;
 
-  columns = [{ name: 'InstrumentType' }, { name: 'YearsExperiecnce' }, { name: 'Skill' }];
+  columns = [{ name:"Instrument Type" ,prop: 'instrumentType' }, {name:"Years experience",prop:'yearsExperiecnce'}, { name: 'Skill' ,pipe :this.skillPipe() }];
 
-  constructor(private authenticationService : AuthenticationService ,userService: UserService, musicianService: MusicianService, instrumentService: InstrumentService, private route: ActivatedRoute) { 
-    this.musicianService = musicianService;
-    this.userService = userService;
-    this.instrumentService = instrumentService;
+  constructor(private authenticationService : AuthenticationService ,
+    private userService: UserService, 
+    private musicianService: MusicianService,
+    private instrumentService: InstrumentService, 
+    private route: ActivatedRoute) { 
   }
 
   lookup:Lookup
@@ -47,14 +46,6 @@ export class UserDashboardComponent implements OnInit {
   
   ngOnInit() {
     this.generateLookup();
-
-    // this.route.paramMap.subscribe((paramMap)=>{
-    //   if (paramMap.has("id")){
-    //     this.itemId = paramMap.get("id");
-    //     this.getUserDetails(this.itemId);
-    //   }
-    // })
-
     this.authenticationService.currentUser.subscribe(x => {
       this.currentUser = x;
       console.log(this.currentUser.id, this.currentUser.username);
@@ -95,15 +86,17 @@ export class UserDashboardComponent implements OnInit {
   getUserDetails(id: string){
     this.userService.getSingle(id).subscribe(res => {
       this.userModel = res;
-      this.getMusicianDetails(this.userModel.id);
+      this.getMusicianDetails(this.userModel?.id);
     })
   } 
 
   getMusicianDetails(id: string){
     this.musicianService.getByUserId(id).subscribe(res => {
       this.musicianModel = res;
-      this.lookup.itemId = this.musicianModel.id;
-      this.loadListing();
+      if(this.musicianModel){
+        this.lookup.itemId = this.musicianModel.id;
+        this.loadListing();
+      }
     })
   } 
 
@@ -114,6 +107,10 @@ export class UserDashboardComponent implements OnInit {
 
   reject(){
     
+  }
+
+  skillPipe () {
+    return {transform: (value) =>  value != null ? SkillEnum[value] : "-"};
   }
 
 }

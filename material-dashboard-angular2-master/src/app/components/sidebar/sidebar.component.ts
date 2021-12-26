@@ -14,9 +14,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard Profile',  icon: 'person', class: '' },
     { path: '/job-posting', title: 'Search for Job Posting',  icon:'search', class: '' },
     { path: '/band', title: 'My bands',  icon:'dashboard', class: '' },
-    { path: '/my/job-posting', title: 'Applied Job Postings',  icon:'content_paste', class: '' },
-    { path: '/edit-user-form', title: 'Edit User Profile',  icon:'edit', class: '' },
-    { path: '/musician-form', title: 'Edit Musical Profile',  icon:'edit', class: '' }
+    { path: '/my/job-posting', title: 'Applied Job Postings',  icon:'content_paste', class: '' }
 ];
 
 @Component({
@@ -32,15 +30,5 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
-  isMobileMenu() {
-      if ($(window).width() > 991) {
-          return false;
-      }
-      return true;
-  };
 
-  logout(){
-    this.authenticationService.logout();
-    this.router.navigate(['/home']);
-    }
 }

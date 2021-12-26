@@ -7,3 +7,37 @@
 .inputField .mat-form-field-wrapper .mat-form-field-flex{
     background-color: #ffffff;
     }
+
+.main-middle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef4a;
+    border-radius: 0.3rem;
+  }
+
+
+.text-muted, .bmd-help {
+  color: #235786 !important;
+}
+
+.whiteColor{
+    color:white !important
+}
+
+.mat-hint{
+  color:white !important;
+}
+
+.datatable-body-cell:hover {
+  cursor: pointer;
+}
+
+.nonClickAble .datatable-body-cell:hover {
+  cursor: initial;
+}

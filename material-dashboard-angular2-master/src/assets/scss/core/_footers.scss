@@ -1,9 +1,10 @@
 .footer{
-    padding: $padding-general-x 0;
+    padding: 0 0;
     text-align: center;
     display: -webkit-flex; /* Safari */ /* Safari 6.1+ */
     display: flex;
-
+    color:white;
+    background-color: black;
     ul{
         margin-bottom: 0;
         padding: 0;
@@ -78,7 +79,7 @@
         }
     }
     .copyright{
-        padding: 15px 0;
+        padding: 10px 0;
         .material-icons{
             font-size: 18px;
             position: relative;

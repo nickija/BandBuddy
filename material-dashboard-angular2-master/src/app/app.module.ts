@@ -30,6 +30,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { EditUserFormComponent } from './edit-user-form/edit-user-form.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -49,7 +50,7 @@ import { EditUserFormComponent } from './edit-user-form/edit-user-form.component
     FormsModule,
     ReactiveFormsModule,
     NgxDatatableModule,
-
+    FontAwesomeModule,
   ],
   declarations: [
     AppComponent,

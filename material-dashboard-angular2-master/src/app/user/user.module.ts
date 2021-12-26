@@ -18,20 +18,16 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { Musician } from 'app/models/musician.model';
 import { MusicianFormComponent } from './musician-form/musician-form.component';
 import { UserDashboardComponent } from '../user-dashboard/user-dashboard.component';
+import { MaterialModule } from 'material/material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTooltipModule,
     ApplicantRoutingModule,
     NgxDatatableModule,
+    MaterialModule
   ],
   declarations: [
     

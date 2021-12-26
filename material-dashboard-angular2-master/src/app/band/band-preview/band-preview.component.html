@@ -22,11 +22,20 @@
                             <i class="material-icons">access_time</i> Date Created: {{itemModel.createdAt | date}}
                         </div>
                     </div>
-                    <div >
-                        <button mat-raised-button (click)="edit()" class="btn btn-warning pull-right float-right">Edit Band</button>
-                        <button mat-raised-button (click)="bandJobPostings()" class="btn btn-info pull-right float-right">Show Band's Job postings</button>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12 d-flex align-items-center justify-content-between">
+                                <button routerLink="/band" routerLinkActive="active" mat-stroked-button>Back</button>
+                                <div class="d-flex align-items-center">
+                                    <button mat-raised-button (click)="bandJobPostings()" class="btn btn-info ">Show Band's Job postings</button>
 
-                        <button routerLink="/band" routerLinkActive="active" mat-stroked-button class="pull-left float-left">Back</button>
+                                    <button mat-raised-button (click)="edit()" class="btn btn-warning ">Edit Band</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                      
                     </div>
                    
                          

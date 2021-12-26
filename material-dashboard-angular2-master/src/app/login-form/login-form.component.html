@@ -1,7 +1,7 @@
 <div class="main-content">
   <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-6">
+      <div class="row main-middle">
+          <div class="col-md-6 ">
               <div class="card">
                   <div class="card-header card-header-danger">
                       <h4 class="card-title">Login Form</h4>
@@ -10,15 +10,15 @@
                   <div class="card-body">
                       <form>
                           <!-- <div class="row"> -->
-                              <div class="col-md-6">
+                              <div class="col-md-6 offset-md-3">
                                   <mat-form-field class="example-full-width">
                                     <input matInput placeholder="Username" [formControl]="userNameFormControl">
                                     <mat-error *ngIf="userNameFormControl.hasError('required')">
-                                      UserName is <strong>required</strong> to log in
+                                      User name is <strong>required</strong> to log in
                                     </mat-error>
                                   </mat-form-field>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-6 offset-md-3">
                                   <mat-form-field class="example-full-width">
                                     <input matInput placeholder="Password" type="password" [formControl]="passWordFormControl">
                                     <mat-error *ngIf="passWordFormControl.hasError('required')">
@@ -26,7 +26,14 @@
                                     </mat-error>
                                   </mat-form-field>
                               </div>
-                          <button mat-raised-button (click)="login()" class="btn btn-danger pull-right">Login</button>
+                              <div class="col-md-12  d-flex align-items-center justify-content-between">
+                                <button mat-raised-button (click)="goBack()">Back</button>
+                                <button mat-raised-button (click)="login()" class="btn btn-danger">Login
+                                  <mat-icon class="ml-2">login</mat-icon>
+                                </button>
+                              </div>
+                
+
                           <div class="clearfix"></div>
                       </form>
                   </div>

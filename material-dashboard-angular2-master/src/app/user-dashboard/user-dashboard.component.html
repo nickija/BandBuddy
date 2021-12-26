@@ -10,22 +10,18 @@
                     </div>
                     <div class="card-body" >
                           <h4 class="card-title">First Name:</h4>
-                          <p class="card-category"> {{userModel.firstName}}</p>
+                          <p class="card-category"> {{userModel?.firstName}}</p>
                           <p></p>
                           <h4 class="card-title">Latst Name:</h4>
-                          <p class="card-category"> {{userModel.lastName}}</p>
+                          <p class="card-category"> {{userModel?.lastName}}</p>
                           <p></p>
                           <h4 class="card-title">Education:</h4>
-                          <p class="card-category"> {{musicianModel.education}}</p>
+                          <p class="card-category"> {{musicianModel?.education}}</p>
                           <p></p>
                           <h4 class="card-title">Area:</h4>
-                          <p class="card-category"> {{areaEnum[musicianModel.area]}}</p>
-                          
-                          
+                          <p class="card-category"> {{areaEnum[musicianModel?.area]}}</p>
                           </div>
-          
                     </div>                   
-                    
                 </div>
             
             <div class="col-md-4">
@@ -35,9 +31,8 @@
                 </div>
                     <div class="card-body">
                         <div>
-    
                             <ngx-datatable
-                              class="material"
+                              class="material nonClickAble"
                               [rows]="rows"
                               [columns]="columns"
                               [columnMode]="ColumnMode"
@@ -48,20 +43,14 @@
                               [count]="total"
                               [offset]="lookup.start"
                               [limit]="lookup.limit"
-                              (page)="onPageLoad($event)"
-
-                              
+                              (page)="onPageLoad($event)" 
                             >
                             </ngx-datatable>
                           </div>
-                        
                     </div>
                 </div>
             </div>
-            
-        </div>
-            
-            
+        </div>  
     </div>
   </div>
   

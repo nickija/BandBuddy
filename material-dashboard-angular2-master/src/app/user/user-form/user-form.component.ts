@@ -6,7 +6,7 @@ import { User } from 'app/models/user.model';
 import { AuthenticationService } from 'app/services/authentication.service';
 import { UserService } from 'app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-user-form',
@@ -15,7 +15,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserFormComponent implements OnInit {
 
-  
+  show = false;
+  visibilityPassword = "visibility_off"
+  showHide : String = "password";
 
   firstNameFormControl = new FormControl(null ,[Validators.required]);  
   lastNameFormControl = new FormControl(null ,[Validators.required]);
@@ -30,15 +32,12 @@ export class UserFormComponent implements OnInit {
     lastName: this.lastNameFormControl,
   })
 
-  private userService: UserService;
 
-  constructor(private router: Router, service: UserService, private toastr: ToastrService) { 
-    this.userService = service;
+  constructor(private router: Router,
+    private userService: UserService,
+    private toastr: ToastrService,
+    private location: Location) { 
   }
-
-  // showSuccess() {
-  //   this.toastr.success('Hello world!', 'Toastr fun!');
-  // }
 
   
   ngOnInit() {
@@ -46,22 +45,32 @@ export class UserFormComponent implements OnInit {
   }
 
   register(){
-    if (this.userRegisterFormGroup.valid){
-      console.log(this.userRegisterFormGroup);    
-      
-      
+    if (this.userRegisterFormGroup.valid){    
       this.userService.persist(this.userRegisterFormGroup.value).subscribe(
         res => {
           this.toastr.success('Registration successful!',res.firstName)
-          console.log(res);
           this.router.navigate(['/login'])
         },
         error => {
           this.toastr.error('Something bad happened')
         }
       );
-      //this.router.navigate(['/login']);
     }
   }
 
+  toggleShow() {
+    this.show = !this.show;
+    if (this.show) {
+      this.showHide = "text"
+      this.visibilityPassword = "visibility"
+    }
+    else {
+      this.showHide = "password"
+      this.visibilityPassword = "visibility_off"
+    }
+  }
+
+  goBack(){
+    this.location.back();
+  }
 }

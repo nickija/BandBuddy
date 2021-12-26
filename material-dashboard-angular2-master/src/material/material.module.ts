@@ -29,6 +29,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
     imports: [
@@ -61,7 +62,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatSliderModule,
         MatSlideToggleModule,
         DragDropModule,
-        MatBadgeModule
+        MatBadgeModule,
+        FontAwesomeModule
     ],
     exports: [
         MatToolbarModule,
@@ -93,7 +95,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatSliderModule,
         MatSlideToggleModule,
         DragDropModule,
-        MatBadgeModule
+        MatBadgeModule,
+        FontAwesomeModule
     ]
 })
 export class MaterialModule { }

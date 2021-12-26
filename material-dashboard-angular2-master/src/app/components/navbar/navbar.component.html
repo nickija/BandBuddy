@@ -1,16 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
     <div class="container-fluid">
         <div class="navbar-wrapper">
-          <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a>
+            <a class="navbar-brand whiteColor">{{getTitle()}}</a>
         </div>
-        
+
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="navbar-nav">
-                
+
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:4200/#/dashboard">
+                    <a class="nav-link whiteColor" mat-button [matMenuTriggerFor]="menu">
                         <span>Hello {{this.currentUser?.username}}</span>
-                        <i class="material-icons">person</i>
+                        <i class="material-icons ml-2">person</i>
                         <p>
                             <span class="d-lg-none d-md-block">Account</span>
                         </p>
@@ -21,4 +21,22 @@
     </div>
 </nav>
 
+<mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="'/edit-user-form'">
+        <span class="main-middle">
+           Edit User Profile
+        </span>
+    </button>
+    <button mat-menu-item [routerLink]="'/musician-form'">
+        <span class="main-middle">
+            Edit Musical Profile
+        </span>
+    </button>
+    <button mat-menu-item  (click)="logout()" >
+        <span class="main-middle">
+            Logout
+            <i class="material-icons ml-2">logout</i>
 
+        </span>
+    </button>
+</mat-menu>

@@ -1,16 +1,16 @@
 <div class="main-content">
   <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-6">
+      <div class="row  main-middle">
+          <div class="col-md-6 ">
               <div class="card">
                   <div class="card-header card-header-danger">
                       <h4 class="card-title">Band Job Posting</h4>
-                      <p class="card-category">Create an ad for your band</p>
+                      <p class="card-category">Create a job posting for your band</p>
                   </div>
                   <div class="card-body">
                       <form>
                           <!-- <div class="row"> -->
-                              <div class="col-md-6">
+                              <div class="col-md-6 offset-md-3">
                                   <mat-form-field class="example-full-width">
                                     <input matInput placeholder="Genre Played" [formControl]="genrePlayedFormControl">
                                     <mat-error *ngIf="genrePlayedFormControl.hasError('required')">
@@ -18,7 +18,7 @@
                                     </mat-error>
                                   </mat-form-field>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-6 offset-md-3 ">
                                   <mat-form-field class="example-full-width">
                                     <input matInput placeholder="Instrument Required" [formControl]="instrumentRequiredFormControl">
                                     <mat-error *ngIf="instrumentRequiredFormControl.hasError('required')">
@@ -26,7 +26,7 @@
                                     </mat-error>
                                   </mat-form-field>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-6 offset-md-3">
                                 <mat-form-field class="example-full-width">
                                   <mat-label for="skill">Skill required for the applicants</mat-label>
                                   <mat-select id="skill" [formControl]="skillFormControl">
@@ -38,7 +38,7 @@
                                   </mat-error>
                                 </mat-form-field>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-6 offset-md-3">
                                 <mat-form-field class="example-full-width">
                                   <mat-label for="area">Area the band is located</mat-label>
                                   <mat-select id="area" [formControl]="areaFormControl">
@@ -50,7 +50,11 @@
                                   </mat-error>
                                 </mat-form-field>
                               </div>
-                              <button mat-raised-button (click)="addJobPosting()" class="btn btn-danger pull-right"><span *ngIf="isNew else EditText">Create JobPosting</span> </button>
+                              <div class="col-md-12 d-flex justify-content-end">
+                                <button mat-raised-button (click)="addJobPosting()" class="btn btn-danger pull-right">
+                                  <span *ngIf="isNew else EditText">Create Job Posting</span> 
+                                </button>
+                              </div>
                           <div class="clearfix"></div>
                       </form>
                   </div>

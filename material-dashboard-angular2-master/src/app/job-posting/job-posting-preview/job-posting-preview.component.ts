@@ -58,8 +58,10 @@ export class JobPostingPreviewComponent implements OnInit {
   getJobPostingDetails(id: string){
     this.jobPostingService.getSingle(id).subscribe(res => {
       this.itemModel = res;
-
-      //this.getMusiciansByJobPosting();
+    },
+    error => {
+      this.toastr.error("You have to complete your musician profile first");
+      this.router.navigate(["musician-form"], {replaceUrl:true});
     })
 
   } 

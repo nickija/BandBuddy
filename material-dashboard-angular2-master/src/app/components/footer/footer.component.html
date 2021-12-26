@@ -1,6 +1,8 @@
 <footer class="footer ">
     <div class="container-fluid">
-        <nav class="pull-left">
+
+
+        <div class="copyright d-flex align-items-center justify-content-around">
             <ul>
                 <li>
                     <a href="https://www.unipi.gr/unipi/el/">
@@ -23,11 +25,12 @@
                     </a>
                 </li>
             </ul>
-        </nav>
-        <div class="copyright pull-right">
-            &copy;
-            {{test | date: 'yyyy'}}, made by
-            <a href="https://github.com/nickija" target="_blank">Nikolaos Alvanos</a>, supervised by Efthimios Alepis.
+            <span>
+                &copy;
+                {{test | date: 'yyyy'}}, made by
+                <a href="https://github.com/nickija" target="_blank">Nikolaos Alvanos</a>, supervised by Efthimios Alepis.
+            </span>
+
         </div>
     </div>
 </footer>

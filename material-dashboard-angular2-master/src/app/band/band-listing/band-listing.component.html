@@ -1,29 +1,18 @@
 <div class="main-content">
   <div class="container-fluid">
-  <div class="row">
-  <div class="col-md-12">
-    
-    <ngx-datatable
-      class="material"
-      [rows]="rows"
-      [columns]="columns"
-      [columnMode]="ColumnMode"
-      [headerHeight]="50"
-      [footerHeight]="50"
-      rowHeight="auto"
-      [externalPaging]="true"
-      [count]="total"
-      [offset]="lookup.start"
-      [limit]="lookup.limit"
-      (page)="onPageLoad($event)"
-      (activate)="navigateToPreview($event)"
-    >
-    </ngx-datatable>
-  </div>
-  <div class="col-md-2">
-    <a mat-button class="btn btn-danger"  routerLink="/band/new" routerLinkActive="active" >
-      Add Band <i class="material-icons">add_box</i>
-  </a>
-  </div>
-</div>
+    <div class="row">
+      <div class="col-md-12">
+        <ngx-datatable class="material" [rows]="rows" [columns]="columns" [columnMode]="ColumnMode" [headerHeight]="50"
+          [footerHeight]="50" rowHeight="auto" [externalPaging]="true" [count]="total" [offset]="lookup.start"
+          [limit]="lookup.limit" (page)="onPageLoad($event)" (activate)="navigateToPreview($event)">
+        </ngx-datatable>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-end">
+        <a mat-button class="btn btn-danger" routerLink="/band/new" routerLinkActive="active">
+          Add Band <i class="material-icons">add_box</i>
+        </a>
+      </div>
+    </div>
   </div>

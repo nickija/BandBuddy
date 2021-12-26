@@ -62,15 +62,11 @@ export class BandFormComponent implements OnInit {
           if(this.modelId)
           {
           this.toastr.info('Band Updated!', res.bandName)
-
-          console.log(res);
           this.router.navigate(['/band'], { relativeTo: this.route });
           }
           else
           {
             this.toastr.success('Band Created!', res.bandName)
-
-            console.log(res);
             this.router.navigate(['/band'], { relativeTo: this.route });
           }
         },
