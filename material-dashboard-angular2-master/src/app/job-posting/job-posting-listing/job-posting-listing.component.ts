@@ -20,6 +20,7 @@ export class JobPostingListingComponent implements OnInit {
   rows: JobPosting[];
   page: number;
   total: number;
+  offset: number = 0;
 
   filteredJobPostings: JobPosting[];
 
@@ -30,41 +31,41 @@ export class JobPostingListingComponent implements OnInit {
 
   musicianId: string;
 
-  columns = [{ name: 'GenrePlayed' }, {name: 'InstrumentRequired'}];
+  columns = [{ prop: 'genrePlayed' }, { prop: 'instrumentRequired' }];
 
-  constructor(private jobPostingService:JobPostingService, private musicianService: MusicianService, private route: ActivatedRoute,
-     protected router: Router, private authenticationService :AuthenticationService) { }
+  constructor(private jobPostingService: JobPostingService, private musicianService: MusicianService, private route: ActivatedRoute,
+    protected router: Router, private authenticationService: AuthenticationService) { }
 
-  lookup:Lookup
+  lookup: Lookup
 
   ColumnMode = ColumnMode.force;
 
   ngOnInit(): void {
     this.generateLookup();
-    if(this.route.toString().includes("my")){
+    if (this.route.toString().includes("my")) {
       this.authenticationService.currentUser.subscribe(x => {
         this.currentUser = x;
         this.getMusicianDetails(this.currentUser.id);
       });
-  }else{
-    this.loadBand();
-    this.loadListing();
+    } else {
+      this.loadBand();
+      this.loadListing();
+    }
+
+
+
   }
 
-    
-    
-  }
-
-  getMusicianDetails(id: string){
+  getMusicianDetails(id: string) {
     this.musicianService.getByUserId(id).subscribe(res => {
       this.musicianModel = res;
       this.musicianId = this.musicianModel.id;
       this.getJobPostingsByMusician();
-      
-    })
-  } 
 
-  loadListing(){
+    })
+  }
+
+  loadListing() {
     this.jobPostingService.query(this.lookup).subscribe(pagedData => {
       this.page = pagedData.count;
       this.rows = pagedData.items;
@@ -81,49 +82,49 @@ export class JobPostingListingComponent implements OnInit {
   }
 
   onPageLoad(event: any) {
-		if (event) {
-			this.lookup.start = event.offset * this.lookup.limit ;
-      this.setPage({offset : this.lookup.start})
-		}
-	}
+    if (event) {
+      this.lookup.start = event.offset * this.lookup.limit;
+      this.offset = event.offset;
+      this.setPage({ offset: this.lookup.start })
+    }
+  }
 
-  
 
-  generateLookup(){
 
+  generateLookup() {
     this.lookup = new Lookup();
     this.lookup.limit = 10;
     this.lookup.start = 0;
   }
 
-  navigateToPreview(event: any){
-    if (event.type === "click"){
-      if(this.route.toString().includes("my")){
+  navigateToPreview(event: any) {
+    if (event.type === "click") {
+      if (this.route.toString().includes("my")) {
         const id = event?.row?.id;
-        this.router.navigate(["my/job-posting/preview/"+id], {replaceUrl:true});
-      }else{
-        
-        if (this.modelId){
+        this.router.navigate(["my/job-posting/preview/" + id], { replaceUrl: true });
+      } else {
+
+        if (this.modelId) {
           const id = event?.row?.id;
-          this.router.navigate(["band/jobPosting/preview/"+id], {replaceUrl:true});
+          this.router.navigate(["band/jobPosting/preview/" + id], { replaceUrl: true });
 
         }
-        else{
-        const id = event?.row?.id;
-        this.router.navigate(["preview/"+id], {relativeTo:this.route, replaceUrl:true});
+        else {
+          const id = event?.row?.id;
+          this.router.navigate(["preview/" + id], { relativeTo: this.route, replaceUrl: true });
         }
       }
     }
   }
 
-  changeFilter(likeText : string){
-     this.lookup.like = likeText;
-     this.loadListing();
+  changeFilter(likeText: string) {
+    this.lookup.like = likeText;
+    this.loadListing();
   }
 
-  loadBand(){
-    this.route.paramMap.subscribe((paramMap)=>{
-      if (paramMap.has("id")){
+  loadBand() {
+    this.route.paramMap.subscribe((paramMap) => {
+      if (paramMap.has("id")) {
         this.modelId = paramMap.get("id");
         this.lookup.itemId = this.modelId;
 
@@ -131,19 +132,17 @@ export class JobPostingListingComponent implements OnInit {
     })
   }
 
-  addJobPosting(){
-    
-    this.router.navigate(["/band/jobPosting/new/"+this.modelId], {relativeTo:this.route, replaceUrl:true})
+  addJobPosting() {
+    this.router.navigate(["/band/jobPosting/new/" + this.modelId], { relativeTo: this.route, replaceUrl: true })
   }
 
-  getJobPostingsByMusician(){
+  getJobPostingsByMusician() {
     this.jobPostingService.getJobPostingsByMusician(this.musicianId).subscribe(
       res => {
-        console.log(res)
         this.filteredJobPostings = res;
         this.page = this.filteredJobPostings.length;
-      this.rows = this.filteredJobPostings;
-      this.total = this.filteredJobPostings.length;
+        this.rows = this.filteredJobPostings;
+        this.total = this.filteredJobPostings.length;
       }
     )
   }

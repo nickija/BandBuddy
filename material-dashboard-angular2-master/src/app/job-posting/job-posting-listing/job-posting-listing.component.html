@@ -12,7 +12,7 @@
         rowHeight="auto" 
         [externalPaging]="true" 
         [count]="total" 
-        [offset]="lookup.start"
+        [offset]="offset"
         [limit]="lookup.limit" 
         (page)="onPageLoad($event)" 
         (activate)="navigateToPreview($event)">
@@ -20,7 +20,7 @@
       </div>
       
     </div>
-    <div class="col-md-2" *ngIf="modelId">
+    <div class="col-md-12 d-flex justify-content-end" *ngIf="modelId">
       <a mat-button class="btn btn-danger"  (click)="addJobPosting()" >
         Add new Job Posting <i class="material-icons">add_box</i>
     </a>
