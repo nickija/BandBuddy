@@ -14,7 +14,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard Profile',  icon: 'person', class: '' },
     { path: '/job-posting', title: 'Search for Job Posting',  icon:'search', class: '' },
     { path: '/band', title: 'My bands',  icon:'dashboard', class: '' },
-    { path: '/my/job-posting', title: 'Applied Job Postings',  icon:'content_paste', class: '' }
+    { path: '/my/job-posting', title: 'Applied Job Postings',  icon:'content_paste', class: '' },
+    { path: '/member/band', title: 'Bands im member of',  icon:'group', class: '' }
 ];
 
 @Component({

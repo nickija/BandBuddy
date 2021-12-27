@@ -19,6 +19,10 @@ export class BandListingComponent implements OnInit {
   total: number;
   offset: number = 0;
 
+  member: boolean;
+
+  filteredBands: Band[];
+
   columns = [{ prop: 'bandName' }, { name: 'Genre' }];
 
   constructor(private bandService:BandService, private route: ActivatedRoute, protected router: Router, private authenticationService: AuthenticationService) { }
@@ -36,8 +40,15 @@ export class BandListingComponent implements OnInit {
       this.lookup.itemId = this.currentUser.id;
 
     });
+    if (this.route.toString().includes("member")) {
+      this.getBandsByUser(this.currentUser.id);
+      this.member = true;
+    }else{
+      this.loadListing();
+      this.member = false;
+    }
 
-    this.loadListing();
+    
   }
 
   loadListing(){
@@ -80,5 +91,16 @@ export class BandListingComponent implements OnInit {
     }
 
     
+  }
+
+  getBandsByUser(id: string) {
+    this.bandService.getBandsByUser(id).subscribe(
+      res => {
+        this.filteredBands = res;
+        this.page = this.filteredBands.length;
+        this.rows = this.filteredBands;
+        this.total = this.filteredBands.length;
+      }
+    )
   }
 }

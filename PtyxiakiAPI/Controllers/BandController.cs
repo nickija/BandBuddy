@@ -68,5 +68,13 @@ namespace PtyxiakiAPI.Controllers
             List<User> users = _bandService.GetUsersOfSpecificBand(id).Result;
             return users;
         }
+
+        [HttpGet("getBandsByUser/{id}")]
+        [Authorize]
+        public ActionResult<List<Band>> GetBandsByUser(Guid id)
+        {
+            List<Band> bands = _bandService.GetBandOfSpecificUser(id).Result;
+            return bands;
+        }
     }
 }

@@ -10,7 +10,7 @@
     </div>
     <div class="row">
       <div class="col-md-12 d-flex justify-content-end">
-        <a mat-button class="btn btn-danger" routerLink="/band/new" routerLinkActive="active">
+        <a mat-button class="btn btn-danger" routerLink="/band/new" routerLinkActive="active" *ngIf="!member">
           Add Band <i class="material-icons">add_box</i>
         </a>
       </div>

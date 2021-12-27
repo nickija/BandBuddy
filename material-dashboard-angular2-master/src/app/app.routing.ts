@@ -14,6 +14,7 @@ import { JobPostingListingComponent } from './job-posting/job-posting-listing/jo
 import { JobPostingFormComponent } from './job-posting/job-posting-form/job-posting-form.component';
 import { JobPostingPreviewComponent } from './job-posting/job-posting-preview/job-posting-preview.component';
 import { UserListingComponent } from './user/user-listing/user-listing.component';
+import { BandListingComponent } from './band/band-listing/band-listing.component';
 
 const routes: Routes = [
   {
@@ -90,6 +91,9 @@ const routes: Routes = [
   },
   {
     path: 'my/job-posting/preview/:id', component: JobPostingPreviewComponent
+  },
+  {
+    path: 'member/band', component: BandListingComponent
   },
 ];
 

@@ -54,4 +54,9 @@ export class BandService {
     const url = `${this.url}getUsersByBand/${bandId}`
     return this.http.get<User[]>(url,this.httpOptions)
   }
+
+  getBandsByUser(userId : string) : Observable<Band[]>{
+    const url = `${this.url}getBandsByUser/${userId}`
+    return this.http.get<Band[]>(url,this.httpOptions)
+  }
 }

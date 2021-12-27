@@ -10,5 +10,6 @@ namespace PtyxiakiAPI.Services
     {
         public Task<Boolean> AcceptApplicant(BandUser bandUser);
         public Task<List<User>> GetUsersOfSpecificBand(Guid bandId);
+        public Task<List<Band>> GetBandOfSpecificUser(Guid userId);
     }
 }
