@@ -13,7 +13,7 @@
       rowHeight="auto"
       [externalPaging]="true"
       [count]="total"
-      [offset]="lookup.start"
+      [offset]="offset"
       [limit]="lookup.limit"
       (page)="onPageLoad($event)"
       (activate)="navigateToPreview($event)"

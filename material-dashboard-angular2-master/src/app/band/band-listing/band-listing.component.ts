@@ -17,6 +17,7 @@ export class BandListingComponent implements OnInit {
   rows: Band[];
   page: number;
   total: number;
+  offset: number = 0;
 
   columns = [{ prop: 'bandName' }, { name: 'Genre' }];
 
@@ -50,6 +51,7 @@ export class BandListingComponent implements OnInit {
   onPageLoad(event: any) {
 		if (event) {
 			this.lookup.start = event.offset * this.lookup.limit ;
+      this.offset = event.offset;
       this.setPage({offset : this.lookup.start});
 		}
 	}

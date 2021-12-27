@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <ngx-datatable class="material" [rows]="rows" [columns]="columns" [columnMode]="ColumnMode" [headerHeight]="50"
-          [footerHeight]="50" rowHeight="auto" [externalPaging]="true" [count]="total" [offset]="lookup.start"
+          [footerHeight]="50" rowHeight="auto" [externalPaging]="true" [count]="total" [offset]="offset"
           [limit]="lookup.limit" (page)="onPageLoad($event)" (activate)="navigateToPreview($event)">
         </ngx-datatable>
       </div>
