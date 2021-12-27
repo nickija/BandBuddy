@@ -132,5 +132,15 @@ namespace PtyxiakiAPI.Services
             };
             return result;
         }
+
+        public async Task<List<User>> GetUsersOfSpecificBand(Guid bandId)
+        {
+            IEnumerable<BandUser> bandUsers = _context.BandUsers.Where(x => x.BandId == bandId);
+            if (bandUsers == null) throw new Exception("Entity not found");
+            IEnumerable<Guid> userIds = bandUsers.Select(x => x.UserId);
+            List<User> users = _context.Users.Where(x => userIds.Contains(x.Id)).ToList();
+            
+            return users;
+        }
     }
 }

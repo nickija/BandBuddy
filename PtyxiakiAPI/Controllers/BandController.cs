@@ -60,5 +60,13 @@ namespace PtyxiakiAPI.Controllers
             Boolean result = _bandService.AcceptApplicant(bandUser).Result;
             return result;
         }
+
+        [HttpGet("getUsersByBand/{id}")]
+        [Authorize]
+        public ActionResult<List<User>> GetUsersByBand(Guid id)
+        {
+            List<User> users = _bandService.GetUsersOfSpecificBand(id).Result;
+            return users;
+        }
     }
 }
