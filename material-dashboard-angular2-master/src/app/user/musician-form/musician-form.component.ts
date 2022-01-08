@@ -96,6 +96,7 @@ export class MusicianFormComponent implements OnInit {
       this.musicianService.persist(this.musicianRegisterFormGroup.value).subscribe(
         res => {
           this.toastr.info('Musical Profile Updated!')
+          this.router.navigate(['/dashboard'])
           console.log(res);
         },
         error => {
