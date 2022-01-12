@@ -77,6 +77,7 @@ export class EditUserFormComponent implements OnInit {
       this.userService.persist(this.userRegisterFormGroup.value).subscribe(
         res => {
           this.toastr.info('Profile Edited!', res.firstName)
+          this.router.navigate(['/dashboard'])
           console.log(res);
         },
         error => {
